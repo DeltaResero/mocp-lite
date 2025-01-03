@@ -1,4 +1,4 @@
-AC_INIT([Music On Console],[2.6-alpha3],[mocmaint@daper.net],[moc],[http://moc.daper.net/])
+AC_INIT([Music On Console: TG fork],[2.6-alpha3-TG],[https://gitlab.com/tomaszg/mocp/-/issues],[moc],[https://gitlab.com/tomaszg/mocp])
 AC_CONFIG_SRCDIR([main.c])
 AC_CONFIG_HEADERS([config.h])
 
@@ -451,29 +451,32 @@ AC_DEFINE_UNQUOTED([CONFIGURATION], ["$ac_configure_args"],
                    [Define to the configuration used to build MOC.])
 
 dnl Capture SVN revision number for this build.
-AC_PATH_PROG(SVNVERSION, [svnversion])
-if test -n "$SVNVERSION"
-then
-	SVNREVN=`$SVNVERSION -n $srcdir`
-	SVNREVN=`expr "$SVNREVN" : '\([[^:]]*\)'`
-	if test "x$SVNREVN" = "xexported"
-	then
-		unset SVNREVN
-	else
-		echo -n $SVNREVN > REVISION
-		EXTRA_DISTS="$EXTRA_DISTS REVISION"
-	fi
-fi
-if test -z "$SVNREVN" && test -f $srcdir/REVISION
-then
-	SVNREVN=`cat $srcdir/REVISION`
-	EXTRA_DISTS="$EXTRA_DISTS REVISION"
-fi
-if test -n "$SVNREVN"
-then
-	AC_DEFINE_UNQUOTED([PACKAGE_REVISION], ["$SVNREVN"],
-	                   [The SVN revision of this build.])
-fi
+#AC_PATH_PROG(SVNVERSION, [svnversion])
+#if test -n "$SVNVERSION"
+#then
+#	SVNREVN=`$SVNVERSION -n $srcdir`
+#	SVNREVN=`expr "$SVNREVN" : '\([[^:]]*\)'`
+#	if test "x$SVNREVN" = "xexported"
+#	then
+#		unset SVNREVN
+#	else
+#		echo -n $SVNREVN > REVISION
+#		EXTRA_DISTS="$EXTRA_DISTS REVISION"
+#	fi
+#fi
+#if test -z "$SVNREVN" && test -f $srcdir/REVISION
+#then
+#	SVNREVN=`cat $srcdir/REVISION`
+#	EXTRA_DISTS="$EXTRA_DISTS REVISION"
+#fi
+#if test -n "$SVNREVN"
+#then
+#	AC_DEFINE_UNQUOTED([PACKAGE_REVISION], ["$SVNREVN"],
+#	                   [The SVN revision of this build.])
+#fi
+
+AC_DEFINE_UNQUOTED([PACKAGE_REVISION], ["m4_esyscmd_s([git describe --always])"],
+	                   [The Git revision of this build.])
 
 dnl mpris
 AC_ARG_WITH(mpris, AS_HELP_STRING(--without-mpris, Compile without MPRIS/D-Bus support.))
