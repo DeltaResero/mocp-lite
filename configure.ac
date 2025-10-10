@@ -4,6 +4,10 @@ AC_CONFIG_HEADERS([config.h])
 
 AM_INIT_AUTOMAKE([dist-xz no-dist-gzip])
 
+AC_CONFIG_MACRO_DIRS([m4])
+AM_GNU_GETTEXT_VERSION([0.26])
+AM_GNU_GETTEXT([external])
+
 AC_PREREQ([2.71])
 
 AC_CANONICAL_HOST
@@ -497,7 +501,7 @@ AC_SUBST(EXTRA_LIBS)
 AC_SUBST(EXTRA_DISTS)
 AH_BOTTOM([#include "compiler.h"])
 
-AC_CONFIG_FILES([Makefile
+AC_CONFIG_FILES([Makefile po/Makefile.in
 	  themes/Makefile
 	  config.example
 	  ])
