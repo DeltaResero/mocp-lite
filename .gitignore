@@ -62,6 +62,7 @@ config.sub
 configure
 configure.scan
 depcomp
+INSTALL
 install-sh
 libltdl/
 libtool
