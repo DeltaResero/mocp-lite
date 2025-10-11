@@ -1,15 +1,23 @@
 #! /bin/sh
 # Output a system dependent set of variables, describing how to set the
-# run time search path of shared libraries in a binary (executable or
-# shared library).
+# run time search path of shared libraries in an executable.
 #
-#   Copyright 1996-2025 Free Software Foundation, Inc.
+#   Copyright 1996-2011 Free Software Foundation, Inc.
 #   Taken from GNU libtool, 2001
 #   Originally by Gordon Matzigkeit <gord@gnu.ai.mit.edu>, 1996
 #
 #   This file is free software; the Free Software Foundation gives
 #   unlimited permission to copy and/or distribute it, with or without
 #   modifications, as long as this notice is preserved.
+#
+# The first argument passed to this file is the canonical host specification,
+#    CPU_TYPE-MANUFACTURER-OPERATING_SYSTEM
+# or
+#    CPU_TYPE-MANUFACTURER-KERNEL-OPERATING_SYSTEM
+# The environment variables CC, GCC, LDFLAGS, LD, with_gnu_ld
+# should be set by the caller.
+#
+# The set of defined variables is at the end of this script.
 
 # Known limitations:
 # - On IRIX 6.5 with CC="cc", the run time search patch must not be longer
@@ -17,82 +25,7 @@
 #   known workaround is to choose shorter directory names for the build
 #   directory and/or the installation directory.
 
-# func_usage
-# outputs to stdout the --help usage message.
-func_usage ()
-{
-  echo "\
-Usage: config.rpath [OPTION] HOST
-
-Prints shell variable assignments that describe how to hardcode a directory
-for the lookup of shared libraries into a binary (executable or shared library).
-
-The first argument passed to this file is the canonical host specification,
-   CPU_TYPE-MANUFACTURER-OPERATING_SYSTEM
-or
-   CPU_TYPE-MANUFACTURER-KERNEL-OPERATING_SYSTEM
-
-The environment variables CC, GCC, LDFLAGS, LD, with_gnu_ld
-should be set by the caller.
-
-The set of defined variables is at the end of this script.
-
-Options:
-      --help           print this help and exit
-      --version        print version information and exit
-
-Send patches and bug reports to <bug-gnulib@gnu.org>."
-}
-
-# func_version
-# outputs to stdout the --version message.
-func_version ()
-{
-  echo "config.rpath (GNU gnulib, module havelib)"
-  echo "Copyright (C) 2025 Free Software Foundation, Inc.
-License: All-Permissive.
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law."
-  echo
-  printf 'Written by %s.\n' "Bruno Haible"
-}
-
-# func_fatal_error message
-# outputs to stderr a fatal error message, and terminates the program.
-func_fatal_error ()
-{
-  echo "config.rpath: *** $1" 1>&2
-  echo "config.rpath: *** Stop." 1>&2
-  exit 1
-}
-
-# Command-line option processing.
-while test $# -gt 0; do
-  case "$1" in
-    --help | --hel | --he | --h )
-      func_usage
-      exit 0 ;;
-   --version | --versio | --versi | --vers | --ver | --ve | --v )
-      func_version
-      exit 0 ;;
-    -- )      # Stop option processing
-      shift; break ;;
-    -* )
-      func_fatal_error "unrecognized option: $1"
-      ;;
-    * )
-      break ;;
-  esac
-done
-
-if test $# -gt 1; then
-  func_fatal_error "too many arguments"
-fi
-if test $# -lt 1; then
-  func_fatal_error "too few arguments"
-fi
-
-# All known linkers require a '.a' archive for static linking (except MSVC,
+# All known linkers require a `.a' archive for static linking (except MSVC,
 # which needs '.lib').
 libext=a
 shrext=.so
@@ -124,6 +57,13 @@ else
     aix*)
       wl='-Wl,'
       ;;
+    darwin*)
+      case $cc_basename in
+        xlc*)
+          wl='-Wl,'
+          ;;
+      esac
+      ;;
     mingw* | cygwin* | pw32* | os2* | cegcc*)
       ;;
     hpux9* | hpux10* | hpux11*)
@@ -132,7 +72,9 @@ else
     irix5* | irix6* | nonstopux*)
       wl='-Wl,'
       ;;
-    linux* | k*bsd*-gnu | kopensolaris*-gnu)
+    newsos6)
+      ;;
+    linux* | k*bsd*-gnu)
       case $cc_basename in
         ecc*)
           wl='-Wl,'
@@ -143,16 +85,10 @@ else
         lf95*)
           wl='-Wl,'
           ;;
-        nagfor*)
-          wl='-Wl,-Wl,,'
-          ;;
-        pgcc* | pgf77* | pgf90* | pgf95* | pgfortran*)
+        pgcc | pgf77 | pgf90)
           wl='-Wl,'
           ;;
         ccc*)
-          wl='-Wl,'
-          ;;
-        xl* | bgxl* | bgf* | mpixl*)
           wl='-Wl,'
           ;;
         como)
@@ -160,9 +96,6 @@ else
           ;;
         *)
           case `$CC -V 2>&1 | sed 5q` in
-            *Sun\ F* | *Sun*Fortran*)
-              wl=
-              ;;
             *Sun\ C*)
               wl='-Wl,'
               ;;
@@ -170,24 +103,13 @@ else
           ;;
       esac
       ;;
-    newsos6)
-      ;;
-    *nto* | *qnx*)
-      ;;
     osf3* | osf4* | osf5*)
       wl='-Wl,'
       ;;
     rdos*)
       ;;
     solaris*)
-      case $cc_basename in
-        f77* | f90* | f95* | sunf77* | sunf90* | sunf95*)
-          wl='-Qoption ld '
-          ;;
-        *)
-          wl='-Wl,'
-          ;;
-      esac
+      wl='-Wl,'
       ;;
     sunos4*)
       wl='-Qoption ld '
@@ -249,14 +171,15 @@ if test "$with_gnu_ld" = yes; then
       fi
       ;;
     amigaos*)
-      case "$host_cpu" in
-        powerpc)
-          ;;
-        m68k)
-          hardcode_libdir_flag_spec='-L$libdir'
-          hardcode_minus_L=yes
-          ;;
-      esac
+      hardcode_libdir_flag_spec='-L$libdir'
+      hardcode_minus_L=yes
+      # Samuel A. Falvo II <kc5tja@dolphin.openprojects.net> reports
+      # that the semantics of dynamic libraries on AmigaOS, at least up
+      # to version 4, is to share data among multiple programs linked
+      # with the same dynamic library.  Since this doesn't match the
+      # behavior of shared libraries on other platforms, we cannot use
+      # them.
+      ld_shlibs=no
       ;;
     beos*)
       if $LD --help 2>&1 | grep ': supported targets:.* elf' > /dev/null; then
@@ -275,13 +198,11 @@ if test "$with_gnu_ld" = yes; then
         ld_shlibs=no
       fi
       ;;
-    haiku*)
-      ;;
     interix[3-9]*)
       hardcode_direct=no
       hardcode_libdir_flag_spec='${wl}-rpath,$libdir'
       ;;
-    gnu* | linux* | tpf* | k*bsd*-gnu | kopensolaris*-gnu)
+    gnu* | linux* | k*bsd*-gnu)
       if $LD --help 2>&1 | grep ': supported targets:.* elf' > /dev/null; then
         :
       else
@@ -404,14 +325,10 @@ else
       fi
       ;;
     amigaos*)
-      case "$host_cpu" in
-        powerpc)
-          ;;
-        m68k)
-          hardcode_libdir_flag_spec='-L$libdir'
-          hardcode_minus_L=yes
-          ;;
-      esac
+      hardcode_libdir_flag_spec='-L$libdir'
+      hardcode_minus_L=yes
+      # see comment about different semantics on the GNU ld section
+      ld_shlibs=no
       ;;
     bsdi[45]*)
       ;;
@@ -425,20 +342,33 @@ else
       ;;
     darwin* | rhapsody*)
       hardcode_direct=no
-      if { case $cc_basename in ifort*) true;; *) test "$GCC" = yes;; esac; }; then
+      if test "$GCC" = yes ; then
         :
       else
-        ld_shlibs=no
+        case $cc_basename in
+          xlc*)
+            ;;
+          *)
+            ld_shlibs=no
+            ;;
+        esac
       fi
       ;;
     dgux*)
       hardcode_libdir_flag_spec='-L$libdir'
       ;;
-    freebsd2.[01]*)
+    freebsd1*)
+      ld_shlibs=no
+      ;;
+    freebsd2.2*)
+      hardcode_libdir_flag_spec='-R$libdir'
+      hardcode_direct=yes
+      ;;
+    freebsd2*)
       hardcode_direct=yes
       hardcode_minus_L=yes
       ;;
-    freebsd* | dragonfly* | midnightbsd*)
+    freebsd* | dragonfly*)
       hardcode_libdir_flag_spec='-R$libdir'
       hardcode_direct=yes
       ;;
@@ -489,8 +419,6 @@ else
       hardcode_direct=yes
       hardcode_libdir_flag_spec='${wl}-rpath ${wl}$libdir'
       hardcode_libdir_separator=:
-      ;;
-    *nto* | *qnx*)
       ;;
     openbsd*)
       if test -f /usr/libexec/ld.so; then
@@ -587,12 +515,7 @@ case "$host_os" in
     library_names_spec='$libname$shrext'
     ;;
   amigaos*)
-    case "$host_cpu" in
-      powerpc*)
-        library_names_spec='$libname$shrext' ;;
-      m68k)
-        library_names_spec='$libname.a' ;;
-    esac
+    library_names_spec='$libname.a'
     ;;
   beos*)
     library_names_spec='$libname$shrext'
@@ -611,16 +534,17 @@ case "$host_os" in
   dgux*)
     library_names_spec='$libname$shrext'
     ;;
-  freebsd[23].*)
-    library_names_spec='$libname$shrext$versuffix'
+  freebsd1*)
     ;;
-  freebsd* | dragonfly* | midnightbsd*)
-    library_names_spec='$libname$shrext'
+  freebsd* | dragonfly*)
+    case "$host_os" in
+      freebsd[123]*)
+        library_names_spec='$libname$shrext$versuffix' ;;
+      *)
+        library_names_spec='$libname$shrext' ;;
+    esac
     ;;
   gnu*)
-    library_names_spec='$libname$shrext'
-    ;;
-  haiku*)
     library_names_spec='$libname$shrext'
     ;;
   hpux9* | hpux10* | hpux11*)
@@ -658,7 +582,7 @@ case "$host_os" in
     ;;
   linux*oldld* | linux*aout* | linux*coff*)
     ;;
-  linux* | k*bsd*-gnu | kopensolaris*-gnu)
+  linux* | k*bsd*-gnu)
     library_names_spec='$libname$shrext'
     ;;
   knetbsd*-gnu)
@@ -670,7 +594,7 @@ case "$host_os" in
   newsos6)
     library_names_spec='$libname$shrext'
     ;;
-  *nto* | *qnx*)
+  nto-qnx*)
     library_names_spec='$libname$shrext'
     ;;
   openbsd*)
@@ -699,9 +623,6 @@ case "$host_os" in
     library_names_spec='$libname$shrext'
     ;;
   sysv5* | sco3.2v5* | sco5v6* | unixware* | OpenUNIX* | sysv4*uw2*)
-    library_names_spec='$libname$shrext'
-    ;;
-  tpf*)
     library_names_spec='$libname$shrext'
     ;;
   uts4*)
