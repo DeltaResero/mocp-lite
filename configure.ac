@@ -482,21 +482,6 @@ dnl Capture SVN revision number for this build.
 AC_DEFINE_UNQUOTED([PACKAGE_REVISION], ["m4_esyscmd_s([git describe --always])"],
 	                   [The Git revision of this build.])
 
-dnl mpris
-AC_ARG_WITH(mpris, AS_HELP_STRING(--without-mpris, Compile without MPRIS/D-Bus support.))
-if test "x$with_mpris" != "xno"
-then
-       PKG_CHECK_MODULES(DBus, [dbus-1 >= 1.2],
-            [COMPILE_MPRIS="yes"
-             AC_DEFINE([HAVE_MPRIS], 1, [Define if you want to have MPRIS/D-Bus support.])
-             EXTRA_LIBS="$EXTRA_LIBS -ldbus-1"
-             EXTRA_OBJS="$EXTRA_OBJS mpris.o"
-             CFLAGS="$CFLAGS `pkg-config dbus-1 --cflags`"],
-            [COMPILE_MPRIS="no"])
-else
-       COMPILE_MPRIS="no"
-fi
-
 AC_SUBST(EXTRA_LIBS)
 AC_SUBST(EXTRA_DISTS)
 AH_BOTTOM([#include "compiler.h"])
@@ -527,7 +512,6 @@ echo "RCC:               "$COMPILE_RCC
 echo "Network streams:   "$COMPILE_CURL
 echo "Resampling:        "$COMPILE_SAMPLERATE
 echo "MIME magic:        "$COMPILE_MAGIC
-echo "MPRIS/D-Bus:       "$COMPILE_MPRIS
 echo "-----------------------------------------------------------------------"
 echo
 

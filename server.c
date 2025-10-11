@@ -48,9 +48,6 @@
 #include "softmixer.h"
 #include "equalizer.h"
 #include "ratings.h"
-#ifdef HAVE_MPRIS
-# include "mpris.h"
-#endif
 
 #define SERVER_LOG	"mocp_server_log"
 #define PID_FILE	"pid"
@@ -72,11 +69,6 @@ static struct client clients[CLIENTS_MAX];
 /* Thread ID of the server thread. */
 static pthread_t server_tid;
 
-/* Thread ID of the MPRIS thread. */
-#ifdef HAVE_MPRIS
-static pthread_t mpris_tid;
-#endif
-
 /* Pipe used to wake up the server from select() from another thread. */
 static int wake_up_pipe[2];
 
@@ -84,7 +76,7 @@ static int wake_up_pipe[2];
 static int server_sock = -1;
 
 /* Set to 1 when a signal arrived causing the program to exit. */
-volatile int server_quit = 0;
+static volatile int server_quit = 0;
 
 /* Information about currently played file */
 static struct {
@@ -99,7 +91,7 @@ static struct {
 	-1
 };
 
-struct tags_cache *tags_cache;
+static struct tags_cache *tags_cache;
 
 extern char **environ;
 
@@ -424,11 +416,6 @@ void server_init (int debugging, int foreground)
 	tags_cache = tags_cache_new (options_get_int("TagsCacheSize"));
 	tags_cache_load (tags_cache, create_file_name("cache"));
 
-#ifdef HAVE_MPRIS
-	mpris_init ();
-	pthread_create (&mpris_tid, NULL, mpris_thread, NULL);
-#endif
-
 	server_tid = pthread_self ();
 	xsignal (SIGTERM, sig_exit);
 	xsignal (SIGINT, foreground ? sig_exit : SIG_IGN);
@@ -589,10 +576,6 @@ static void on_song_change ()
 	}
 	tags_free (curr_tags);
 
-#ifdef HAVE_MPRIS
-	mpris_track_change ();
-#endif
-
 #ifndef NDEBUG
 	{
 		char *cmd;
@@ -634,7 +617,7 @@ static inline bool is_plist_event (const int event)
 	return result;
 }
 
-void add_event_all (const int event, const void *data)
+static void add_event_all (const int event, const void *data)
 {
 	int i;
 	int added = 0;
@@ -730,9 +713,6 @@ static void server_shutdown ()
 {
 	logit ("Server exiting...");
 	audio_exit ();
-#ifdef HAVE_MPRIS
-	mpris_exit ();
-#endif
 	tags_cache_free (tags_cache);
 	tags_cache = NULL;
 	logit ("Running OnServerStop");
@@ -882,9 +862,6 @@ static int req_seek (struct client *cli)
 
 	logit ("Seeking %ds", sec);
 	audio_seek (sec);
-#ifdef HAVE_MPRIS
-	mpris_position_change();
-#endif
 
 	return 1;
 }
@@ -920,9 +897,6 @@ static int req_jump_to (struct client *cli)
 
 	logit ("Jumping to %ds", sec);
 	audio_jump_to (sec);
-#ifdef HAVE_MPRIS
-	mpris_position_change();
-#endif
 
 	return 1;
 }
@@ -1001,10 +975,6 @@ static int get_set_option (struct client *cli)
 
 	options_set_bool (name, val ? true : false);
 	free (name);
-
-#ifdef HAVE_MPRIS
-	mpris_status_change ();
-#endif
 
 	add_event_all (EV_OPTIONS, NULL);
 
@@ -1900,9 +1870,6 @@ void server_loop ()
 
 	close_clients ();
 	clients_cleanup ();
-#ifdef HAVE_MPRIS
-	pthread_join (mpris_tid, NULL);
-#endif
 	close (server_sock);
 	server_sock = -1;
 	server_shutdown ();
@@ -1935,9 +1902,6 @@ void set_info_avg_bitrate (const int avg_bitrate)
 /* Notify the client about change of the player state. */
 void state_change ()
 {
-#ifdef HAVE_MPRIS
-	mpris_status_change ();
-#endif
 	add_event_all (EV_STATE, NULL);
 }
 
@@ -1948,9 +1912,6 @@ void ctime_change ()
 
 void tags_change ()
 {
-#ifdef HAVE_MPRIS
-	mpris_track_change();
-#endif
 	add_event_all (EV_TAGS, NULL);
 }
 
