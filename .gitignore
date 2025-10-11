@@ -63,6 +63,7 @@ configure
 configure.scan
 depcomp
 install-sh
+libltdl/
 libtool
 libtool.m4
 ltmain.sh
