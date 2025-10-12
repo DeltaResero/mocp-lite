@@ -257,7 +257,9 @@ AC_ARG_ENABLE(debug, AS_HELP_STRING([--enable-debug],
 
 if test "x$enable_debug" = "xno"
 then
+	dnl Remove the default -g flag if present and disable debugging
 	AC_DEFINE([NDEBUG], 1, [Define if you don't want debugging code])
+	CFLAGS=`echo "$CFLAGS" | sed 's/-g //'`
 	COMPILE_DEBUG='no'
 else
 	if test "x$enable_debug" = "xgdb"
