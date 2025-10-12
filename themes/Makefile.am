@@ -12,6 +12,7 @@ themes_DATA = 30equals_theme \
               dylanwh_theme \
               example_theme \
               green_theme \
+              gruvbox_theme \
               hybrid-bright_theme \
               hybrid_theme \
               kirito_theme \
