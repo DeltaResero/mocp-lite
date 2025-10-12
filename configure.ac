@@ -1,8 +1,9 @@
-AC_INIT([Music On Console: TG fork],[2.6-alpha3-TG],[https://gitlab.com/tomaszg/mocp/-/issues],[moc],[https://gitlab.com/tomaszg/mocp])
+AC_INIT([Music on Console Queue],[2.6],[https://github.com/DeltaResero/MoCQ/issues],[moc],[https://github.com/DeltaResero/MoCQ])
 AC_CONFIG_SRCDIR([main.c])
 AC_CONFIG_HEADERS([config.h])
 
 AM_INIT_AUTOMAKE([dist-xz no-dist-gzip])
+AM_SILENT_RULES([yes])
 
 dnl If needed, can drop to AC_PREREQ([2.69])
 AC_PREREQ([2.71])
