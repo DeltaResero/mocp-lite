@@ -1,4 +1,12 @@
+###############################################################################
+#
+# Blue Theme
+# by Unknown
+#
+###############################################################################
 
+
+# Element              F Color B Color Attributes
 background           = default default
 frame                = blue    default
 window_title         = default default

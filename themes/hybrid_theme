@@ -1,17 +1,18 @@
 ###############################################################################
-# Green Theme
-# by Jacek Lehmann
+#
+# Hybrid-based Theme
+# by Unknown
 # best viewed on shaded or black terminal
 #
 ###############################################################################
 
 
 # Element              F Color B Color Attributes
-background           = default default
-frame                = black   default
+background           = white   black
+frame                = blue    default
 window_title         = green   default
 directory            = red     default
-selected_directory   = yellow  default
+selected_directory   = blue    default
 playlist             = blue    default
 selected_playlist    = magenta default
 file                 = green   default
@@ -19,6 +20,9 @@ selected_file        = cyan    default
 marked_file          = green   default bold
 marked_selected_file = cyan    default bold
 info                 = cyan    default
+selected_info        = blue    default bold
+marked_info          = green   default bold
+marked_selected_info = green   default bold
 status               = magenta default
 title                = green   default
 state                = magenta default

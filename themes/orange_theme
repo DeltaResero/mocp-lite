@@ -1,9 +1,7 @@
 ###############################################################################
 #
-# Yellow/Red Theme
-# by Morten Grunnet Buhl
-# Mostly Yellow.
-# Doesn't work on terminals when underline isn't supported (like Linux console)
+# Yellow|Red "Orange" Theme
+# by Stefan Wimmer <wimstefan@gmail.com>
 #
 ###############################################################################
 
@@ -11,16 +9,19 @@
 # Element              F Color B Color Attributes
 background           = red     default
 frame                = red     default
-window_title         = yellow  default underline,dim
+window_title         = red     default
 directory            = yellow  default
-selected_directory   = yellow  default underline
+selected_directory   = red     default
 playlist             = yellow  default
 selected_playlist    = yellow  default
 file                 = yellow  default
-selected_file        = yellow  default underline
-marked_file          = yellow  default bold
-marked_selected_file = red     default bold,underline
+selected_file        = black   yellow
+marked_file          = red     default
+marked_selected_file = red     yellow
 info                 = yellow  default
+selected_info        = yellow  default bold
+marked_info          = yellow  default bold,reverse
+marked_selected_info = red     default bold
 status               = yellow  default
 title                = yellow  default
 state                = yellow  default
@@ -32,12 +33,12 @@ sound_parameters     = yellow  default
 legend               = yellow  default
 disabled             = red     default dim
 enabled              = yellow  default bold
-empty_mixer_bar      = yellow  red
-filled_mixer_bar     = red     yellow
+empty_mixer_bar      = black   red
+filled_mixer_bar     = black   yellow
 empty_time_bar       = yellow  default
-filled_time_bar      = default  yellow
+filled_time_bar      = default yellow
 entry                = yellow  default
-entry_title          = yellow  default bold
+entry_title          = yellow  default
 error                = cyan    default
 message              = yellow  default
 plist_time           = yellow  default
