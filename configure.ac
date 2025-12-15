@@ -1,5 +1,5 @@
 AC_INIT([Music on Console Queue],[2.6],[https://github.com/DeltaResero/MoCQ/issues],[moc],[https://github.com/DeltaResero/MoCQ])
-AC_CONFIG_SRCDIR([main.c])
+AC_CONFIG_SRCDIR([src/core/main.c])
 AC_CONFIG_HEADERS([config.h])
 
 AM_INIT_AUTOMAKE([dist-xz no-dist-gzip])
@@ -400,7 +400,7 @@ then
 fi
 
 dnl Decoder plugins
-m4_include(decoder_plugins/decoders.m4)
+m4_include(src/audio/decoders/decoders.m4)
 
 dnl Require with iconv for charset translation.
 AM_ICONV
@@ -487,7 +487,7 @@ AC_SUBST(EXTRA_DISTS)
 AH_BOTTOM([#include "compiler.h"])
 
 AC_CONFIG_FILES([Makefile
-	  themes/Makefile
+	  assets/themes/Makefile
 	  config.example
 	  ])
 AC_OUTPUT
