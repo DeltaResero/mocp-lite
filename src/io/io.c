@@ -41,7 +41,7 @@
 #include "core/options.h"
 #include "library/files.h"
 #ifdef HAVE_CURL
-# include "io_curl.h"
+# include "io/io_curl.h"
 #endif
 
 #ifdef HAVE_CURL

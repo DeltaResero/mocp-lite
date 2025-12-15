@@ -3763,7 +3763,7 @@ void interface_loop ()
 				if (FD_ISSET(inotify_fd, &fds)) {
 //					char buffer[1024];
 					debug("TG: inotify event, refreshing");
-					ret = read(inotify_fd, NULL, 100 * sizeof (struct inotify_event)); // only needed to empty the event queue
+					{ char dummy[4096]; ret = read(inotify_fd, dummy, sizeof(dummy)); }
 //					lseek(inotify_fd,0,SEEK_END);
 					reread_dir();
 				}

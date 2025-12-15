@@ -41,4 +41,4 @@ dnl decoder uses it...
 fi
 
 AM_CONDITIONAL([BUILD_sidplay2], [test "$want_sidplay2"])
-AC_CONFIG_FILES([decoder_plugins/sidplay2/Makefile])
+AC_CONFIG_FILES([src/audio/decoders/sidplay2/Makefile])

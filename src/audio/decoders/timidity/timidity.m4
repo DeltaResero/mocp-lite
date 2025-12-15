@@ -14,4 +14,4 @@ then
 fi
 
 AM_CONDITIONAL([BUILD_timidity], [test "$want_timidity"])
-AC_CONFIG_FILES([decoder_plugins/timidity/Makefile])
+AC_CONFIG_FILES([src/audio/decoders/timidity/Makefile])

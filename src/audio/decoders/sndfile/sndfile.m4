@@ -20,4 +20,4 @@ then
 fi
 
 AM_CONDITIONAL([BUILD_sndfile], [test "$want_sndfile"])
-AC_CONFIG_FILES([decoder_plugins/sndfile/Makefile])
+AC_CONFIG_FILES([src/audio/decoders/sndfile/Makefile])

@@ -932,11 +932,14 @@ static void db_err_cb (const DB_ENV *unused ATTR_UNUSED, const char *errpfx,
 #endif
 
 #if defined(HAVE_DB_H) && !defined(NDEBUG)
-static void db_msg_cb (const DB_ENV *unused ATTR_UNUSED, const char *msg)
+static void db_msg_cb (const DB_ENV *unused ATTR_UNUSED, const char *msg_pfx, const char *msg)
 {
 	assert (msg);
 
-	logit ("BDB said: %s", msg);
+	if (msg_pfx && msg_pfx[0])
+		logit ("BDB said: %s: %s", msg_pfx, msg);
+	else
+		logit ("BDB said: %s", msg);
 }
 #endif
 

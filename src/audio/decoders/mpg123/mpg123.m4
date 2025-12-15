@@ -16,4 +16,4 @@ AC_ARG_WITH(mpg123, AS_HELP_STRING([--without-mpg123],
 	fi
 
 AM_CONDITIONAL([BUILD_mpg123], [test "$want_mpg123"])
-AC_CONFIG_FILES([decoder_plugins/mpg123/Makefile])
+AC_CONFIG_FILES([src/audio/decoders/mpg123/Makefile])

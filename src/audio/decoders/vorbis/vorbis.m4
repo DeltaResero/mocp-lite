@@ -27,4 +27,4 @@ else
 fi
 
 AM_CONDITIONAL([BUILD_vorbis], [test "$want_vorbis"])
-AC_CONFIG_FILES([decoder_plugins/vorbis/Makefile])
+AC_CONFIG_FILES([src/audio/decoders/vorbis/Makefile])

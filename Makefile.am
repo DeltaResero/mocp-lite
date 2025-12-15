@@ -66,7 +66,7 @@ mocp_SOURCES = \
 	src/audio/processing/equalizer.h \
 	src/audio/processing/equalizer.c \
 	src/library/ratings.h \
-	src/library/ratings.c \
+	src/library/ratings.c
 
 EXTRA_mocp_SOURCES = \
 	src/utils/md5.c \
@@ -82,7 +82,7 @@ EXTRA_mocp_SOURCES = \
 	src/io/io_curl.c \
 	src/io/io_curl.h \
 	src/audio/outputs/jack.c \
-	src/audio/outputs/jack.h \
+	src/audio/outputs/jack.h
 
 EXTRA_DIST = assets/doc/README_equalizer assets/man/mocp.1 THANKS assets/doc/keymap.example Doxyfile \
 	         doxy_pages/decoder_api.doxy doxy_pages/main_page.doxy \
@@ -99,3 +99,7 @@ desktop_DATA = assets/desktop/mocp.desktop
 
 icondir = $(datadir)/icons/hicolor/scalable/apps
 icon_DATA = assets/desktop/mocp.svg
+man_MANS = assets/man/mocp.1
+mocp_LDADD = @EXTRA_OBJS@ @EXTRA_LIBS@ $(RCC_LIBS) -lltdl -lm
+mocp_DEPENDENCIES = @EXTRA_OBJS@
+mocp_LDFLAGS = -export-dynamic

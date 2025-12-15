@@ -24,4 +24,4 @@ then
 fi
 
 AM_CONDITIONAL([BUILD_aac], [test "$want_aac"])
-AC_CONFIG_FILES([decoder_plugins/aac/Makefile])
+AC_CONFIG_FILES([src/audio/decoders/aac/Makefile])

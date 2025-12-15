@@ -14,4 +14,4 @@ then
 fi
 
 AM_CONDITIONAL([BUILD_speex], [test "$want_speex"])
-AC_CONFIG_FILES([decoder_plugins/speex/Makefile])
+AC_CONFIG_FILES([src/audio/decoders/speex/Makefile])

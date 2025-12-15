@@ -62,4 +62,4 @@ then
 fi
 
 AM_CONDITIONAL([BUILD_musepack], [test "$want_musepack"])
-AC_CONFIG_FILES([decoder_plugins/musepack/Makefile])
+AC_CONFIG_FILES([src/audio/decoders/musepack/Makefile])

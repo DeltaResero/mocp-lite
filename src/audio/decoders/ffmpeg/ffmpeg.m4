@@ -66,4 +66,4 @@ then
 fi
 
 AM_CONDITIONAL([BUILD_ffmpeg], [test "$want_ffmpeg"])
-AC_CONFIG_FILES([decoder_plugins/ffmpeg/Makefile])
+AC_CONFIG_FILES([src/audio/decoders/ffmpeg/Makefile])

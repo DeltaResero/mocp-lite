@@ -16,4 +16,4 @@ then
 fi
 
 AM_CONDITIONAL([BUILD_mp3], [test "$want_mp3"])
-AC_CONFIG_FILES([decoder_plugins/mp3/Makefile])
+AC_CONFIG_FILES([src/audio/decoders/mp3/Makefile])

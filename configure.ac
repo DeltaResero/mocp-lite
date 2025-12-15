@@ -2,7 +2,7 @@ AC_INIT([Music on Console Queue],[2.6],[https://github.com/DeltaResero/MoCQ/issu
 AC_CONFIG_SRCDIR([src/core/main.c])
 AC_CONFIG_HEADERS([config.h])
 
-AM_INIT_AUTOMAKE([dist-xz no-dist-gzip])
+AM_INIT_AUTOMAKE([dist-xz no-dist-gzip subdir-objects])
 AM_SILENT_RULES([yes])
 
 dnl If needed, can drop to AC_PREREQ([2.69])
@@ -133,7 +133,7 @@ then
 	CFLAGS="$save_CFLAGS"
 	LDFLAGS="$LDFLAGS $BDB_LDFLAGS"
 	EXTRA_LIBS="$EXTRA_LIBS $BDB_LIBS"
-	AC_CHECK_TYPES([u_int], , , [[#include "${srcdir}/compiler.h"]
+	AC_CHECK_TYPES([u_int], , , [[#include "${srcdir}/src/core/compiler.h"]
 	                             [#include <sys/types.h>]
 	                             [#include <db.h>]])
 fi
@@ -153,7 +153,7 @@ if test "x$with_pulse" != "xno"
 then
 	PKG_CHECK_MODULES(PULSE, [libpulse],
 	                  [SOUND_DRIVERS="$SOUND_DRIVERS PULSE"
-	                    EXTRA_OBJS="$EXTRA_OBJS pulse.o"
+	                    EXTRA_OBJS="$EXTRA_OBJS src/audio/outputs/pulse.o"
 	                    AC_DEFINE([HAVE_PULSE], 1, [Define if you have PulseAudio.])
 	                    EXTRA_LIBS="$EXTRA_LIBS $PULSE_LIBS"
 	                    CFLAGS="$CFLAGS $PULSE_CFLAGS"],
@@ -189,7 +189,7 @@ then
 	        "$ac_cv_header_soundcard_h" = "yes"
 	then
 		AC_DEFINE([HAVE_OSS], 1, [Define if you have OSS.])
-		EXTRA_OBJS="$EXTRA_OBJS oss.o"
+		EXTRA_OBJS="$EXTRA_OBJS src/audio/outputs/oss.o"
 		CFLAGS="$CFLAGS $OSS_CFLAGS"
 		SOUND_DRIVERS="$SOUND_DRIVERS OSS"
 		AC_CHECK_LIB([ossaudio], [_oss_ioctl],
@@ -206,7 +206,7 @@ then
 	if test "$ac_cv_header_sndio_h" = "yes"
 	then
 		AC_DEFINE([HAVE_SNDIO], 1, [Define if you have SNDIO.])
-		EXTRA_OBJS="$EXTRA_OBJS sndio_out.o"
+		EXTRA_OBJS="$EXTRA_OBJS src/audio/outputs/sndio_out.o"
 		SOUND_DRIVERS="$SOUND_DRIVERS SNDIO"
 		AC_CHECK_LIB([sndio], [sio_open],
 		             [EXTRA_LIBS="$EXTRA_LIBS -lsndio"])
@@ -221,7 +221,7 @@ if test "x$with_alsa" != "xno"
 then
 	PKG_CHECK_MODULES(ALSA, [alsa >= 1.0.11],
 	     [SOUND_DRIVERS="$SOUND_DRIVERS ALSA"
-	      EXTRA_OBJS="$EXTRA_OBJS alsa.o"
+	      EXTRA_OBJS="$EXTRA_OBJS src/audio/outputs/alsa.o"
 	      AC_DEFINE([HAVE_ALSA], 1, [Define if you have ALSA.])
 	      EXTRA_LIBS="$EXTRA_LIBS $ALSA_LIBS"
 	      COMPILE_ALSA="yes"
@@ -236,7 +236,7 @@ if test "x$with_jack" != "xno"
 then
 	PKG_CHECK_MODULES(JACK, [jack >= 0.4],
 			  [SOUND_DRIVERS="$SOUND_DRIVERS JACK"
-			   EXTRA_OBJS="$EXTRA_OBJS jack.o"
+			   EXTRA_OBJS="$EXTRA_OBJS src/audio/outputs/jack.o"
 			   AC_DEFINE([HAVE_JACK], 1, [Define if you have JACK.])
 			   EXTRA_LIBS="$EXTRA_LIBS $JACK_LIBS"
 			   CFLAGS="$CFLAGS $JACK_CFLAGS"
@@ -273,7 +273,7 @@ else
 		AX_APPEND_COMPILE_FLAGS([-g])
 		COMPILE_DEBUG='yes'
 	fi
-	EXTRA_OBJS="$EXTRA_OBJS null_out.o md5.o"
+	EXTRA_OBJS="$EXTRA_OBJS src/audio/outputs/null_out.o src/utils/md5.o"
 fi
 
 AC_FUNC_MALLOC
@@ -313,7 +313,7 @@ else
 fi
 
 dnl strcasestr(3) is a GNU extension
-AC_CHECK_DECLS([strcasestr], , , [[#include "${srcdir}/compiler.h"]
+AC_CHECK_DECLS([strcasestr], , , [[#include "${srcdir}/src/core/compiler.h"]
                                   [#include <string.h>]])
 AC_CHECK_FUNCS([strcasestr])
 
@@ -435,7 +435,7 @@ AC_ARG_WITH(curl, AS_HELP_STRING([--without-curl],
 if test "x$with_curl" != "xno"
 then
 	PKG_CHECK_MODULES(CURL, [libcurl >= 7.15.1],
-		[EXTRA_OBJS="$EXTRA_OBJS io_curl.o"
+		[EXTRA_OBJS="$EXTRA_OBJS src/io/io_curl.o"
 		 AC_DEFINE([HAVE_CURL], 1, [Define if you have libcurl])
 		 EXTRA_LIBS="$EXTRA_LIBS $CURL_LIBS"
 		 CFLAGS="$CFLAGS $CURL_CFLAGS"
@@ -484,11 +484,11 @@ AC_DEFINE_UNQUOTED([PACKAGE_REVISION], ["m4_esyscmd_s([git describe --always])"]
 
 AC_SUBST(EXTRA_LIBS)
 AC_SUBST(EXTRA_DISTS)
-AH_BOTTOM([#include "compiler.h"])
+AH_BOTTOM([#include "core/compiler.h"])
 
 AC_CONFIG_FILES([Makefile
 	  assets/themes/Makefile
-	  config.example
+	  assets/doc/config.example
 	  ])
 AC_OUTPUT
 

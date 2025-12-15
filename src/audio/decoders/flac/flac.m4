@@ -14,4 +14,4 @@ then
 fi
 
 AM_CONDITIONAL([BUILD_flac], [test "$want_flac"])
-AC_CONFIG_FILES([decoder_plugins/flac/Makefile])
+AC_CONFIG_FILES([src/audio/decoders/flac/Makefile])

@@ -33,22 +33,22 @@
 #include "utils/lists.h"
 
 #ifdef HAVE_PULSE
-# include "pulse.h"
+# include "audio/outputs/pulse.h"
 #endif
 #ifdef HAVE_OSS
-# include "oss.h"
+# include "audio/outputs/oss.h"
 #endif
 #ifdef HAVE_SNDIO
-# include "sndio_out.h"
+# include "audio/outputs/sndio_out.h"
 #endif
 #ifdef HAVE_ALSA
-# include "alsa.h"
+# include "audio/outputs/alsa.h"
 #endif
 #ifndef NDEBUG
-# include "null_out.h"
+# include "audio/outputs/null_out.h"
 #endif
 #ifdef HAVE_JACK
-# include "jack.h"
+# include "audio/outputs/jack.h"
 #endif
 
 #include "audio/processing/softmixer.h"

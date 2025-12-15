@@ -14,4 +14,4 @@ then
 fi
 
 AM_CONDITIONAL([BUILD_modplug], [test "$want_modplug"])
-AC_CONFIG_FILES([decoder_plugins/modplug/Makefile])
+AC_CONFIG_FILES([src/audio/decoders/modplug/Makefile])

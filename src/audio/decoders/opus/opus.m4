@@ -22,4 +22,4 @@ AC_ARG_WITH(opus, AS_HELP_STRING([--without-opus],
 	fi
 
 AM_CONDITIONAL([BUILD_opus], [test "$want_opus"])
-AC_CONFIG_FILES([decoder_plugins/opus/Makefile])
+AC_CONFIG_FILES([src/audio/decoders/opus/Makefile])
