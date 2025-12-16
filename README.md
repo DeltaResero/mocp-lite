@@ -1,39 +1,145 @@
-This is fork of MOC (Music on Console) which tries to follow closely upstream development but includes several experimental features.
+# Music on Console Framebuffer (mocf)
 
-# List of major changes in master branch
+Music on Console Framebuffer (mocf) is a lightweight ncurses audio player
+forked from Music on Console Player (mocp). Targeting minimal resource usage
+for smoother playback on constrained systems, the project trims out
+non-essential features to apply sane defaults for low-end, non-accelerated,
+software-rendered environments like framebuffer consoles.
 
-## General changes
+The interface features a dual-pane layout reminiscent of Midnight Commander.
+Native directory handling allows you to simply select a file to begin playback
+for the entire folder. While playlists are not required, complex queues can be
+built, saved, and exported as m3u files.
 
-1. Reworked audio formats including support for 32 bit samples, higher configurability of allowed formats and configure time restriction of float computing for machines w/o FPU
-1. Song ratings pulled from https://github.com/hilgenberg/moc.
-1. MPRIS support: possibility to control MOC by outside apps or widgets
-1. Better multichannel support, including downmixing 5.1 -> 2.0 and decoder support
-1. Resampling changes - tri-valued option EnableResample replacing ForceResample
-1. Possibility to use "~" in some options in config file
-1. Playlist behaviour changes - possibility to automatically enable shuffle for playlist and exporting relative playlists
-1. Inotify support: refresh directory on content change
-1. Lyrics option changes - AutoloadLyrics does what it would be expected to do - preload lyrics
+**This is a fork of the original MOC.** It is based heavily on the work
+found at [gitlab.com/tomaszg/mocp] and integrates several experimental
+features and fixes from the community.
 
-## Backend changes
+### Key Features & Attributions
 
-1. Pulseaudio backend pulled from https://github.com/xdch47/moc
-1. Logarithmic audio scaling both in ALSA and in softmixer
+*   **PulseAudio backend:** Native support for PulseAudio (pulled from
+    [github.com/xdch47/moc]).
+*   **FFmpeg > 4 support:** Modern FFmpeg support (pulled from
+    [github.com/xdch47/moc]).
+*   **Song Ratings:** Integrated rating system (pulled from
+    [github.com/hilgenberg/moc]).
+*   **Inotify support:** Automatically refresh directories on content change.
+*   **Reworked audio formats:** Support for 32-bit samples and float
+    processing.
+*   **Stripped Features:** Complex non-essential features have been removed
+    or disabled to reduce dependencies of the default build
+*   **Optimized Defaults:** Configuration is tuned out-of-the-box for
+    software-rendered environments.
 
-## Decoder changes
+## Building and Installation
 
-1. mp3 decoder using libmpg123
-1. Native Opus decoder using libopusfile
-1. Upgraded sndfile decoder - support for other sample formats and partial BPS reporting
-1. FFmpeg > 4 support pulled from https://github.com/xdch47/moc (along with other minor fixes)
-1. multichannel output from Wavpack and FFmpeg decoders
+This project uses the **CMake** build system.
 
-# Branches
+### Prerequisites
 
-There are several even more experimental branches (often outdated), including:
-* speex - introduces two new resampling methods: one is using speex and the other soxr.
+*   CMake 3.15 or later
+*   C99 and C++17 compatible compilers
+*   POSIX.1-2001 compatible system
+*   **Required Libraries:** libltdl (libtool), libpopt, ncurses, pthreads.
+*   **Optional Libraries:** PulseAudio, ALSA, JACK, OSS, SNDIO, libcurl,
+    libsamplerate, libmagic, librcc, BerkeleyDB.
+*   **Decoder Libraries:** libmad, libmpg123, libfaad2, libvorbis, opusfile,
+    libflac, libmpcdec, libwavpack, libsndfile, libmodplug, ffmpeg/libav,
+    libspeex, libtimidity, libsidplay2.
 
-# Contact
+### Quick Start
 
-Prefered method of contact for reporting bugs or requesting some features is to create at https://gitlab.com/tomaszg/mocp/-/issues. You can also use my email from Gitlab profile.
+```bash
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+```
 
-Do not submit a bug at https://moc.daper.net/ unless you are positive that the problem is not related to changes introduced in this fork.
+### Build Options
+
+You can configure the build by passing `-DOPTION=ON/OFF` to cmake.
+
+#### General Options
+| Option | Description | Default |
+|--------|-------------|---------|
+| `ENABLE_DEBUG` | Enable debugging code | `OFF` |
+| `ENABLE_CACHE` | Enable tags caching code (requires BerkeleyDB) | `ON` |
+| `ENABLE_INTERNAL_FLOAT` | Use float for internal processing | `OFF` |
+| `ENABLE_RCC` | Enable LIBRCC support | `ON` |
+| `ENABLE_CURL` | Enable network streams support | `ON` |
+| `ENABLE_SAMPLERATE` | Enable libsamplerate | `ON` |
+| `ENABLE_MAGIC` | Enable MIME magic support | `ON` |
+
+#### Sound Output Options
+| Option | Description | Default |
+|--------|-------------|---------|
+| `WITH_PULSE` | Enable PulseAudio support | `ON` |
+| `WITH_ALSA` | Enable ALSA support | `ON` |
+| `WITH_JACK` | Enable JACK support | `ON` |
+| `WITH_OSS` | Enable OSS support | `ON` |
+| `WITH_SNDIO` | Enable SNDIO support | `ON` |
+
+#### Decoder Options
+| Option | Description | Default |
+|--------|-------------|---------|
+| `WITH_MP3` | Enable MP3 support (libmad) | `ON` |
+| `WITH_MPG123` | Enable MPG123 support | `ON` |
+| `WITH_AAC` | Enable AAC support | `ON` |
+| `WITH_VORBIS` | Enable Ogg Vorbis support | `ON` |
+| `WITH_OPUS` | Enable Opus support | `ON` |
+| `WITH_FLAC` | Enable FLAC support | `ON` |
+| `WITH_MUSEPACK` | Enable Musepack support | `ON` |
+| `WITH_WAVPACK` | Enable WavPack support | `ON` |
+| `WITH_SNDFILE` | Enable libsndfile support | `ON` |
+| `WITH_MODPLUG` | Enable libmodplug support | `ON` |
+| `WITH_FFMPEG` | Enable ffmpeg/libav support | `ON` |
+| `WITH_SPEEX` | Enable Speex support | `ON` |
+| `WITH_TIMIDITY` | Enable libtimidity support | `ON` |
+| `WITH_SIDPLAY2` | Enable libsidplay2 support | `ON` |
+
+### Installation Directories
+
+You can customize the installation location:
+
+```bash
+cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+```
+
+## Usage
+
+Run the program with the `mocf` command.
+
+```bash
+mocf
+```
+
+If you need help, press `h` inside the program or read the manpage
+(`man mocf`).
+
+Configuration is stored in `~/.moc/config`. An example configuration file is
+installed to the documentation directory.
+
+## Bug Reporting
+
+This is a fork of the original MOC project. **Please do not report bugs
+found in this version to the original MOC developers.** This version deviates
+from the original codebase and follows a different development philosophy.
+
+## Disclaimer
+
+This project is not affiliated with, endorsed by, nor sponsored by the
+original authors of MOC.
+
+This program is distributed under the terms of the GNU General Public
+License version 3 (or later). You can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation, either version 3 of the License, or (at your
+option) any later version.
+
+This project is distributed in the hope that it will be useful, but
+**WITHOUT ANY WARRANTY**; without even the implied warranty of
+**MERCHANTABILITY** or **FITNESS FOR A PARTICULAR PURPOSE**. See the
+[GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.html)
+for more details.
