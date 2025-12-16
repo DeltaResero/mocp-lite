@@ -1,3 +1,13 @@
+// src/ui/curses/interface_elements.h
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
 #ifndef INTERFACE_ELEMENTS_H
 #define INTERFACE_ELEMENTS_H
 
@@ -155,3 +165,5 @@ void iface_update_theme_selection (const char *file);
 #endif
 
 #endif
+
+// EOF

@@ -1,15 +1,14 @@
-/*
- * MOC - music on console
- * Copyright (C) 2004 Damian Pietras <daper@daper.net>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- */
-
-/* Fake output device - only for testing. */
+// src/audio/outputs/null_out.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// Fake output device - only for testing.
+// Copyright (C) 2004 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -95,3 +94,5 @@ void null_funcs (struct hw_funcs *funcs)
 	funcs->toggle_mixer_channel = null_toggle_mixer_channel;
 	funcs->get_mixer_channel_name = null_get_mixer_channel_name;
 }
+
+// EOF

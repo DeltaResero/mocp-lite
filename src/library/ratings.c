@@ -1,13 +1,13 @@
-/*
- * MOC - music on console
- * Copyright (C) 2004,2005 Damian Pietras <daper@daper.net>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- */
+// src/library/ratings.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// Copyright (C) 2004,2005 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -62,7 +62,7 @@ static int find_rating (const char *fn, FILE *rf, long *filepos)
 	} \
 	else { (c) = *(const unsigned char*)s++; --n; } \
 	} while (0)
-	
+
 	/* loop over all lines in the file */
 	while (true)
 	{
@@ -77,10 +77,10 @@ static int find_rating (const char *fn, FILE *rf, long *filepos)
 			char c; GETC(c);
 
 			if (c < 0) return -1; /* EOF again */
-			
+
 			/* go straight to next line if we already read the newline */
-			if (c == '\n') continue; 
-			
+			if (c == '\n') continue;
+
 			if (c == ' ') /* still good */
 			{
 				/* find fn */
@@ -108,7 +108,7 @@ static int find_rating (const char *fn, FILE *rf, long *filepos)
 						/* remember position of rating */
 						if (filepos)
 							*filepos = fpos-n - fnlen - 2;
-						
+
 						/* check for trailing garbage */
 						GETC(c);
 						if (c >= 0 && c != '\n')
@@ -278,3 +278,4 @@ bool ratings_write_file (const char *fn, int rating)
 	return 1;
 }
 
+// EOF

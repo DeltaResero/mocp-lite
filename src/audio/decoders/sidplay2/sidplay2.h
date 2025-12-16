@@ -1,16 +1,15 @@
-/*
- * MOC - music on console
- * Copyright (C) 2004 Damian Pietras <daper@daper.net>
- *
- * libsidplay2-plugin Copyright (C) 2007 Hendrik Iben <hiben@tzi.de>
- * Enables MOC to play sids via libsidplay2/libsidutils.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- */
+// src/audio/decoders/sidplay2/sidplay2.h
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// libsidplay2-plugin Copyright (C) 2007 Hendrik Iben <hiben@tzi.de>
+// Enables MOC to play sids via libsidplay2/libsidutils.
+// Copyright (C) 2004 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -96,3 +95,5 @@ decoder *plugin_init ();
 #ifdef __cplusplus
 }
 #endif
+
+// EOF

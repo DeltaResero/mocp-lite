@@ -1,19 +1,24 @@
-/*
- * The purpose of this header is to configure the compiler and system
- * headers the way we want them to be.  It should be included in every
- * source code file *before* any system headers are included, and thus
- * an include for it is automatically appended to the 'config.h' header
- * by 'configure'.
- *
- * It is also included by 'configure' tests to ensure that any system
- * headers *they* include will be configured consistantly and symbols
- * they declare will not be exposed differently in the tests and the
- * code thus causing the configuration macros defined in 'config.h'
- * to be mismatched with the included system headers.
- *
- * Because it is used in both places, it should not include any code
- * which is relevant only to MOC code.
- */
+// src/core/compiler.h
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// The purpose of this header is to configure the compiler and system
+// headers the way we want them to be.  It should be included in every
+// source code file *before* any system headers are included, and thus
+// an include for it is automatically appended to the 'config.h' header
+// by 'configure'.
+// It is also included by 'configure' tests to ensure that any system
+// headers *they* include will be configured consistantly and symbols
+// they declare will not be exposed differently in the tests and the
+// code thus causing the configuration macros defined in 'config.h'
+// to be mismatched with the included system headers.
+// Because it is used in both places, it should not include any code
+// which is relevant only to MOC code.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifndef COMPILER_H
 #define COMPILER_H
@@ -42,3 +47,5 @@
 #endif
 
 #endif
+
+// EOF

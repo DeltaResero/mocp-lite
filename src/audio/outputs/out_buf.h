@@ -1,3 +1,13 @@
+// src/audio/outputs/out_buf.h
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
 #ifndef BUF_H
 #define BUF_H
 
@@ -31,3 +41,5 @@ void out_buf_wait (struct out_buf *buf);
 #endif
 
 #endif
+
+// EOF

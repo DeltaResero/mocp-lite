@@ -1,9 +1,16 @@
-/*
- * The purpose of this header is to provide common functions and macros
- * used throughout MOC code.  It also provides (x-prefixed) functions
- * which augment or adapt their respective system functions with error
- * checking and the like.
- */
+// src/core/common.h
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// The purpose of this header is to provide common functions and macros
+// used throughout MOC code.  It also provides (x-prefixed) functions
+// which augment or adapt their respective system functions with error
+// checking and the like.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifndef COMMON_H
 #define COMMON_H
@@ -166,3 +173,5 @@ char *pathstrcpy(char *restrict dst, const char *restrict src);
 #endif
 
 #endif
+
+// EOF

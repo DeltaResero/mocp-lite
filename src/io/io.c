@@ -1,17 +1,15 @@
-/*
- * MOC - music on console
- * Copyright (C) 2005 Damian Pietras <daper@daper.net>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- */
-
-/* TODO:
- * - handle SIGBUS (mmap() read error)
- */
+// src/io/io.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// TODO:
+// - handle SIGBUS (mmap() read error)
+// Copyright (C) 2005 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -870,3 +868,5 @@ int io_seekable (const struct io_stream *s)
 {
 	return s->source == IO_SOURCE_FD || s->source == IO_SOURCE_MMAP;
 }
+
+// EOF

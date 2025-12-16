@@ -1,13 +1,13 @@
-/*
- * MOC - music on console
- * Copyright (C) 2009 Damian Pietras <daper@daper.net> and John Fitzgerald
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- */
+// src/utils/lists.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// Copyright (C) 2009 Damian Pietras <daper@daper.net> and John Fitzgerald
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -368,3 +368,5 @@ bool lists_strs_exists (lists_t_strs *list, const char *sought)
 
 	return result;
 }
+
+// EOF

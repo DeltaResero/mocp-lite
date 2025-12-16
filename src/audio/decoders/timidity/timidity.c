@@ -1,18 +1,17 @@
-/*
- * MOC - music on console
- * Copyright (C) 2004 Damian Pietras <daper@daper.net>
- *
- * libTiMidity-plugin Copyright (C) 2007 Hendrik Iben <hiben@tzi.de>
- * The hard work is done by the libTiMidity-Library written by
- * Konstantin Korikov (http://libtimidity.sourceforge.net).
- * I have merely hacked together a wrapper...
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- */
+// src/audio/decoders/timidity/timidity.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// libTiMidity-plugin Copyright (C) 2007 Hendrik Iben <hiben@tzi.de>
+// The hard work is done by the libTiMidity-Library written by
+// Konstantin Korikov (http://libtimidity.sourceforge.net).
+// I have merely hacked together a wrapper...
+// Copyright (C) 2004 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -237,3 +236,5 @@ struct decoder *plugin_init ()
 
   return &timidity_decoder;
 }
+
+// EOF

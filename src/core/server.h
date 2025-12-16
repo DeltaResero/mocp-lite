@@ -1,3 +1,13 @@
+// src/core/server.h
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
 #ifndef SERVER_H
 #define SERVER_H
 
@@ -32,3 +42,5 @@ void server_queue_pop (const char *filename);
 #endif
 
 #endif
+
+// EOF

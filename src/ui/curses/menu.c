@@ -1,13 +1,13 @@
-/*
- * MOC - music on console
- * Copyright (C) 2002 - 2006 Damian Pietras <daper@daper.net>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- */
+// src/ui/curses/menu.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// Copyright (C) 2002 - 2006 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -174,7 +174,7 @@ void menu_draw (const struct menu *menu, const int active)
 		number_space = 0;
 
 	title_width = menu->width;
-	
+
 	if (menu->show_time) {
 		++number_details;
 		title_width -= 5; /* 00:00 */
@@ -191,7 +191,7 @@ void menu_draw (const struct menu *menu, const int active)
 		title_width -= 2 /* brackets */ +
 		               number_details - 1 /* separators */;
 	}
-	
+
 	info_pos = title_width;
 
 	title_width -= number_space;
@@ -953,3 +953,5 @@ void menu_make_visible (struct menu *menu, const char *file)
 	if ((mi = menu_find(menu, file)))
 		make_item_visible (menu, mi);
 }
+
+// EOF

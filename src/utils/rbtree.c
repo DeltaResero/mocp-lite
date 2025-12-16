@@ -1,16 +1,15 @@
-/*
- * MOC - music on console
- * Copyright (C) 2005 Damian Pietras <daper@daper.net>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * Functions based on pseudocode from "Introduction to Algorithms"
- * The only modification is that we avoid to modify fields of the nil value.
- *
- */
+// src/utils/rbtree.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// Functions based on pseudocode from "Introduction to Algorithms"
+// The only modification is that we avoid to modify fields of the nil value.
+// Copyright (C) 2005 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -430,3 +429,5 @@ void rb_tree_free (struct rb_tree *t)
 	rb_tree_clear (t);
 	free (t);
 }
+
+// EOF

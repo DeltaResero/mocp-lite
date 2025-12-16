@@ -1,21 +1,19 @@
-/*
- * MOC - music on console
- * Copyright (C) 2002 - 2006 Damian Pietras <daper@daper.net>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- */
-
-/* This code was based on madlld.c (C) by Bertrand Petit including code
- * from xmms-mad (C) by Sam Clegg and winamp plugin for madlib (C) by
- * Robert Leslie. */
-
-/* FIXME: there can be a bit of silence in mp3 at the end or at the
- * beginning. If you hear gaps between files, it's the file's fault.
- * Can we strip this silence? */
+// src/audio/decoders/mp3/mp3.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// This code was based on madlld.c (C) by Bertrand Petit including code
+// from xmms-mad (C) by Sam Clegg and winamp plugin for madlib (C) by
+// Robert Leslie.
+// FIXME: there can be a bit of silence in mp3 at the end or at the
+// beginning. If you hear gaps between files, it's the file's fault.
+// Can we strip this silence?
+// Copyright (C) 2002 - 2006 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -800,3 +798,5 @@ struct decoder *plugin_init ()
 {
 	return &mp3_decoder;
 }
+
+// EOF

@@ -1,7 +1,15 @@
-/* Jack plugin for moc by Alex Norman <alex@neisis.net> 2005
- * moc by Copyright (C) 2004 Damian Pietras <daper@daper.net>
- * use at your own risk
- */
+// src/audio/outputs/jack.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// Jack plugin for moc by Alex Norman <alex@neisis.net> 2005
+// moc by Copyright (C) 2004 Damian Pietras <daper@daper.net>
+// use at your own risk
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -362,3 +370,5 @@ void moc_jack_funcs (struct hw_funcs *funcs)
 	funcs->get_mixer_channel_name = moc_jack_get_mixer_channel_name;
 	funcs->toggle_mixer_channel = moc_jack_toggle_mixer_channel;
 }
+
+// EOF

@@ -1,17 +1,15 @@
-/*
- * MOC - music on console
- * Copyright (C) 2004 Damian Pietras <daper@daper.net>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- */
-
-/* Based on aplay copyright (c) by Jaroslav Kysela <perex@suse.cz> 
- * and alsamixer copyright (c) 2010 Clemens Ladisch <clemens@ladisch.de>
- */
+// src/audio/outputs/alsa.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// Based on aplay copyright (c) by Jaroslav Kysela <perex@suse.cz>
+// and alsamixer copyright (c) 2010 Clemens Ladisch <clemens@ladisch.de>
+// Copyright (C) 2004 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -1008,3 +1006,5 @@ void alsa_funcs (struct hw_funcs *funcs)
 	funcs->toggle_mixer_channel = alsa_toggle_mixer_channel;
 	funcs->get_mixer_channel_name = alsa_get_mixer_channel_name;
 }
+
+// EOF

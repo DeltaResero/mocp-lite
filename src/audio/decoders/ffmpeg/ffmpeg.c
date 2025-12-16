@@ -1,23 +1,18 @@
-/*
- * MOC - music on console
- * Copyright (C) 2005, 2006 Damian Pietras <daper@daper.net>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * Based on FFplay Copyright (c) 2003 Fabrice Bellard
- *
- */
-
-/*
- *		"The main problem is that external projects who want to
- *		 support both FFmpeg and LibAV are just fucked, and this
- *		 only because LibAV doesn't care a second about their users."
- *
- *		-- http://blog.pkh.me/p/13-the-ffmpeg-libav-situation.html
- */
+// src/audio/decoders/ffmpeg/ffmpeg.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// Based on FFplay Copyright (c) 2003 Fabrice Bellard
+// "The main problem is that external projects who want to
+// support both FFmpeg and LibAV are just fucked, and this
+// only because LibAV doesn't care a second about their users."
+// -- http://blog.pkh.me/p/13-the-ffmpeg-libav-situation.html
+// Copyright (C) 2005, 2006 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -1474,3 +1469,5 @@ struct decoder *plugin_init ()
 {
 	return &ffmpeg_decoder;
 }
+
+// EOF

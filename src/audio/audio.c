@@ -1,16 +1,15 @@
-/*
- * MOC - music on console
- * Copyright (C) 2004-2006 Damian Pietras <daper@daper.net>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * Contributors:
- *  - Kamil Tarkowski <kamilt@interia.pl> - "previous" request
- *
- */
+// src/audio/audio.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// Contributors:
+// - Kamil Tarkowski <kamilt@interia.pl> - "previous" request
+// Copyright (C) 2004-2006 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -1072,7 +1071,7 @@ static void print_output_capabilities
             (const struct output_driver_caps *caps LOGIT_ONLY)
 {
 	char fmt_name[SFMT_STR_MAX] LOGIT_ONLY;
-	
+
 	logit ("Sound driver capabilities: channels %d - %d, sample rate %u - %u, formats: %s",
 			caps->min_channels, caps->max_channels, caps->min_rate, caps->max_rate,
 			sfmt_str(caps->formats, fmt_name, sizeof(fmt_name)));
@@ -1421,3 +1420,5 @@ void audio_toggle_mixer_channel ()
 	if (current_mixer < 2)
 		hw.toggle_mixer_channel ();
 }
+
+// EOF

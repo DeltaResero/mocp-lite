@@ -1,15 +1,14 @@
-/*
- * MOC - music on console
- *
- * SNDIO sound driver for MOC by Alexander Polakov.
- * Copyright (C) 2011 Alexander Polakov <polachok@gmail.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- */
+// src/audio/outputs/sndio_out.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// SNDIO sound driver for MOC by Alexander Polakov.
+// Copyright (C) 2011 Alexander Polakov <polachok@gmail.com>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -182,3 +181,5 @@ void sndio_funcs (struct hw_funcs *funcs)
 	funcs->toggle_mixer_channel = sndio_toggle_mixer_channel;
 	funcs->get_mixer_channel_name = sndio_get_mixer_channel_name;
 }
+
+// EOF

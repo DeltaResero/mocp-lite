@@ -1,20 +1,18 @@
-/*
- * MOC - music on console
- * Copyright (C) 2005 Damian Pietras <daper@daper.net>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * Code for conversion between float and fixed point types is based on
- * libsamplerate:
- * Copyright (C) 2002-2004 Erik de Castro Lopo <erikd@mega-nerd.com>
- */
-
-/* For future: audio conversion should be performed in order:
- * channels -> rate -> format
- */
+// src/audio/conversion/audio_conversion.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// Code for conversion between float and fixed point types is based on
+// libsamplerate:
+// For future: audio conversion should be performed in order:
+// channels -> rate -> format
+// Copyright (C) 2005 Damian Pietras <daper@daper.net>
+// Copyright (C) 2002-2004 Erik de Castro Lopo <erikd@mega-nerd.com>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -301,10 +299,10 @@ static void s16_to_float (const char *in, float *out, const size_t samples)
 
 static void u24_to_float (const unsigned char *in, float *out,
 		const size_t samples)
-{  
+{
 	size_t i;
 	const uint32_t *in_32 = (uint32_t *)in;
-	
+
 	assert (in != NULL);
 	assert (out != NULL);
 
@@ -845,7 +843,7 @@ a[1][0] = 0; a[1][2]=0.707; a[1][1]=1.0; a[1][4]= 0.5774; a[1][5]=0.8165; a[1][3
 	const float normalization = 0.2626;
 
 	if (format & SFMT_S16)
-	{  
+	{
 	debug("Downmixing from 5.1 to 2.0: S16");
 
 	int16_t sample_in[6];
@@ -861,7 +859,7 @@ a[1][0] = 0; a[1][2]=0.707; a[1][1]=1.0; a[1][4]= 0.5774; a[1][5]=0.8165; a[1][3
 	}
 	}
 	else if (format & SFMT_FLOAT)
-	{  
+	{
 	debug("Downmixing from 5.1 to 2.0: FLOAT");
 
 	float sample_in[6];
@@ -877,7 +875,7 @@ a[1][0] = 0; a[1][2]=0.707; a[1][1]=1.0; a[1][4]= 0.5774; a[1][5]=0.8165; a[1][3
 	}
 	}
 	else if (format & SFMT_S32)
-	{  
+	{
 	debug("Downmixing from 5.1 to 2.0: S32");
 
 	int32_t sample_in[6];
@@ -1046,7 +1044,7 @@ char *audio_conv (struct audio_conversion *conv, const char *buf,
 
 		logit ("Fast conversion: 32bit -> 24_3bit!");
 	}
-	
+
 	/* Special case (optimization): if we only need to convert 32bit samples
 	 * to 16bit, we can do it very simply and quickly. */
 	if ((curr_sfmt & (SFMT_S32 | SFMT_U32)) &&
@@ -1123,7 +1121,7 @@ char *audio_conv (struct audio_conversion *conv, const char *buf,
 		logit ("Fast conversion: 24bit -> 16bit!");
 	}
 
-	
+
 	/* convert to float if necessary */
 	if ((conv->from.rate != conv->to.rate
 				|| (conv->to.fmt & SFMT_MASK_FORMAT) == SFMT_FLOAT
@@ -1203,7 +1201,7 @@ char *audio_conv (struct audio_conversion *conv, const char *buf,
 		curr_sfmt = sfmt_set_endian (curr_sfmt,
 				conv->to.fmt & SFMT_MASK_ENDIANNESS);
 	}
-	
+
 	return curr_sound;
 }
 
@@ -1218,3 +1216,5 @@ void audio_conv_destroy (struct audio_conversion *conv ASSERT_ONLY)
 		src_delete (conv->src_state);
 #endif
 }
+
+// EOF

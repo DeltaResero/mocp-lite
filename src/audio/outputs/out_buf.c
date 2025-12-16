@@ -1,17 +1,16 @@
-/*
- * MOC - music on console
- * Copyright (C) 2004,2005 Damian Pietras <daper@daper.net>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- */
-
-/* Defining OUT_TEST causes the raw audio samples to be written
- * to the file 'out_test' in the current directory for debugging. */
-/*#define OUT_TEST*/
+// src/audio/outputs/out_buf.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// Defining OUT_TEST causes the raw audio samples to be written
+// to the file 'out_test' in the current directory for debugging.
+// #define OUT_TEST
+// Copyright (C) 2004,2005 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -462,3 +461,5 @@ void out_buf_wait (struct out_buf *buf)
 
 	logit ("done");
 }
+
+// EOF

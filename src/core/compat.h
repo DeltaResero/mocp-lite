@@ -1,11 +1,17 @@
-/*
- * The purpose of this header is to provide functions and macros which
- * MOC code expects but which are missing or broken on the host system.
- *
- * This header should be included by all code before any other MOC
- * headers (except 'compiler.h').  Therefore, it is included once by
- * 'common.h' which is itself included by all code.
- */
+// src/core/compat.h
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// The purpose of this header is to provide functions and macros which
+// MOC code expects but which are missing or broken on the host system.
+// This header should be included by all code before any other MOC
+// headers (except 'compiler.h').  Therefore, it is included once by
+// 'common.h' which is itself included by all code.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifndef COMPAT_H
 #define COMPAT_H
@@ -55,3 +61,5 @@ char *strcasestr (const char *haystack, const char *needle);
 #endif
 
 #endif
+
+// EOF

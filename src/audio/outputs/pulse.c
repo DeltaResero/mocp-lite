@@ -1,78 +1,65 @@
-/*
- * MOC - music on console
- * Copyright (C) 2011 Marien Zwart <marienz@marienz.net>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- */
-
-/* PulseAudio backend.
- *
- * FEATURES:
- *
- * Does not autostart a PulseAudio server, but uses an already-started
- * one, which should be better than alsa-through-pulse.
- *
- * Supports control of either our stream's or our entire sink's volume
- * while we are actually playing. Volume control while paused is
- * intentionally unsupported: the PulseAudio documentation strongly
- * suggests not passing in an initial volume when creating a stream
- * (allowing the server to track this instead), and we do not know
- * which sink to control if we do not have a stream open.
- *
- * IMPLEMENTATION:
- *
- * Most client-side (resource allocation) errors are fatal. Failure to
- * create a server context or stream is not fatal (and MOC should cope
- * with these failures too), but server communication failures later
- * on are currently not handled (MOC has no great way for us to tell
- * it we no longer work, and I am not sure if attempting to reconnect
- * is worth it or even a good idea).
- *
- * The pulse "simple" API is too simple: it combines connecting to the
- * server and opening a stream into one operation, while I want to
- * connect to the server when MOC starts (and fall back to a different
- * backend if there is no server), and I cannot open a stream at that
- * time since I do not know the audio format yet.
- *
- * PulseAudio strongly recommends we use a high-latency connection,
- * which the MOC frontend code might not expect from its audio
- * backend. We'll see.
- *
- * We map MOC's percentage volumes linearly to pulse's PA_VOLUME_MUTED
- * (0) .. PA_VOLUME_NORM range. This is what the PulseAudio docs recommend
- * ( http://pulseaudio.org/wiki/WritingVolumeControlUIs ). It does mean
- * PulseAudio volumes above PA_VOLUME_NORM do not work well with MOC.
- *
- * Comments in audio.h claim "All functions are executed only by one
- * thread" (referring to the function in the hw_funcs struct). This is
- * a blatant lie. Most of them are invoked off the "output buffer"
- * thread (out_buf.c) but at least the "playing" thread (audio.c)
- * calls audio_close which calls our close function. We can mostly
- * ignore this problem because we serialize on the pulseaudio threaded
- * mainloop lock. But it does mean that functions that are normally
- * only called between open and close (like reset) are sometimes
- * called without us having a stream. Bulletproof, therefore:
- * serialize setting/unsetting our global stream using the threaded
- * mainloop lock, and check for that stream being non-null before
- * using it.
- *
- * I am not convinced there are no further dragons lurking here: can
- * the "playing" thread(s) close and reopen our output stream while
- * the "output buffer" thread is sending output there? We can bail if
- * our stream is simply closed, but we do not currently detect it
- * being reopened and no longer using the same sample format, which
- * might have interesting results...
- *
- * Also, read_mixer is called from the main server thread (handling
- * commands). This crashed me once when it got at a stream that was in
- * the "creating" state and therefore did not have a valid stream
- * index yet. Fixed by only assigning to the stream global when the
- * stream is valid.
- */
+// src/audio/outputs/pulse.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// PulseAudio backend.
+// FEATURES:
+// Does not autostart a PulseAudio server, but uses an already-started
+// one, which should be better than alsa-through-pulse.
+// Supports control of either our stream's or our entire sink's volume
+// while we are actually playing. Volume control while paused is
+// intentionally unsupported: the PulseAudio documentation strongly
+// suggests not passing in an initial volume when creating a stream
+// (allowing the server to track this instead), and we do not know
+// which sink to control if we do not have a stream open.
+// IMPLEMENTATION:
+// Most client-side (resource allocation) errors are fatal. Failure to
+// create a server context or stream is not fatal (and MOC should cope
+// with these failures too), but server communication failures later
+// on are currently not handled (MOC has no great way for us to tell
+// it we no longer work, and I am not sure if attempting to reconnect
+// is worth it or even a good idea).
+// The pulse "simple" API is too simple: it combines connecting to the
+// server and opening a stream into one operation, while I want to
+// connect to the server when MOC starts (and fall back to a different
+// backend if there is no server), and I cannot open a stream at that
+// time since I do not know the audio format yet.
+// PulseAudio strongly recommends we use a high-latency connection,
+// which the MOC frontend code might not expect from its audio
+// backend. We'll see.
+// We map MOC's percentage volumes linearly to pulse's PA_VOLUME_MUTED
+// (0) .. PA_VOLUME_NORM range. This is what the PulseAudio docs recommend
+// ( http://pulseaudio.org/wiki/WritingVolumeControlUIs ). It does mean
+// PulseAudio volumes above PA_VOLUME_NORM do not work well with MOC.
+// Comments in audio.h claim "All functions are executed only by one
+// thread" (referring to the function in the hw_funcs struct). This is
+// a blatant lie. Most of them are invoked off the "output buffer"
+// thread (out_buf.c) but at least the "playing" thread (audio.c)
+// calls audio_close which calls our close function. We can mostly
+// ignore this problem because we serialize on the pulseaudio threaded
+// mainloop lock. But it does mean that functions that are normally
+// only called between open and close (like reset) are sometimes
+// called without us having a stream. Bulletproof, therefore:
+// serialize setting/unsetting our global stream using the threaded
+// mainloop lock, and check for that stream being non-null before
+// using it.
+// I am not convinced there are no further dragons lurking here: can
+// the "playing" thread(s) close and reopen our output stream while
+// the "output buffer" thread is sending output there? We can bail if
+// our stream is simply closed, but we do not currently detect it
+// being reopened and no longer using the same sample format, which
+// might have interesting results...
+// Also, read_mixer is called from the main server thread (handling
+// commands). This crashed me once when it got at a stream that was in
+// the "creating" state and therefore did not have a valid stream
+// index yet. Fixed by only assigning to the stream global when the
+// stream is valid.
+// Copyright (C) 2011 Marien Zwart <marienz@marienz.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #include <pulse/proplist.h>
 #ifdef HAVE_CONFIG_H
@@ -695,3 +682,5 @@ void pulse_funcs (struct hw_funcs *funcs)
 	funcs->toggle_mixer_channel = pulse_toggle_mixer_channel;
 	funcs->get_mixer_channel_name = pulse_get_mixer_channel_name;
 }
+
+// EOF

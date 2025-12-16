@@ -1,3 +1,12 @@
+// src/ui/curses/interface.h
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifndef INTERFACE_H
 #define INTERFACE_H
@@ -58,3 +67,5 @@ void interface_cmdline_enqueue (int server_sock, lists_t_strs *args);
 #endif
 
 #endif
+
+// EOF

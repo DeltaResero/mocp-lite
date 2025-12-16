@@ -1,13 +1,13 @@
-/*
- * MOC - music on console
- * Copyright (C) 2002 - 2005 Damian Pietras <daper@daper.net>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- */
+// src/audio/decoders/mpg123/mpg123.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// Copyright (C) 2002 - 2005 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -390,7 +390,7 @@ static int mpg123_decodeX (void *prv_data, char *buf, int buf_len, struct sound_
 			return 0;
  		else if (decoded_bytes == 0)
  			continue;
-		
+
 		if (ret == MPG123_NEW_FORMAT) {
 			mpg123_getformat (data->mf,&rate,&ch,&enc);
 			debug ("Encoding change: %i, sample rate: %li, channels: %i",enc,rate,ch);
@@ -512,3 +512,5 @@ struct decoder *plugin_init ()
 {
 	return &mpg123_decoderX;
 }
+
+// EOF

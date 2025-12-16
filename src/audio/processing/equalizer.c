@@ -1,26 +1,23 @@
-/*
- * MOC - music on console
- * Copyright (C) 2004-2008 Damian Pietras <daper@daper.net>
- *
- * Equalizer-extension Copyright (C) 2008 Hendrik Iben <hiben@tzi.de>
- * Provides a parametric biquadratic equalizer.
- *
- * This code is based on the 'Cookbook formulae for audio EQ biquad filter
- * coefficients' by Robert Bristow-Johnson.
- * http://www.musicdsp.org/files/Audio-EQ-Cookbook.txt
- *
- * TODO:
- * - Merge somehow with softmixer code to avoid multiple endianness
- *   conversions.
- * - Implement equalizer routines for integer samples... conversion
- *   to float (and back) is lazy...
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- */
+// src/audio/processing/equalizer.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// Equalizer-extension Copyright (C) 2008 Hendrik Iben <hiben@tzi.de>
+// Provides a parametric biquadratic equalizer.
+// This code is based on the 'Cookbook formulae for audio EQ biquad filter
+// coefficients' by Robert Bristow-Johnson.
+// http://www.musicdsp.org/files/Audio-EQ-Cookbook.txt
+// TODO:
+// - Merge somehow with softmixer code to avoid multiple endianness
+// conversions.
+// - Implement equalizer routines for integer samples... conversion
+// to float (and back) is lazy...
+// Copyright (C) 2004-2008 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
   #include "config.h"
@@ -1188,3 +1185,5 @@ static int read_float(char *s, float *f, char **endp)
 
   return 0;
 }
+
+// EOF

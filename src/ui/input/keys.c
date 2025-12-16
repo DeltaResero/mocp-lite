@@ -1,13 +1,13 @@
-/*
- * MOC - music on console
- * Copyright (C) 2004 - 2006 Damian Pietras <daper@daper.net>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- */
+// src/ui/input/keys.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// Copyright (C) 2004 - 2006 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #include <linux/limits.h>
 #ifdef HAVE_CONFIG_H
@@ -1394,3 +1394,5 @@ bool is_help_still_h ()
 
 	return commands[cmd_ix].keys[0] == 'h';
 }
+
+// EOF

@@ -1,22 +1,20 @@
-/*
- * MOC - music on console
- * Copyright (C) 2004 Damian Pietras <daper@daper.net>
- *
- * libmodplug-plugin Copyright (C) 2006 Hendrik Iben <hiben@tzi.de>
- * Enables MOC to play modules via libmodplug (actually just a wrapper around
- * libmodplug's C-wrapper... :-)).
- *
- * Based on ideas from G"urkan Seng"un's modplugplay. A command line
- * interface to the modplugxmms library.
- * Structure of this plugin is an adaption of the libsndfile-plugin from
- * moc.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- */
+// src/audio/decoders/modplug/modplug.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// libmodplug-plugin Copyright (C) 2006 Hendrik Iben <hiben@tzi.de>
+// Enables MOC to play modules via libmodplug (actually just a wrapper around
+// libmodplug's C-wrapper... :-)).
+// Based on ideas from G"urkan Seng"un's modplugplay. A command line
+// interface to the modplugxmms library.
+// Structure of this plugin is an adaption of the libsndfile-plugin from
+// moc.
+// Copyright (C) 2004 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -340,3 +338,5 @@ struct decoder *plugin_init ()
   ModPlug_SetSettings(&settings);
   return &modplug_decoder;
 }
+
+// EOF

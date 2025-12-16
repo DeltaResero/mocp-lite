@@ -1,19 +1,17 @@
-/*
- * MOC - music on console
- * Copyright (C) 2004,2005 Damian Pietras <daper@daper.net>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * Author of title building code: Florian Kriener <me@leflo.de>
- *
- * Contributors:
- *  - Florian Kriener <me@leflo.de> - title building code
- *  - Kamil Tarkowski <kamilt@interia.pl> - plist_prev()
- *
- */
+// src/library/playlist.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// Author of title building code: Florian Kriener <me@leflo.de>
+// Contributors:
+// - Florian Kriener <me@leflo.de> - title building code
+// - Kamil Tarkowski <kamilt@interia.pl> - plist_prev()
+// Copyright (C) 2004,2005 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -103,7 +101,7 @@ void tags_update (struct file_tags *dst, struct file_tags *src, int move)
 		assert (!dst->title && !dst->artist && !dst->album);
 
 		dst->track = src->track;
-		
+
 		if (move)
 		{
 			dst->title  = src->title;  src->title  = NULL;
@@ -1019,3 +1017,5 @@ int plist_get_position (const struct plist *plist, int num)
 
 	return pos;
 }
+
+// EOF

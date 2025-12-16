@@ -1,13 +1,13 @@
-/*
- * MOC - music on console
- * Copyright (C) 2003 - 2005 Damian Pietras <daper@daper.net>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- */
+// src/core/server.c
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// mocf - Music on Console Framebuffer
+// Copyright (C) 2003 - 2005 Damian Pietras <daper@daper.net>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -826,7 +826,7 @@ static int req_set_rating (struct client *cli)
 	}
 
 	logit ("Rating %s %d/5", file, rating);
-	
+
 	if (ratings_write_file (file, rating))
 	{
 
@@ -885,7 +885,7 @@ static int req_jump_to (struct client *cli)
 			free (file);
 			return 0;
 		}
-	
+
 		struct file_tags *tags;
 		tags = tags_cache_get_immediate (tags_cache, file, TAGS_TIME);
 		assert (tags && tags->filled & TAGS_TIME);
@@ -1960,3 +1960,5 @@ void server_queue_pop (const char *filename)
 	debug ("Queue pop -- broadcasting EV_QUEUE_DEL");
 	add_event_all (EV_QUEUE_DEL, filename);
 }
+
+// EOF
