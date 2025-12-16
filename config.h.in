@@ -1,0 +1,82 @@
+/* config.h.in */
+
+/* Package Metadata */
+#cmakedefine PACKAGE_NAME "@PACKAGE_NAME@"
+#cmakedefine PACKAGE_VERSION "@PACKAGE_VERSION@"
+#cmakedefine PACKAGE_BUGREPORT "@PACKAGE_BUGREPORT@"
+#cmakedefine PACKAGE_URL "@PACKAGE_URL@"
+#cmakedefine PACKAGE_TARNAME "@PACKAGE_TARNAME@"
+#cmakedefine PACKAGE_STRING "@PACKAGE_STRING@"
+#cmakedefine PACKAGE_REVISION "@PACKAGE_REVISION@"
+
+/* System Headers */
+#cmakedefine HAVE_STRINGS_H 1
+#cmakedefine HAVE_SYS_UN_H 1
+#cmakedefine HAVE_SYS_IOCTL_H 1
+#cmakedefine HAVE_SYS_PARAM_H 1
+#cmakedefine HAVE_BYTESWAP_H 1
+#cmakedefine HAVE_LANGINFO_H 1
+#cmakedefine HAVE_NL_TYPES_H 1
+#cmakedefine HAVE_SYS_INOTIFY_H 1
+#cmakedefine HAVE_SYS_SOUNDCARD_H 1
+#cmakedefine HAVE_SOUNDCARD_H 1
+#cmakedefine HAVE_SNDIO_H 1
+#cmakedefine HAVE_DB_H 1
+#cmakedefine HAVE_RCC_H 1
+#cmakedefine HAVE_STDINT_H 1
+#cmakedefine HAVE_INTTYPES_H 1
+
+/* Curses Headers */
+#cmakedefine HAVE_NCURSESW_CURSES_H 1
+#cmakedefine HAVE_NCURSESW_H 1
+#cmakedefine HAVE_NCURSES_CURSES_H 1
+#cmakedefine HAVE_NCURSES_H 1
+#cmakedefine HAVE_CURSES_H 1
+
+/* Functions */
+#cmakedefine HAVE_NL_LANGINFO 1
+#cmakedefine HAVE_LOCALTIME_R 1
+#cmakedefine HAVE_NANOSLEEP 1
+#cmakedefine HAVE_STRCASECMP 1
+#cmakedefine HAVE_STRDUP 1
+#cmakedefine HAVE_STRNCASECMP 1
+#cmakedefine HAVE_WCSWIDTH 1
+#cmakedefine HAVE_SCHED_GET_PRIORITY_MAX 1
+#cmakedefine HAVE_SYSLOG 1
+#cmakedefine HAVE_STRCASESTR 1
+#cmakedefine HAVE_GETRLIMIT 1
+#cmakedefine HAVE_CLOCK_GETTIME 1
+#cmakedefine HAVE_GETTIMEOFDAY 1
+
+/* Features */
+#cmakedefine HAVE_CURL 1
+#cmakedefine HAVE_SAMPLERATE 1
+#cmakedefine HAVE_LIBMAGIC 1
+#cmakedefine HAVE_RCC 1
+#cmakedefine HAVE_ICONV 1
+#cmakedefine INTERNAL_FLOAT 1
+#cmakedefine NDEBUG 1
+
+/* Sound Drivers */
+#cmakedefine HAVE_PULSE 1
+#cmakedefine HAVE_ALSA 1
+#cmakedefine HAVE_JACK 1
+#cmakedefine HAVE_JACK_CLIENT_OPEN 1
+#cmakedefine HAVE_OSS 1
+#cmakedefine HAVE_SNDIO 1
+#cmakedefine HAVE_OSSAUDIO 1
+
+/* Misc */
+#cmakedefine HAVE_NL_LANGINFO_CODESET 1
+
+/* Include standard integer types if available */
+#ifdef HAVE_STDINT_H
+#include <stdint.h>
+#endif
+
+#ifdef HAVE_INTTYPES_H
+#include <inttypes.h>
+#endif
+
+/* Include compiler specific definitions */
+#include "core/compiler.h"
