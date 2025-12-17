@@ -266,9 +266,8 @@ Using Themes
 
 Yes, there are themes, because people wanted them. :)
 
-Themes can change all colors and only colors.  An example theme file with a
-exhaustive description is included (themes/example_theme) and is the
-default MOC appearance.
+Themes can change all colors and only colors. An example theme file is included
+(themes/example_theme).
 
 Theme files should be placed in ~/.moc/themes/ or $(datadir)/moc/themes/
 (e.g., /usr/local/share/moc/themes) directory, and can be selected with

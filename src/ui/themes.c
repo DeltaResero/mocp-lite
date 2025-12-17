@@ -72,46 +72,46 @@ static void make_color (const enum color_index index, const short foreground,
 
 static void set_default_colors ()
 {
-	make_color (CLR_BACKGROUND, COLOR_WHITE, COLOR_BLUE, A_NORMAL);
-	make_color (CLR_FRAME, COLOR_WHITE, COLOR_BLUE, A_NORMAL);
-	make_color (CLR_WIN_TITLE, COLOR_WHITE, COLOR_BLUE, A_NORMAL);
-	make_color (CLR_MENU_ITEM_DIR, COLOR_WHITE, COLOR_BLUE, A_BOLD);
-	make_color (CLR_MENU_ITEM_DIR_SELECTED, COLOR_WHITE, COLOR_BLACK,
+	make_color (CLR_BACKGROUND, COLOR_WHITE, COLOR_BLACK, A_NORMAL);
+	make_color (CLR_FRAME, COLOR_WHITE, COLOR_BLACK, A_NORMAL);
+	make_color (CLR_WIN_TITLE, COLOR_CYAN, COLOR_BLACK, A_BOLD);
+	make_color (CLR_MENU_ITEM_DIR, COLOR_CYAN, COLOR_BLACK, A_BOLD);
+	make_color (CLR_MENU_ITEM_DIR_SELECTED, COLOR_BLACK, COLOR_CYAN,
 			A_BOLD);
-	make_color (CLR_MENU_ITEM_PLAYLIST, COLOR_WHITE, COLOR_BLUE, A_BOLD);
-	make_color (CLR_MENU_ITEM_PLAYLIST_SELECTED, COLOR_WHITE, COLOR_BLACK,
+	make_color (CLR_MENU_ITEM_PLAYLIST, COLOR_WHITE, COLOR_BLACK, A_BOLD);
+	make_color (CLR_MENU_ITEM_PLAYLIST_SELECTED, COLOR_BLACK, COLOR_CYAN,
 			A_BOLD);
-	make_color (CLR_MENU_ITEM_FILE, COLOR_WHITE, COLOR_BLUE, A_NORMAL);
-	make_color (CLR_MENU_ITEM_FILE_SELECTED, COLOR_WHITE,
-			COLOR_BLACK, A_NORMAL);
-	make_color (CLR_MENU_ITEM_FILE_MARKED, COLOR_GREEN, COLOR_BLUE,
+	make_color (CLR_MENU_ITEM_FILE, COLOR_WHITE, COLOR_BLACK, A_NORMAL);
+	make_color (CLR_MENU_ITEM_FILE_SELECTED, COLOR_BLACK,
+			COLOR_WHITE, A_NORMAL);
+	make_color (CLR_MENU_ITEM_FILE_MARKED, COLOR_YELLOW, COLOR_BLACK,
 			A_BOLD);
-	make_color (CLR_MENU_ITEM_FILE_MARKED_SELECTED, COLOR_GREEN,
-			COLOR_BLACK, A_BOLD);
-	make_color (CLR_MENU_ITEM_INFO, COLOR_BLUE, COLOR_BLUE, A_BOLD);
-	make_color (CLR_MENU_ITEM_INFO_SELECTED, COLOR_BLUE, COLOR_BLACK, A_BOLD);
-	make_color (CLR_MENU_ITEM_INFO_MARKED, COLOR_BLUE, COLOR_BLUE, A_BOLD);
-	make_color (CLR_MENU_ITEM_INFO_MARKED_SELECTED, COLOR_BLUE, COLOR_BLACK, A_BOLD);
-	make_color (CLR_STATUS, COLOR_WHITE, COLOR_BLUE, A_NORMAL);
-	make_color (CLR_TITLE, COLOR_WHITE, COLOR_BLUE, A_BOLD);
-	make_color (CLR_STATE, COLOR_WHITE, COLOR_BLUE, A_BOLD);
-	make_color (CLR_TIME_CURRENT, COLOR_WHITE, COLOR_BLUE, A_BOLD);
-	make_color (CLR_TIME_LEFT, COLOR_WHITE, COLOR_BLUE, A_BOLD);
-	make_color (CLR_TIME_TOTAL_FRAMES, COLOR_WHITE, COLOR_BLUE, A_NORMAL);
-	make_color (CLR_TIME_TOTAL, COLOR_WHITE, COLOR_BLUE, A_BOLD);
-	make_color (CLR_SOUND_PARAMS, COLOR_WHITE, COLOR_BLUE, A_BOLD);
-	make_color (CLR_LEGEND, COLOR_WHITE, COLOR_BLUE, A_NORMAL);
-	make_color (CLR_INFO_DISABLED, COLOR_BLUE, COLOR_BLUE, A_BOLD);
-	make_color (CLR_INFO_ENABLED, COLOR_WHITE, COLOR_BLUE, A_BOLD);
-	make_color (CLR_MIXER_BAR_EMPTY, COLOR_WHITE, COLOR_BLUE, A_NORMAL);
-	make_color (CLR_MIXER_BAR_FILL, COLOR_BLACK, COLOR_CYAN, A_NORMAL);
-	make_color (CLR_TIME_BAR_EMPTY, COLOR_WHITE, COLOR_BLUE, A_NORMAL);
-	make_color (CLR_TIME_BAR_FILL, COLOR_BLACK, COLOR_CYAN, A_NORMAL);
-	make_color (CLR_ENTRY, COLOR_WHITE, COLOR_BLUE, A_NORMAL);
-	make_color (CLR_ENTRY_TITLE, COLOR_BLACK, COLOR_CYAN, A_BOLD);
-	make_color (CLR_ERROR, COLOR_RED, COLOR_BLUE, A_BOLD);
-	make_color (CLR_MESSAGE, COLOR_GREEN, COLOR_BLUE, A_BOLD);
-	make_color (CLR_PLIST_TIME, COLOR_WHITE, COLOR_BLUE, A_NORMAL);
+	make_color (CLR_MENU_ITEM_FILE_MARKED_SELECTED, COLOR_YELLOW,
+			COLOR_WHITE, A_BOLD);
+	make_color (CLR_MENU_ITEM_INFO, COLOR_WHITE, COLOR_BLACK, A_NORMAL);
+	make_color (CLR_MENU_ITEM_INFO_SELECTED, COLOR_BLACK, COLOR_WHITE, A_BOLD);
+	make_color (CLR_MENU_ITEM_INFO_MARKED, COLOR_YELLOW, COLOR_BLACK, A_BOLD);
+	make_color (CLR_MENU_ITEM_INFO_MARKED_SELECTED, COLOR_YELLOW, COLOR_WHITE, A_BOLD);
+	make_color (CLR_STATUS, COLOR_WHITE, COLOR_BLACK, A_NORMAL);
+	make_color (CLR_TITLE, COLOR_CYAN, COLOR_BLACK, A_BOLD);
+	make_color (CLR_STATE, COLOR_WHITE, COLOR_BLACK, A_BOLD);
+	make_color (CLR_TIME_CURRENT, COLOR_WHITE, COLOR_BLACK, A_BOLD);
+	make_color (CLR_TIME_LEFT, COLOR_WHITE, COLOR_BLACK, A_BOLD);
+	make_color (CLR_TIME_TOTAL_FRAMES, COLOR_WHITE, COLOR_BLACK, A_NORMAL);
+	make_color (CLR_TIME_TOTAL, COLOR_WHITE, COLOR_BLACK, A_BOLD);
+	make_color (CLR_SOUND_PARAMS, COLOR_WHITE, COLOR_BLACK, A_BOLD);
+	make_color (CLR_LEGEND, COLOR_WHITE, COLOR_BLACK, A_NORMAL);
+	make_color (CLR_INFO_DISABLED, COLOR_WHITE, COLOR_BLACK, A_NORMAL);
+	make_color (CLR_INFO_ENABLED, COLOR_WHITE, COLOR_BLACK, A_BOLD);
+	make_color (CLR_MIXER_BAR_EMPTY, COLOR_WHITE, COLOR_BLACK, A_NORMAL);
+	make_color (CLR_MIXER_BAR_FILL, COLOR_CYAN, COLOR_BLACK, A_REVERSE);
+	make_color (CLR_TIME_BAR_EMPTY, COLOR_WHITE, COLOR_BLACK, A_NORMAL);
+	make_color (CLR_TIME_BAR_FILL, COLOR_WHITE, COLOR_BLACK, A_REVERSE);
+	make_color (CLR_ENTRY, COLOR_WHITE, COLOR_BLACK, A_NORMAL);
+	make_color (CLR_ENTRY_TITLE, COLOR_CYAN, COLOR_BLACK, A_BOLD);
+	make_color (CLR_ERROR, COLOR_RED, COLOR_BLACK, A_BOLD);
+	make_color (CLR_MESSAGE, COLOR_GREEN, COLOR_BLACK, A_BOLD);
+	make_color (CLR_PLIST_TIME, COLOR_WHITE, COLOR_BLACK, A_NORMAL);
 }
 
 /* Set default colors for black and white terminal. */
@@ -552,15 +552,18 @@ void theme_init (bool has_xterm)
 		theme = options_get_str ("ForceTheme");
 		if (!theme && has_xterm)
 			theme = options_get_str ("XTermTheme");
-		if (!theme)
-			theme = options_get_str ("Theme");
-
-		if (theme && (file = find_theme_file(theme))) {
+	  if (!theme)
+		theme = options_get_str ("Theme");
+	  
+	  if (!theme)
+		theme = "nightingale_theme";
+	  
+	  if (theme && (file = find_theme_file(theme))) {
 			load_color_theme (file, 1);
 			pathstrcpy(current_theme, file);
 		}
 		else
-			snprintf (current_theme, PATH_MAX, "%s/example_theme",
+			snprintf (current_theme, PATH_MAX, "%s/nightingale_theme",
 			                                   SYSTEM_THEMES_DIR);
 
 		set_default_colors ();
