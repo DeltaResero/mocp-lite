@@ -15,7 +15,9 @@
 # Compiled files and build artifacts
 # ===================================================================
 # The main binary
+/moc
 /mocp
+/mocf
 
 # Object files, libraries, and libtool wrappers
 *.o

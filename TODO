@@ -51,7 +51,7 @@ Known Bugs:
 * Directory and playlists:
   - When sorting by file name (directories), put files beginning with a
     non-alphanumeric character at the top.
-  - mocp -a playlist.pls should not sort added files.  [node/240]
+  - mocf -a playlist.pls should not sort added files.  [node/240]
   - Client does not show changes when a file's tags are updated by another
     program.
   - Client continues to show file names after ReadTags is toggled when

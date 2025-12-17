@@ -61,7 +61,7 @@ function help () {
   echo "  -v|--verbose    Output all results"
   echo
   echo "  LOGFILE         MOC server log file name, or '-' for stdin"
-  echo "                  (default: 'mocp_server_log' in the current directory)"
+  echo "                  (default: 'mocf_server_log' in the current directory)"
   echo
   echo "Exit codes:       0 - No errors or mismatches"
   echo "                  1 - Error occurred"
@@ -197,7 +197,7 @@ do
 done
 
 # Allow for log file parameter.
-LOG="${1:-mocp_server_log}"
+LOG="${1:-mocf_server_log}"
 [[ "$LOG" = "-" ]] && LOG=/dev/stdin
 
 # Output formatting.

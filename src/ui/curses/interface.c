@@ -55,7 +55,7 @@
 #include "utils/utf8.h"
 #include "library/ratings.h"
 
-#define INTERFACE_LOG	"mocp_client_log"
+#define INTERFACE_LOG	"mocf_client_log"
 #define PLAYLIST_FILE	"playlist.m3u"
 
 #define QUEUE_CLEAR_THRESH 128

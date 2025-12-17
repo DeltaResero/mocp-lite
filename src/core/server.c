@@ -49,7 +49,7 @@
 #include "audio/processing/equalizer.h"
 #include "library/ratings.h"
 
-#define SERVER_LOG	"mocp_server_log"
+#define SERVER_LOG	"mocf_server_log"
 #define PID_FILE	"pid"
 
 struct client

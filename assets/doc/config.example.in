@@ -47,7 +47,7 @@
 # You can override any configuration option when you run MOC using the
 # '-O' command line option:
 #
-#     mocp -O AutoNext=no -O messagelingertime=1 -O XTerms+=xxt:xwt
+#     mocf -O AutoNext=no -O messagelingertime=1 -O XTerms+=xxt:xwt
 #
 # This command line option can be repeated as many times as needed and
 # the configuration option name is not case sensitive.  (Note that MOC

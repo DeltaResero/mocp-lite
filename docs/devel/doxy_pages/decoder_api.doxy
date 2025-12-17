@@ -15,7 +15,7 @@ that to create a plugin you need to add it to MOC's source directory.  It
 will be built with the program and a file named like my_plugin.so will be
 created and placed in the plugin directory during installation.
 
-So why plugins?  The idea is to avoid the dependency of the mocp binary on
+So why plugins?  The idea is to avoid the dependency of the mocf binary on
 various libraries used just to support some exotic formats.  If a plugin
 with an unresolved dependency is found at startup it's just not loaded.
 

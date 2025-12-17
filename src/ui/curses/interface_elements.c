@@ -124,7 +124,7 @@ static struct main_win
 	char *curr_file; /* currently played file. */
 
 	int in_help; /* are we displaying help screen? */
-	int too_small; /* is the terminal window too small to display mocp? */
+	int too_small; /* is the terminal window too small to display mocf? */
 	int help_screen_top; /* first visible line of the help screen. */
 	int in_lyrics; /* are we displaying lyrics screen? */
 	int lyrics_screen_top; /* first visible line of the lyrics screen. */

@@ -43,8 +43,8 @@
 #include "library/files.h"
 #include "library/rcc.h"
 
-static int mocp_argc;
-static const char **mocp_argv;
+static int mocf_argc;
+static const char **mocf_argv;
 static int popt_next_val = 1;
 static char *render_popt_command_line ();
 
@@ -53,8 +53,8 @@ static struct {
 	const char *name;
 	const char *desc;
 } environment_variables[] = {
-	{"MOCP_OPTS", "Additional command line options"},
-	{"MOCP_POPTRC", "List of POPT configuration files"}
+	{"MOCF_OPTS", "Additional command line options"},
+	{"MOCF_POPTRC", "List of POPT configuration files"}
 };
 
 struct parameters
@@ -389,13 +389,13 @@ static void show_banner ()
 	printf (")\n");
 }
 
-static const char mocp_summary[] = "[OPTIONS] [FILE|DIR ...]";
+static const char mocf_summary[] = "[OPTIONS] [FILE|DIR ...]";
 
 /* Show program usage. */
 static void show_usage (poptContext ctx)
 {
 	show_banner ();
-	poptSetOtherOptionHelp (ctx, mocp_summary);
+	poptSetOtherOptionHelp (ctx, mocf_summary);
 	poptPrintUsage (ctx, stdout, 0);
 }
 
@@ -405,7 +405,7 @@ static void show_help (poptContext ctx)
 	size_t ix;
 
 	show_banner ();
-	poptSetOtherOptionHelp (ctx, mocp_summary);
+	poptSetOtherOptionHelp (ctx, mocf_summary);
 	poptPrintHelp (ctx, stdout, 0);
 
 	printf ("\nEnvironment variables:\n\n");
@@ -418,16 +418,16 @@ static void show_help (poptContext ctx)
 /* Show POPT-interpreted command line arguments. */
 static void show_args ()
 {
-	if (mocp_argc > 0) {
+	if (mocf_argc > 0) {
 		char *str;
 
-		str = getenv ("MOCP_POPTRC");
+		str = getenv ("MOCF_POPTRC");
 		if (str)
-			printf ("MOCP_POPTRC='%s' ", str);
+			printf ("MOCF_POPTRC='%s' ", str);
 
-		str = getenv ("MOCP_OPTS");
+		str = getenv ("MOCF_OPTS");
 		if (str)
-			printf ("MOCP_OPTS='%s' ", str);
+			printf ("MOCF_OPTS='%s' ", str);
 
 		str = render_popt_command_line ();
 		printf ("%s\n", str);
@@ -576,7 +576,7 @@ static struct poptOption misc_opts[] = {
 	POPT_TABLEEND
 };
 
-static struct poptOption mocp_opts[] = {
+static struct poptOption mocf_opts[] = {
 	{NULL, 0, POPT_ARG_INCLUDE_TABLE, general_opts, 0, "General options:", NULL},
 	{NULL, 0, POPT_ARG_INCLUDE_TABLE, server_opts, 0, "Server commands:", NULL},
 	{NULL, 0, POPT_ARG_INCLUDE_TABLE, misc_opts, 0, "Miscellaneous options:", NULL},
@@ -584,8 +584,8 @@ static struct poptOption mocp_opts[] = {
 	POPT_TABLEEND
 };
 
-/* Read the POPT configuration files as given in MOCP_POPTRC. */
-static void read_mocp_poptrc (poptContext ctx, const char *env_poptrc)
+/* Read the POPT configuration files as given in MOCF_POPTRC. */
+static void read_mocf_poptrc (poptContext ctx, const char *env_poptrc)
 {
 	int ix, rc, count;
 	lists_t_strs *files;
@@ -658,31 +658,31 @@ static void read_popt_config (poptContext ctx)
 {
 	const char *env_poptrc;
 
-	env_poptrc = getenv ("MOCP_POPTRC");
+	env_poptrc = getenv ("MOCF_POPTRC");
 	if (env_poptrc)
-		read_mocp_poptrc (ctx, env_poptrc);
+		read_mocf_poptrc (ctx, env_poptrc);
 	else
 		read_default_poptrc (ctx);
 }
 
-/* Prepend MOCP_OPTS to the command line. */
-static void prepend_mocp_opts (poptContext ctx)
+/* Prepend MOCF_OPTS to the command line. */
+static void prepend_mocf_opts (poptContext ctx)
 {
 	int rc;
 	const char *env_opts;
 
-	env_opts = getenv ("MOCP_OPTS");
+	env_opts = getenv ("MOCF_OPTS");
 	if (env_opts && strlen (env_opts)) {
 		int env_argc;
 		const char **env_argv;
 
 		rc = poptParseArgvString (env_opts, &env_argc, &env_argv);
 		if (rc < 0)
-			fatal ("Error parsing MOCP_OPTS: %s", poptStrerror (rc));
+			fatal ("Error parsing MOCF_OPTS: %s", poptStrerror (rc));
 
 		rc = poptStuffArgs (ctx, env_argv);
 		if (rc < 0)
-			fatal ("Error prepending MOCP_OPTS: %s", poptStrerror (rc));
+			fatal ("Error prepending MOCF_OPTS: %s", poptStrerror (rc));
 
 		free (env_argv);
 	}
@@ -839,16 +839,16 @@ static char *render_popt_command_line ()
 	poptContext ctx;
 	struct poptOption *null_opts;
 
-	null_opts = clone_popt_options (mocp_opts);
+	null_opts = clone_popt_options (mocf_opts);
 
-	ctx = poptGetContext ("mocp", mocp_argc, mocp_argv, null_opts,
+	ctx = poptGetContext ("mocf", mocf_argc, mocf_argv, null_opts,
 	                       POPT_CONTEXT_NO_EXEC);
 
 	read_popt_config (ctx);
-	prepend_mocp_opts (ctx);
+	prepend_mocf_opts (ctx);
 
-	cmdline = lists_strs_new (mocp_argc * 2);
-	lists_strs_append (cmdline, mocp_argv[0]);
+	cmdline = lists_strs_new (mocf_argc * 2);
+	lists_strs_append (cmdline, mocf_argv[0]);
 
 	while (1) {
 		size_t len;
@@ -1067,7 +1067,7 @@ static void process_options (poptContext ctx, lists_t_strs *deferred)
 
 		/* poptBadOption() with POPT_BADOPTION_NOALIAS fails to
 		 * return the correct option if poptStuffArgs() was used. */
-		if (!strcmp (opt, alias) || getenv ("MOCP_OPTS"))
+		if (!strcmp (opt, alias) || getenv ("MOCF_OPTS"))
 			fatal ("%s: %s", opt, poptStrerror (rc));
 		else
 			fatal ("%s (aliased by %s): %s", opt, alias, poptStrerror (rc));
@@ -1086,10 +1086,10 @@ static lists_t_strs *process_command_line (lists_t_strs *deferred)
 
 	assert (deferred != NULL);
 
-	ctx = poptGetContext ("mocp", mocp_argc, mocp_argv, mocp_opts, 0);
+	ctx = poptGetContext ("mocf", mocf_argc, mocf_argv, mocf_opts, 0);
 
 	read_popt_config (ctx);
-	prepend_mocp_opts (ctx);
+	prepend_mocf_opts (ctx);
 	process_options (ctx, deferred);
 
 	if (params.foreground)
@@ -1163,8 +1163,8 @@ static void log_command_line ()
 	lists_t_strs *cmdline;
 	char *str;
 
-	cmdline = lists_strs_new (mocp_argc);
-	if (lists_strs_load (cmdline, mocp_argv) > 0)
+	cmdline = lists_strs_new (mocf_argc);
+	if (lists_strs_load (cmdline, mocf_argv) > 0)
 		str = lists_strs_fmt (cmdline, "%s ");
 	else
 		str = xstrdup ("No command line available");
@@ -1178,7 +1178,7 @@ static void log_command_line ()
 static void log_popt_command_line ()
 {
 #ifndef NDEBUG
-	if (mocp_argc > 0) {
+	if (mocf_argc > 0) {
 		char *str;
 
 		str = render_popt_command_line ();
@@ -1196,13 +1196,13 @@ int main (int argc, const char *argv[])
 	assert (argv != NULL);
 	assert (argv[argc] == NULL);
 
-	mocp_argc = argc;
-	mocp_argv = argv;
+	mocf_argc = argc;
+	mocf_argv = argv;
 
 #ifdef PACKAGE_REVISION
-	logit ("This is Music On Console (revision %s)", PACKAGE_REVISION);
+	logit ("This is %s (revision %s)", PACKAGE_NAME, PACKAGE_REVISION);
 #else
-	logit ("This is Music On Console (version %s)", PACKAGE_VERSION);
+	logit ("This is %s (version %s)", PACKAGE_NAME, PACKAGE_VERSION);
 #endif
 
 #ifdef CONFIGURATION

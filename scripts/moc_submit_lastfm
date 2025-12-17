@@ -30,7 +30,7 @@ parser.add_option("-l", "--length", dest="length")
 # locale).
 
 def still_playing(artist, album, title):
-    p = Popen(["mocp", "-i"], stdout=PIPE)
+    p = Popen(["mocf", "-i"], stdout=PIPE)
     out, err = p.communicate()
     lines = out.split("\n")
     for s in ["Artist: %s" % artist, "Album: %s" % album, "SongTitle: %s" % title]:

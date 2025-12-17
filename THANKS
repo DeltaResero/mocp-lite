@@ -141,7 +141,7 @@ Martin Milata:
 	* Fixed race condition between two clients and playlist request servicing.
 
 Jack Miller:
-	* Added average bitrate field to the output of mocp -i.
+	* Added average bitrate field to the output of mocf -i.
 	* Provided command line option to toggle/on/off playback options.
 	* Provided command line option for setting the volume.
 	* Added OnSongChange option which runs a command when song is changed.

@@ -246,14 +246,14 @@ wish to do:
 	./configure --prefix="$PWD" --without-timidity
 	make
 	make install
-	bin/mocp -M .moc
+	bin/mocf -M .moc
 
 --------------------------------------------------------------------------------
 How Do I Use It?
 --------------------------------------------------------------------------------
 
-Run program with the 'mocp' command.  The usage is simple; if you need help,
-press 'h' and/or read mocp manpage.  There is no complicated command line or
+Run program with the 'mocf' command.  The usage is simple; if you need help,
+press 'h' and/or read mocf manpage.  There is no complicated command line or
 cryptic commands.  Using MOC is as easy as using basic functions of Midnight
 Commander.
 
@@ -323,7 +323,7 @@ There are two things you must do if at all possible:
 1. Make sure you are using the current stable MOC release or, even better,
    can reproduce it on the latest development release or SVN HEAD, and
 2. Make sure you include the version and revision information (which you
-   can obtain by running 'mocp --version').
+   can obtain by running 'mocf --version').
 
 If you do not do those two things (and don't offer a good explanation as to
 why you didn't) your problem report is likely to be ignored until such time

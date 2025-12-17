@@ -321,7 +321,7 @@ add_subdirectory(src/audio/decoders)
 add_subdirectory(assets/themes)
 
 # Main Executable
-set(MOCP_SOURCES
+set(MOCF_SOURCES
     src/core/log.c
     src/core/protocol.c
     src/core/server.c
@@ -356,21 +356,21 @@ set(MOCP_SOURCES
     ${EXTRA_OBJS}
 )
 
-add_executable(mocp ${MOCP_SOURCES})
+add_executable(mocf ${MOCF_SOURCES})
 
-target_include_directories(mocp PRIVATE
+target_include_directories(mocf PRIVATE
     ${CMAKE_SOURCE_DIR}/src
     ${CURSES_INCLUDE_DIRS}
     ${LTDL_INCLUDE_DIR}
     ${POPT_INCLUDE_DIR}
 )
 
-target_compile_definitions(mocp PRIVATE
+target_compile_definitions(mocf PRIVATE
     SYSTEM_THEMES_DIR="${CMAKE_INSTALL_PREFIX}/${THEMES_DIR}"
     PLUGIN_DIR="${CMAKE_INSTALL_PREFIX}/${PLUGIN_DIR}/${DECODER_PLUGIN_DIR}"
 )
 
-target_link_libraries(mocp PRIVATE
+target_link_libraries(mocf PRIVATE
     ${CMAKE_THREAD_LIBS_INIT}
     ${CURSES_LIBRARIES}
     ${LTDL_LIBRARY}
@@ -381,18 +381,18 @@ target_link_libraries(mocp PRIVATE
 )
 
 # Enable export-dynamic for plugins to resolve symbols from main executable
-set_target_properties(mocp PROPERTIES ENABLE_EXPORTS ON)
+set_target_properties(mocf PROPERTIES ENABLE_EXPORTS ON)
 
 # Installation
-install(TARGETS mocp DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(TARGETS mocf DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/assets/doc/config.example"
         THANKS README 
         assets/doc/README_equalizer assets/doc/keymap.example
         DESTINATION ${CMAKE_INSTALL_DOCDIR})
-install(FILES assets/man/mocp.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
-install(FILES assets/desktop/mocp.desktop 
+install(FILES assets/man/mocf.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
+install(FILES assets/desktop/mocf.desktop 
         DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
-install(FILES assets/desktop/mocp.svg 
+install(FILES assets/desktop/mocf.svg 
         DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps)
 
 # Helper for summary output

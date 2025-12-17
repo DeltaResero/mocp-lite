@@ -689,7 +689,7 @@ void options_init ()
 	          CHECK_DISCRETE(5), "SNDIO", "PulseAudio", "Jack", "ALSA", "OSS", "null");
 #endif
 
-	add_str  ("JackClientName", "moc", CHECK_NONE);
+	add_str  ("JackClientName", "mocf", CHECK_NONE);
 	add_bool ("JackStartServer", false);
 	add_str  ("JackOutLeft", "system:playback_1", CHECK_NONE);
 	add_str  ("JackOutRight", "system:playback_2", CHECK_NONE);

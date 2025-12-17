@@ -19,11 +19,11 @@
 MOC \- Console audio player
 .LP
 .SH SYNOPSIS
-\fBmocp\fR [\fIOPTIONS\fR] [\fIFILE\fR|\fIDIR\fR ...]
+\fBmocf\fR [\fIOPTIONS\fR] [\fIFILE\fR|\fIDIR\fR ...]
 .LP
 .SH DESCRIPTION
 MOC is a console audio player with simple ncurses interface.  It supports
-OGG, WAV, MP3 and other formats.  Just run \fBmocp\fP, go to some directory
+OGG, WAV, MP3 and other formats.  Just run \fBmocf\fP, go to some directory
 using the menu and press enter to start playing the file.  The program will
 automatically play the rest of the files in the directory.
 .LP
@@ -225,7 +225,7 @@ Print a list of options with short descriptions and exit.
 .LP
 .TP
 \fB\-\-usage\fP
-Print a synopsis of the mocp command and exit.
+Print a synopsis of the mocf command and exit.
 .LP
 .TP
 \fB\-V\fP, \fB\-\-version\fP
@@ -279,7 +279,7 @@ general form:
 .IP
 .RS
 .EX
-.BI mocp " " alias " " \fInewoption\fP " " \fIexpansion\fP
+.BI mocf " " alias " " \fInewoption\fP " " \fIexpansion\fP
 .EE
 .RE
 .LP
@@ -303,14 +303,14 @@ So, for example:
 .IP
 .RS
 .EX
-\fBmocp alias \-\-single \-D \-\-set\-option autonext=no \\\fP
+\fBmocf alias \-\-single \-D \-\-set\-option autonext=no \\\fP
 \fB           \-\-POPTdesc=$"Play just the file selected"
 .EE
 .RE
 .LP
 would allow the user to turn on logging (\fB\-D\fP) and override
 the configuration file's \fBAutoNext\fP option setting just by using
-\fB\-\-single\fP as an option to the mocp command.
+\fB\-\-single\fP as an option to the mocf command.
 .LP
 Sometimes you may wish to provide values to aliased options from the
 command line.  If just one aliased option has such a value, then it's
@@ -319,7 +319,7 @@ a simple matter of placing it last:
 .IP
 .RS
 .EX
-\fBmocp alias \-\-yours \-\-sound-driver OSS \-\-theme
+\fBmocf alias \-\-yours \-\-sound-driver OSS \-\-theme
 .EE
 .RE
 .LP
@@ -328,7 +328,7 @@ when used like this:
 .IP
 .RS
 .EX
-\fBmocp \-\-yours your_theme
+\fBmocf \-\-yours your_theme
 .EE
 .RE
 .LP
@@ -337,7 +337,7 @@ would result in:
 .IP
 .RS
 .EX
-\fBmocp \-\-sound-driver OSS \-\-theme your_theme
+\fBmocf \-\-sound-driver OSS \-\-theme your_theme
 .EE
 .RE
 .LP
@@ -347,7 +347,7 @@ special construct \fB!#:+\fP (and quoting carefully):
 .IP
 .RS
 .EX
-\fBmocp alias \-1 "\-R !#:+" "\-T my_theme" "\-O !#:+"
+\fBmocf alias \-1 "\-R !#:+" "\-T my_theme" "\-O !#:+"
 .EE
 .RE
 .LP
@@ -356,7 +356,7 @@ when used like this:
 .IP
 .RS
 .EX
-\fBmocp \-1 OSS shuffle=yes ~/my_music
+\fBmocf \-1 OSS shuffle=yes ~/my_music
 .EE
 .RE
 .LP
@@ -365,7 +365,7 @@ would result in:
 .IP
 .RS
 .EX
-\fBmocp \-R OSS \-T my_theme \-O shuffle=yes ~/my_music
+\fBmocf \-R OSS \-T my_theme \-O shuffle=yes ~/my_music
 .EE
 .RE
 .LP
@@ -377,7 +377,7 @@ is the program to be executed:
 .IP
 .RS
 .EX
-\fBmocp exec \-\-help /usr/bin/man 1 mocp \\
+\fBmocf exec \-\-help /usr/bin/man 1 mocf \\
 \fB           POPTdesc=$"Provide the man page instead of help"
 .EE
 .RE
@@ -387,7 +387,7 @@ system's \fBman\fP program to present this man page instead.
 .LP
 Note that while \fB~/.popt\fP (or \fB/etc/popt\fP) is the default POPT
 configuration file, you can nominate specific file(s) to be used instead
-via the \fBMOCP_POPTRC\fP environment variable.
+via the \fBMOCF_POPTRC\fP environment variable.
 .LP
 .SH ENVIRONMENT VARIABLES
 The following environment variables are used directly by MOC.  Additional
@@ -409,12 +409,12 @@ Tells MOC where your home directory is located and is used for various
 purposes, including the default location of the MOC directory.
 .LP
 .TP
-.B MOCP_OPTS
+.B MOCF_OPTS
 The value of this variable will be prepended to the command line options
 before they are processed.
 .LP
 .TP
-.B MOCP_POPTRC
+.B MOCF_POPTRC
 A colon-separated list of POPT configuration files which will be loaded in
 sequence by MOC during initialisation.  If the variable is unset then the
 default POPT configuration file will be used.  If the variable is set but
@@ -454,7 +454,7 @@ it is writable by anyone other than its owner.
 The default files POPT reads to obtain aliased options.  As these files can
 specify commands which invoke other applications, MOC will refuse to start
 if it is not owned by root or the current user, or if it is writable by
-anyone other than its owner.  (Also see the \fBMOCP_POPTRC\fP environment
+anyone other than its owner.  (Also see the \fBMOCF_POPTRC\fP environment
 variable above.)
 .LP
 .TP
@@ -468,16 +468,16 @@ Default directories for the theme files.
 Default directories for the audio decoder plugins.
 .LP
 .TP
-.B mocp_client_log
+.B mocf_client_log
 .TQ
-.B mocp_server_log
+.B mocf_server_log
 Client and server log files.  These files are created in the directory in
 which the client and server are started.  (Also see the \fB\-D\fP option.)
 .LP
 .SH BUGS
 Command line options that affect the server behaviour (like
 \fB\-\-sound\-driver\fP) are ignored if the server is already running at
-the time of executing \fBmocp\fP.  The user is not warned about this.
+the time of executing \fBmocf\fP.  The user is not warned about this.
 .LP
 .SH HOMEPAGE
 http://moc.daper.net/
