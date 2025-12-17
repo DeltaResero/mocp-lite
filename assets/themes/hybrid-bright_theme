@@ -5,43 +5,106 @@
 # based on hybrid
 # best viewed on shaded or black terminal
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = white   black
 frame                = yellow  black   bold
 window_title         = yellow  black   bold
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = white   black
 selected_directory   = yellow  black   bold
+
+# --- Playlists (playlist display) ---
 playlist             = white   black   bold
 selected_playlist    = green   black   bold
+
+# --- Files (file browser) ---
 file                 = white   black
 selected_file        = green   black   dim,underline
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = yellow  black   bold
 marked_selected_file = green   black   bold
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = blue    black   bold
-selected_info        = blue    black   bold
 marked_info          = green   black   bold
 marked_selected_info = green   black   bold
+selected_info        = blue    black   bold
+
+# --- Status Bar (bottom status line) ---
+state                = yellow  black   bold
 status               = white   black
 title                = green   black   bold
-state                = yellow  black   bold
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = yellow  black   bold
+plist_time           = white   black   bold
 time_left            = yellow  black   bold
-total_time           = white   black   bold
 time_total_frames    = yellow  black   bold
+total_time           = white   black   bold
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = yellow  black   bold
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = white   black
 disabled             = blue    black   bold
 enabled              = white   black   bold
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = white   black
 filled_mixer_bar     = black   blue
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = white   black
 filled_time_bar      = black   blue
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = white   blue
 entry_title          = yellow  black   bold
+
+# --- Messages (errors, notifications) ---
 error                = red     black   bold
 message              = green   black   bold
-plist_time           = white   black   bold
-background           = white   black
+
+# EOF

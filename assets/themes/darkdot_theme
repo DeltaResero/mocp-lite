@@ -4,39 +4,103 @@
 # by Unknown
 # Theme to match the 'darkdot' vim theme by David Lazar (david_bv|at|yahoo|com)
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = default default
 frame                = white   default
 window_title         = white   default
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = blue    default bold
 selected_directory   = black   cyan
+
+# --- Playlists (playlist display) ---
 playlist             = white   default bold
 selected_playlist    = black   cyan
+
+# --- Files (file browser) ---
 file                 = white   default
 selected_file        = black   cyan
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = white   default bold
 marked_selected_file = white   cyan    bold
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = white   default
+
+# --- Status Bar (bottom status line) ---
+state                = white   default bold
 status               = white   default
 title                = white   default bold
-state                = white   default bold
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = white   default bold
+plist_time           = white   default
 time_left            = black   default bold
-total_time           = white   default
 time_total_frames    = white   default
+total_time           = white   default
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = white   default bold
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = white   default
 disabled             = black   default bold
 enabled              = white   default bold
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = white   default
 filled_mixer_bar     = black   white
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = white   default
 filled_time_bar      = black   white
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = white   default
 entry_title          = white   default
+
+# --- Messages (errors, notifications) ---
 error                = white   red     bold
 message              = white   default
-plist_time           = white   default
+
+# EOF

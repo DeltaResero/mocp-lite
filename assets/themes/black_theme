@@ -3,39 +3,103 @@
 # Black Theme
 # by Arn <arn.alduomacil@gmail.com>
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = white   black
 frame                = white   black
 window_title         = white   black
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = white   black
 selected_directory   = white   black   reverse
+
+# --- Playlists (playlist display) ---
 playlist             = white   black
 selected_playlist    = white   black   reverse
+
+# --- Files (file browser) ---
 file                 = white   black
 selected_file        = white   black   reverse
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = white   black   bold
 marked_selected_file = white   black   bold,reverse
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = white   black   underline
+
+# --- Status Bar (bottom status line) ---
+state                = white   black
 status               = white   black
 title                = white   black   bold
-state                = white   black
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = white   black   bold
+plist_time           = white   black
 time_left            = white   black   bold
-total_time           = white   black   bold
 time_total_frames    = white   black
+total_time           = white   black   bold
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = white   black   bold
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = white   black
 disabled             = white   black
 enabled              = white   black   bold
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = white   black
 filled_mixer_bar     = white   black   reverse
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = white   black
 filled_time_bar      = white   black   reverse
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = white   black
 entry_title          = white   black
+
+# --- Messages (errors, notifications) ---
 error                = white   black   bold,underline
 message              = white   black
-plist_time           = white   black
+
+# EOF

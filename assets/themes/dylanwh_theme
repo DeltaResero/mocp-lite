@@ -4,42 +4,106 @@
 # by Dylan Wh
 # Personal website: https://github.com/dylanwh
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = default default
 frame                = default default
 window_title         = default default
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = blue    default
 selected_directory   = magenta black   bold
-file                 = yellow  default bold
-selected_file        = white   black
-marked_file          = cyan    default bold
-marked_selected_file = white   black
-info                 = default default
-selected_info        = default black   bold
-marked_info          = default default bold
-marked_selected_info = default black   bold
-status               = default default
-title                = default default
-state                = default default
-current_time         = white   default bold
+
+# --- Playlists (playlist display) ---
 playlist             = yellow  default bold
 selected_playlist    = white   black
+
+# --- Files (file browser) ---
+file                 = yellow  default bold
+selected_file        = white   black
+
+# --- Currently Playing Track (marked items) ---
+marked_file          = cyan    default bold
+marked_selected_file = white   black
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
+info                 = default default
+marked_info          = default default bold
+marked_selected_info = default black   bold
+selected_info        = default black   bold
+
+# --- Status Bar (bottom status line) ---
+state                = default default
+status               = default default
+title                = default default
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
+current_time         = white   default bold
+plist_time           = white   default
 time_left            = white   default bold
-total_time           = white   default bold
 time_total_frames    = white   default
+total_time           = white   default bold
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = white   default bold
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = white   default
 disabled             = default default bold
 enabled              = white   default bold
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = white   default
 filled_mixer_bar     = black   yellow
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = white   default
 filled_time_bar      = black   yellow
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = white   default
 entry_title          = black   cyan
+
+# --- Messages (errors, notifications) ---
 error                = red     default
 message              = green   default
-plist_time           = white   default
+
+# EOF

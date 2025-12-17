@@ -3,39 +3,103 @@
 # Nightly Theme
 # by Wim Speekenbrink <w.speek@wanadoo.nl>
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = blue    black
 frame                = blue    black   bold
 window_title         = blue    black   bold
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = blue    black   bold
 selected_directory   = black   magenta
+
+# --- Playlists (playlist display) ---
 playlist             = blue    black   bold
 selected_playlist    = black   magenta
+
+# --- Files (file browser) ---
 file                 = blue    black   bold
 selected_file        = black   magenta
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = green   black   bold
 marked_selected_file = green   magenta bold
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = green   black   bold
+
+# --- Status Bar (bottom status line) ---
+state                = blue    black   bold
 status               = blue    black   bold
 title                = green   black   bold
-state                = blue    black   bold
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = magenta black   bold
+plist_time           = green   black   bold
 time_left            = magenta black   bold
-total_time           = magenta black   bold
 time_total_frames    = blue    black   bold
+total_time           = magenta black   bold
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = magenta black   bold
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = blue    black   bold
 disabled             = black   black
 enabled              = blue    black   bold
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = blue    black   bold
 filled_mixer_bar     = black   magenta
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = blue    black   bold
 filled_time_bar      = black   magenta
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = green   black   bold
 entry_title          = green   black   bold
+
+# --- Messages (errors, notifications) ---
 error                = red     black   bold
 message              = green   black   bold
-plist_time           = green   black   bold
+
+# EOF

@@ -4,39 +4,103 @@
 # by rtefforg <rtefforg@gmail.com>
 # Personal Website: https://github.com/rteff
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = black   black
 frame                = cyan    black
 window_title         = cyan    black   bold,underline
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = blue    black   bold
 selected_directory   = cyan    black   bold,underline
+
+# --- Playlists (playlist display) ---
 playlist             = white   black   bold
 selected_playlist    = cyan    black   bold,underline
+
+# --- Files (file browser) ---
 file                 = white   black
 selected_file        = cyan    black   bold,underline
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = grey    black   bold
 marked_selected_file = grey    black   bold,underline
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = cyan    black
+
+# --- Status Bar (bottom status line) ---
+state                = cyan    black
 status               = blue    black
 title                = blue    black   bold
-state                = cyan    black
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = grey    black
+plist_time           = cyan    black   underline
 time_left            = red     black
-total_time           = white   black
 time_total_frames    = white   black
+total_time           = white   black
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = grey    black   bold
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = white   black   bold
 disabled             = red     black
 enabled              = grey    black   bold
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = white   black   bold,underline
 filled_mixer_bar     = cyan    black   underline
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = white   black   underline
 filled_time_bar      = cyan    black   underline
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = white   black
 entry_title          = white   black
+
+# --- Messages (errors, notifications) ---
 error                = red     black   bold,underline
 message              = blue    black   bold
-plist_time           = cyan    black   underline
+
+# EOF

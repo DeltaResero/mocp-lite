@@ -3,52 +3,106 @@
 # Blue Theme
 # by Unknown
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = default default
 frame                = blue    default
 window_title         = default default
-title                = blue    default bold
 
-entry_title          = default default bold
-entry                = default default
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
 
-message              = default default bold
-error                = red     default bold
-
+# --- Directories (folder display) ---
 directory            = blue    default bold,dim
-playlist             = cyan    default
-file                 = default default
-info                 = red     default dim
-
 selected_directory   = blue    white   bold,dim
+
+# --- Playlists (playlist display) ---
+playlist             = cyan    default
 selected_playlist    = blue    white   bold,dim
+
+# --- Files (file browser) ---
+file                 = default default
 selected_file        = blue    white   bold,dim
-selected_info        = blue    white   bold,dim
-marked_selected_file = blue    white   bold,dim
-marked_selected_info = blue    white   bold,dim
 
+# --- Currently Playing Track (marked items) ---
 marked_file          = blue    default bold,dim
-marked_info          = blue    default bold,dim
+marked_selected_file = blue    white   bold,dim
 
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
+info                 = red     default dim
+marked_info          = blue    default bold,dim
+marked_selected_info = blue    white   bold,dim
+selected_info        = blue    white   bold,dim
+
+# --- Status Bar (bottom status line) ---
 state                = blue    default bold
 status               = blue    default bold
+title                = blue    default bold
 
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = blue    default bold,dim
+plist_time           = blue    white   bold,dim,reverse
 time_left            = blue    default bold,dim
 time_total_frames    = blue    default dim
 total_time           = blue    default bold,dim
 
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = blue    default bold,dim
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = blue    default dim
-
-enabled              = blue    default bold,dim
 disabled             = white   default dim
+enabled              = blue    default bold,dim
 
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = black   default bold
-empty_time_bar       = black   default bold
 filled_mixer_bar     = blue    white   bold,dim,reverse
+
+# --- Time Progress Bar (bottom left) ---
+empty_time_bar       = black   default bold
 filled_time_bar      = blue    white   bold,dim,reverse
-plist_time           = blue    white   bold,dim,reverse
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
+entry                = default default
+entry_title          = default default bold
+
+# --- Messages (errors, notifications) ---
+error                = red     default bold
+message              = default default bold
+
+# EOF

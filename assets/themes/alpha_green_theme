@@ -4,42 +4,106 @@
 # by SrFreak <juanjosalvador@openmailbox.org>
 # Personal website: http://juanjosalvador.github.io
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = default default
 frame                = white   default
 window_title         = white   default
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = white   default bold
 selected_directory   = green   black   bold,reverse
+
+# --- Playlists (playlist display) ---
 playlist             = white   green   bold
 selected_playlist    = white   green   bold
+
+# --- Files (file browser) ---
 file                 = white   default
 selected_file        = green   default
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = blue    default bold
 marked_selected_file = green   default bold
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = green   default bold
-selected_info        = green   default bold
 marked_info          = red     default bold
 marked_selected_info = green   default bold
+selected_info        = green   default bold
+
+# --- Status Bar (bottom status line) ---
+state                = white   default bold
 status               = white   default
 title                = white   default bold
-state                = white   default bold
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = white   default bold
+plist_time           = white   default bold
 time_left            = white   default bold
-total_time           = white   default bold
 time_total_frames    = white   default
+total_time           = white   default bold
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = white   default bold
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = white   default
 disabled             = green   default bold
 enabled              = white   default bold
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = white   default
 filled_mixer_bar     = black   white
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = white   default
 filled_time_bar      = black   white
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = white   default
 entry_title          = black   default
+
+# --- Messages (errors, notifications) ---
 error                = red     default bold
 message              = green   default bold
-plist_time           = white   default bold
+
+# EOF

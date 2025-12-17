@@ -5,42 +5,106 @@
 # Original site no longer available but was referenced from:
 # http://nic-nac-project.org/~orveldv/wiki/doku.php?id=moc
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = black   black   normal
 frame                = blue    black   bold
 window_title         = black   black   bold
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = cyan    black   normal
 selected_directory   = cyan    black   bold
+
+# --- Playlists (playlist display) ---
 playlist             = white   black   normal
 selected_playlist    = cyan    black   bold
+
+# --- Files (file browser) ---
 file                 = green   black   normal
 selected_file        = green   black   bold
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = yellow  black   bold
 marked_selected_file = white   black   bold
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = blue    black   bold
-selected_info        = blue    black   bold
 marked_info          = white   black   bold
 marked_selected_info = white   black   bold
+selected_info        = blue    black   bold
+
+# --- Status Bar (bottom status line) ---
+state                = green   black   bold,blink
 status               = black   white   normal
 title                = yellow  black   bold
-state                = green   black   bold,blink
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = white   black   normal
+plist_time           = blue    black   normal
 time_left            = black   black   bold
-total_time           = green   black   normal
 time_total_frames    = black   black   bold
+total_time           = green   black   normal
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = white   black   normal
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = green   black   normal
 disabled             = black   black   bold
 enabled              = white   black   normal
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = white   black   normal
 filled_mixer_bar     = black   white   normal
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = black   black   normal
 filled_time_bar      = black   white   bold
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = white   black   normal
 entry_title          = black   white   normal
+
+# --- Messages (errors, notifications) ---
 error                = yellow  black   bold
 message              = yellow  black   bold
-plist_time           = blue    black   normal
+
+# EOF

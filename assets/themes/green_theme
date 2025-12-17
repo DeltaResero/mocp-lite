@@ -1,41 +1,106 @@
 ###############################################################################
+#
 # Green Theme
 # by Jacek Lehmann
 # best viewed on shaded or black terminal
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = default default
 frame                = black   default
 window_title         = green   default
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = red     default
 selected_directory   = yellow  default
+
+# --- Playlists (playlist display) ---
 playlist             = blue    default
 selected_playlist    = magenta default
+
+# --- Files (file browser) ---
 file                 = green   default
 selected_file        = cyan    default
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = green   default bold
 marked_selected_file = cyan    default bold
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = cyan    default
+
+# --- Status Bar (bottom status line) ---
+state                = magenta default
 status               = magenta default
 title                = green   default
-state                = magenta default
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = magenta default
+plist_time           = magenta default
 time_left            = cyan    default
-total_time           = cyan    default
 time_total_frames    = magenta default
+total_time           = cyan    default
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = cyan    default
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = magenta default
 disabled             = black   default
 enabled              = yellow  default
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = green   default
 filled_mixer_bar     = black   green
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = green   default
 filled_time_bar      = black   green
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = yellow  default
 entry_title          = red     default
+
+# --- Messages (errors, notifications) ---
 error                = red     default
 message              = yellow  default
-plist_time           = magenta default
+
+# EOF

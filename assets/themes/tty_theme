@@ -3,42 +3,106 @@
 # tty
 # by Unknown
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = default default
 frame                = default default
 window_title         = default default
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = default default
 selected_directory   = default default reverse
+
+# --- Playlists (playlist display) ---
 playlist             = default default
 selected_playlist    = default default reverse
+
+# --- Files (file browser) ---
 file                 = default default
 selected_file        = default default reverse
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = green   default bold
 marked_selected_file = green   default reverse,bold
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = default default
-selected_info        = default default bold,reverse
 marked_info          = green   default bold
 marked_selected_info = green   default bold,reverse
+selected_info        = default default bold,reverse
+
+# --- Status Bar (bottom status line) ---
+state                = default default
 status               = default default
 title                = default default bold
-state                = default default
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = default default bold
+plist_time           = default default
 time_left            = default default bold
-total_time           = default default bold
 time_total_frames    = default default
+total_time           = default default bold
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = default default bold
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = default default
 disabled             = red     default
 enabled              = green   default bold
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = default default
 filled_mixer_bar     = default default reverse
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = default default
 filled_time_bar      = default default reverse
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = default default
 entry_title          = default default
+
+# --- Messages (errors, notifications) ---
 error                = red     default
 message              = green   default
-plist_time           = default default
+
+# EOF

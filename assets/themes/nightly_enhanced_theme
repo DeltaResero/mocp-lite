@@ -5,42 +5,106 @@
 # This is a modification of the Nightly Theme by
 # Wim Speekenbrink <w.speek@wanadoo.nl>
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = blue    default
 frame                = blue    default bold
 window_title         = blue    default bold
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = blue    default bold
 selected_directory   = black   magenta
+
+# --- Playlists (playlist display) ---
 playlist             = blue    default bold
 selected_playlist    = black   magenta
+
+# --- Files (file browser) ---
 file                 = blue    default bold
 selected_file        = black   magenta
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = green   default bold
 marked_selected_file = magenta default bold
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = green   default bold
-selected_info        = black   magenta
 marked_info          = green   default bold
 marked_selected_info = green   default bold
+selected_info        = black   magenta
+
+# --- Status Bar (bottom status line) ---
+state                = blue    default bold
 status               = blue    default bold
 title                = green   default bold
-state                = blue    default bold
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = magenta default bold
+plist_time           = green   default bold
 time_left            = magenta default bold
-total_time           = magenta default bold
 time_total_frames    = blue    default bold
+total_time           = magenta default bold
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = magenta default bold
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = blue    default bold
 disabled             = black   default
 enabled              = blue    default bold
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = blue    default bold
 filled_mixer_bar     = black   magenta
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = blue    default bold
 filled_time_bar      = black   magenta
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = green   default bold
 entry_title          = green   default bold
+
+# --- Messages (errors, notifications) ---
 error                = red     default bold
 message              = green   default bold
-plist_time           = green   default bold
+
+# EOF

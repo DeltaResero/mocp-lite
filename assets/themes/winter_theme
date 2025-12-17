@@ -4,50 +4,106 @@
 # by tomaszg
 # Inspired by MC seasons-winter16M theme
 #
-# colordef white   = #e4e3ed
-# colordef blue    = #3064a9
-# colordef cyan    = #cbd1e1
-# colordef magenta = #5f00af
-# colordef white   = 890 886 926
-# colordef blue    = 187 390 660
-# colordef cyan    = 793 816 879
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
 #
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = white   white   normal
 frame                = black   white   normal
 window_title         = black   white
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = black   white   normal
 selected_directory   = black   cyan
+
+# --- Playlists (playlist display) ---
 playlist             = magenta white
 selected_playlist    = white   black   bold
+
+# --- Files (file browser) ---
 file                 = black   white   normal
 selected_file        = black   cyan
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = blue    white
 marked_selected_file = blue    cyan
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = black   white
-selected_info        = black   cyan
 marked_info          = blue    white
 marked_selected_info = blue    cyan
+selected_info        = black   cyan
+
+# --- Status Bar (bottom status line) ---
+state                = red     white
 status               = black   white
 title                = black   white   bold
-state                = red     white
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = black   white   normal
+plist_time           = white   cyan    bold
 time_left            = blue    white
-total_time           = black   white
 time_total_frames    = black   white   normal
+total_time           = black   white
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = blue    white
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = blue    white   normal
 disabled             = cyan    white   normal
 enabled              = blue    white   normal
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = black   white
 filled_mixer_bar     = white   blue
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = white   white   normal
 filled_time_bar      = white   blue
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = black   white   normal
 entry_title          = black   cyan    normal
+
+# --- Messages (errors, notifications) ---
 error                = red     white   normal
 message              = magenta white   normal
-plist_time           = white   cyan    bold
+
+# EOF

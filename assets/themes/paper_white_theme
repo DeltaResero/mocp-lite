@@ -4,42 +4,106 @@
 # by orveldv
 # 06/May/2007
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = white   white   normal
 frame                = black   white   normal
 window_title         = black   white   normal
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = white   white   bold
 selected_directory   = white   black   bold
+
+# --- Playlists (playlist display) ---
 playlist             = cyan    white   bold
 selected_playlist    = white   black   bold
+
+# --- Files (file browser) ---
 file                 = white   white   bold
 selected_file        = white   black   bold
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = blue    white   normal
 marked_selected_file = cyan    black   bold
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = cyan    white   bold
-selected_info        = blue    black   bold
 marked_info          = green   black   bold
 marked_selected_info = green   black   bold
+selected_info        = blue    black   bold
+
+# --- Status Bar (bottom status line) ---
+state                = red     white   blink
 status               = white   cyan    bold
 title                = blue    white   normal
-state                = red     white   blink
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = white   white   bold
+plist_time           = white   cyan    bold
 time_left            = cyan    white   bold
-total_time           = black   white   bold
 time_total_frames    = black   white   normal
+total_time           = black   white   bold
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = black   white   normal
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = white   white   bold
 disabled             = cyan    white   normal
 enabled              = blue    white   bold
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = black   white   bold
 filled_mixer_bar     = cyan    default bold
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = white   white   normal
 filled_time_bar      = white   default bold
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = black   white   normal
 entry_title          = black   cyan    normal
+
+# --- Messages (errors, notifications) ---
 error                = red     white   normal
 message              = magenta white   normal
-plist_time           = white   cyan    bold
+
+# EOF

@@ -3,42 +3,106 @@
 # Variant Red Theme
 # by centralkidede
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = default default normal
 frame                = white   default normal
 window_title         = white   default normal
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = white   default bold
 selected_directory   = white   red     bold
+
+# --- Playlists (playlist display) ---
 playlist             = white   default bold
 selected_playlist    = white   red     bold
+
+# --- Files (file browser) ---
 file                 = white   default normal
 selected_file        = white   red     normal
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = red     default bold
 marked_selected_file = white   red     bold
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = red     default bold
-selected_info        = red     default bold
 marked_info          = red     default bold
 marked_selected_info = white   red     bold
+selected_info        = red     default bold
+
+# --- Status Bar (bottom status line) ---
+state                = black   white   bold
 status               = black   default normal
 title                = black   white   bold
-state                = black   white   bold
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = black   white   bold
+plist_time           = default default bold
 time_left            = black   white   bold
-total_time           = black   white   bold
 time_total_frames    = black   white   normal
+total_time           = black   white   bold
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = black   white   bold
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = black   white   normal
 disabled             = black   default bold
 enabled              = white   default bold
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = default red     dim
 filled_mixer_bar     = red     default normal
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = white   default normal
 filled_time_bar      = black   red     normal
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = white   red     normal
 entry_title          = black   red     normal
+
+# --- Messages (errors, notifications) ---
 error                = red     default bold
 message              = red     default bold
-plist_time           = default default bold
+
+# EOF

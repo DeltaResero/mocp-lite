@@ -4,39 +4,103 @@
 # by Bumblebee99
 # Personal website: https://github.com/Bumblebee99YT
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = red     white
 frame                = red     white   bold
 window_title         = red     white   bold
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = red     white   bold
 selected_directory   = white   red
+
+# --- Playlists (playlist display) ---
 playlist             = red     white   bold
 selected_playlist    = white   red
+
+# --- Files (file browser) ---
 file                 = red     white
 selected_file        = white   red
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = red     white   bold
 marked_selected_file = white   red     bold
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = red     white   bold
+
+# --- Status Bar (bottom status line) ---
+state                = red     white   bold
 status               = red     white   bold
 title                = red     white   bold
-state                = red     white   bold
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = red     white   bold
+plist_time           = white   red     bold
 time_left            = red     white   bold
-total_time           = red     white   bold
 time_total_frames    = red     white   bold
+total_time           = red     white   bold
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = red     white   bold
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = red     white   bold
 disabled             = white   white
 enabled              = red     white   bold
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = red     white   bold
 filled_mixer_bar     = white   red
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = white   white   bold
 filled_time_bar      = white   red
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = red     white   bold
 entry_title          = red     white   bold
+
+# --- Messages (errors, notifications) ---
 error                = red     white   bold
 message              = red     white   bold
-plist_time           = white   red     bold
+
+# EOF

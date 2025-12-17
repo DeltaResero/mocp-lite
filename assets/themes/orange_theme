@@ -3,42 +3,106 @@
 # Yellow|Red "Orange" Theme
 # by Stefan Wimmer <wimstefan@gmail.com>
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = red     default
 frame                = red     default
 window_title         = red     default
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = yellow  default
 selected_directory   = red     default
+
+# --- Playlists (playlist display) ---
 playlist             = yellow  default
 selected_playlist    = yellow  default
+
+# --- Files (file browser) ---
 file                 = yellow  default
 selected_file        = black   yellow
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = red     default
 marked_selected_file = red     yellow
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = yellow  default
-selected_info        = yellow  default bold
 marked_info          = yellow  default bold,reverse
 marked_selected_info = red     default bold
+selected_info        = yellow  default bold
+
+# --- Status Bar (bottom status line) ---
+state                = yellow  default
 status               = yellow  default
 title                = yellow  default
-state                = yellow  default
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = yellow  default
+plist_time           = yellow  default
 time_left            = yellow  default
-total_time           = yellow  default
 time_total_frames    = yellow  default
+total_time           = yellow  default
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = yellow  default
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = yellow  default
 disabled             = red     default dim
 enabled              = yellow  default bold
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = black   red
 filled_mixer_bar     = black   yellow
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = yellow  default
 filled_time_bar      = default yellow
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = yellow  default
 entry_title          = yellow  default
+
+# --- Messages (errors, notifications) ---
 error                = cyan    default
 message              = yellow  default
-plist_time           = yellow  default
+
+# EOF

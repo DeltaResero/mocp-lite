@@ -2,46 +2,109 @@
 #
 # Black/Orange Theme
 # by Unknown
-#
 # here's my theme for the great moc.
 # it's black/orange (on xterm it's black/yellow :-)
+#
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
 #
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = white   black
 frame                = yellow  black
 window_title         = white   black
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = white   black   bold
 selected_directory   = black   yellow
+
+# --- Playlists (playlist display) ---
 playlist             = white   black
 selected_playlist    = black   yellow
+
+# --- Files (file browser) ---
 file                 = white   black
 selected_file        = black   yellow
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = yellow  black
 marked_selected_file = yellow  black   bold,reverse
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = yellow  black
-selected_info        = yellow  black   bold
 marked_info          = yellow  black   bold
 marked_selected_info = yellow  black   bold,reverse
+selected_info        = yellow  black   bold
+
+# --- Status Bar (bottom status line) ---
+state                = yellow  black
 status               = white   black
 title                = yellow  black
-state                = yellow  black
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = white   black   bold
+plist_time           = white   black
 time_left            = white   black   bold
-total_time           = white   black   bold
 time_total_frames    = white   black
+total_time           = white   black   bold
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = white   black   bold
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = white   black
 disabled             = black   black   bold
 enabled              = white   black   bold
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = white   black
 filled_mixer_bar     = black   yellow
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = white   black
 filled_time_bar      = white   yellow
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = white   black
 entry_title          = yellow  black   bold
+
+# --- Messages (errors, notifications) ---
 error                = yellow  black   bold
 message              = yellow  black   bold
-plist_time           = white   black
+
+# EOF

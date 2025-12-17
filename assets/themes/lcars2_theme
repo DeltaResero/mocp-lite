@@ -3,49 +3,106 @@
 # Icars 2 Theme (Star Trek Inspired)
 # by tomaszg
 #
-# colordef white   = #F8FBDB
-# colordef blue    = #9B98FE
-# colordef yellow  = #FE9800
-# colordef red     = #CC6061
-# colordef magenta = #C498C4
-# colordef green   = #FFA873
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
 #
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = black   black
 frame                = yellow  black   reverse
 window_title         = magenta black   reverse
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = blue    black
 selected_directory   = black   red
+
+# --- Playlists (playlist display) ---
 playlist             = magenta black
 selected_playlist    = black   red
+
+# --- Files (file browser) ---
 file                 = green   black
 selected_file        = black   red
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = red     black
 marked_selected_file = white   red
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = blue    black
-selected_info        = black   red
 marked_info          = blue    black
 marked_selected_info = white   red
+selected_info        = black   red
+
+# --- Status Bar (bottom status line) ---
+state                = red     black
 status               = red     black
 title                = yellow  black
-state                = red     black
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = white   black
+plist_time           = blue    black
 time_left            = white   black
-total_time           = white   black
 time_total_frames    = white   black
+total_time           = white   black
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = blue    black
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = blue    black
 disabled             = blue    black
 enabled              = yellow  black   reverse
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = black   black
 filled_mixer_bar     = white   red
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = black   black
 filled_time_bar      = black   red
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = cyan    black
 entry_title          = black   cyan
+
+# --- Messages (errors, notifications) ---
 error                = yellow  black
 message              = red     black
-plist_time           = blue    black
+
+# EOF

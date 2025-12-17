@@ -3,42 +3,106 @@
 # Nightshade Theme (Version 6)
 # by Dreyeth <dreyeth@openmailbox.org>
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = blue    black   normal
 frame                = magenta black   normal
 window_title         = magenta black   bold
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = blue    black   normal
 selected_directory   = black   magenta normal
+
+# --- Playlists (playlist display) ---
 playlist             = magenta black   normal
 selected_playlist    = black   magenta normal
+
+# --- Files (file browser) ---
 file                 = blue    black   normal
 selected_file        = black   magenta normal
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = magenta black   bold
 marked_selected_file = black   magenta bold
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = magenta black   normal
-selected_info        = black   magenta normal
 marked_info          = magenta black   normal
 marked_selected_info = black   magenta normal
+selected_info        = black   magenta normal
+
+# --- Status Bar (bottom status line) ---
+state                = magenta black   bold
 status               = magenta black   bold
 title                = magenta black   bold
-state                = magenta black   bold
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = magenta black   normal
+plist_time           = magenta black   normal
 time_left            = magenta black   normal
-total_time           = magenta black   normal
 time_total_frames    = magenta black   normal
+total_time           = magenta black   normal
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = magenta black   normal
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = blue    black   normal
 disabled             = blue    black   normal
 enabled              = magenta black   normal
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = black   blue    normal
 filled_mixer_bar     = black   magenta normal
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = black   blue    normal
 filled_time_bar      = black   magenta normal
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = black   blue    normal
 entry_title          = black   magenta normal
+
+# --- Messages (errors, notifications) ---
 error                = magenta black   bold
 message              = blue    black   bold
-plist_time           = magenta black   normal
+
+# EOF

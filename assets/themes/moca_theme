@@ -3,39 +3,103 @@
 # Moca Theme
 # by Nicola Vitale <nivit@email.it>
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = white   black
 frame                = white   black
 window_title         = yellow  black   bold
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = white   black
 selected_directory   = white   black   bold
+
+# --- Playlists (playlist display) ---
 playlist             = white   black
 selected_playlist    = cyan    black   bold
+
+# --- Files (file browser) ---
 file                 = white   black
 selected_file        = yellow  red     bold
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = cyan    black   blink,bold
 marked_selected_file = cyan    red     blink,bold
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = magenta black   bold
+
+# --- Status Bar (bottom status line) ---
+state                = red     black   bold
 status               = yellow  black   bold
 title                = cyan    black   bold
-state                = red     black   bold
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = green   black   bold
+plist_time           = red     black   bold
 time_left            = magenta black   bold
-total_time           = red     black   bold
 time_total_frames    = red     black   bold
+total_time           = red     black   bold
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = white   black   bold
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = white   black
 disabled             = white   black   bold
 enabled              = blue    black   bold
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = cyan    blue
 filled_mixer_bar     = blue    cyan
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = green   magenta
 filled_time_bar      = magenta green
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = white   black
 entry_title          = magenta black   bold
+
+# --- Messages (errors, notifications) ---
 error                = red     black   bold
 message              = green   black   bold
-plist_time           = red     black   bold
+
+# EOF

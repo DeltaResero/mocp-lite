@@ -4,42 +4,106 @@
 # by Unknown
 # Theme inspired by the NES
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = white   black
 frame                = grey    black   bold
 window_title         = red     black
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = grey    black   bold
 selected_directory   = red     black   bold
+
+# --- Playlists (playlist display) ---
 playlist             = grey    black   bold
 selected_playlist    = red     black   bold
+
+# --- Files (file browser) ---
 file                 = white   black
 selected_file        = red     black
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = red     black   bold
 marked_selected_file = red     black   reverse
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = grey    black   bold
-selected_info        = white   black   bold
 marked_info          = blue    black   bold
 marked_selected_info = white   black   bold
+selected_info        = white   black   bold
+
+# --- Status Bar (bottom status line) ---
+state                = red     black   bold
 status               = white   black
 title                = red     black   bold
-state                = red     black   bold
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = white   black   bold
+plist_time           = grey    black   bold
 time_left            = white   black   bold
-total_time           = white   black   bold
 time_total_frames    = white   black
+total_time           = white   black   bold
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = white   black   bold
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = white   black
 disabled             = red     black   bold
 enabled              = white   black   bold
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = red     black
 filled_mixer_bar     = black   red
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = white   black
 filled_time_bar      = black   red
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = white   black
 entry_title          = grey    black   bold
+
+# --- Messages (errors, notifications) ---
 error                = red     black   bold
 message              = red     black   bold
-plist_time           = grey    black   bold
+
+# EOF

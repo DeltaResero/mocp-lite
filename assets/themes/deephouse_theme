@@ -3,42 +3,106 @@
 # Deephouse Theme (for dark console)
 # by Leodelacruz
 #
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
 ###############################################################################
 
 
-# Element              F Color B Color Attributes
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
 background           = yellow  default
 frame                = white   default
 window_title         = white   default underline,dim
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
 directory            = white   default
 selected_directory   = cyan    default underline
+
+# --- Playlists (playlist display) ---
 playlist             = cyan    default
 selected_playlist    = cyan    default
+
+# --- Files (file browser) ---
 file                 = cyan    default
 selected_file        = grey    default bold
+
+# --- Currently Playing Track (marked items) ---
 marked_file          = white   default bold
 marked_selected_file = white   default bold,underline
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
 info                 = white   default
-selected_info        = blue    default bold
 marked_info          = green   default bold
 marked_selected_info = green   default bold
+selected_info        = blue    default bold
+
+# --- Status Bar (bottom status line) ---
+state                = white   default
 status               = white   default
 title                = white   default
-state                = white   default
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
 current_time         = white   default
+plist_time           = white   default
 time_left            = white   default
-total_time           = white   default
 time_total_frames    = white   default
+total_time           = white   default
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
 sound_parameters     = white   default
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
 legend               = white   default
 disabled             = white   default dim
 enabled              = white   default bold
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
 empty_mixer_bar      = default default
 filled_mixer_bar     = black   cyan
+
+# --- Time Progress Bar (bottom left) ---
 empty_time_bar       = white   default
 filled_time_bar      = default white
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
 entry                = white   default
 entry_title          = white   default bold
+
+# --- Messages (errors, notifications) ---
 error                = yellow  default
 message              = white   default
-plist_time           = white   default
+
+# EOF
