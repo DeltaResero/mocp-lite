@@ -22,6 +22,7 @@ set(THEME_FILES
     moca_theme
     mostly_green_theme
     nes_theme
+    nightingale_theme
     nightshade_theme
     nightly_enhanced_theme
     nightly_theme

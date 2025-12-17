@@ -1,0 +1,129 @@
+###############################################################################
+#
+# Nightingale Theme (TTY Version)
+# by DeltaResero
+# Personal website: https://github.com/DeltaResero
+#
+# A calm dark theme for framebuffer & TTY consoles inspired by a moonlit night.
+#
+# This paints the picture of a moonlit forest at night. The dark background
+# is the vast, silent sky. This stage is framed by a mysterious magenta
+# twilight, with the cool azure of the pane titles and file list representing
+# the forest of potential songs. The focus, a bright white and yellow selection
+# block for files and directories is like a lantern beam cutting through the
+# dark. When a track is chosen, its entry illuminates from within in vibrant
+# green as the Nightingale's song is made visible from a pulse of life on a
+# hidden perch. As the song plays, the yellow time displays act as distant,
+# twinkling stars marking the passage of the night.
+#
+# FORMAT: element = foreground background attributes
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default
+# ATTRIBUTES: bold, underline, reverse, blink, dim (combine with commas)
+#
+###############################################################################
+
+
+# =============================================================================
+# BASE INTERFACE
+# =============================================================================
+
+# --- Core UI Elements (window, frame, background) ---
+background           = default default
+frame                = magenta default
+window_title         = cyan    default
+
+
+# =============================================================================
+# FILE BROWSER & PLAYLIST
+# =============================================================================
+
+# --- Directories (folder display) ---
+directory            = blue    default bold
+selected_directory   = default default reverse
+
+# --- Playlists (playlist display) ---
+playlist             = blue    default bold
+selected_playlist    = default default reverse
+
+# --- Files (file browser) ---
+file                 = blue    default bold
+selected_file        = yellow  default reverse
+
+# --- Currently Playing Track (marked items) ---
+marked_file          = green   default
+marked_selected_file = green   default reverse
+
+
+# =============================================================================
+# INFORMATION DISPLAY
+# =============================================================================
+
+# --- File Info (duration, format - right side) ---
+info                 = blue    default bold
+marked_info          = green   default
+marked_selected_info = green   default
+selected_info        = blue    default bold
+
+# --- Status Bar (bottom status line) ---
+state                = green   default
+status               = cyan    default bold
+title                = blue    default bold
+
+
+# =============================================================================
+# TIME DISPLAY
+# =============================================================================
+
+# --- Time Elements (elapsed, remaining, total) ---
+current_time         = yellow  default bold
+plist_time           = yellow  default
+time_left            = yellow  default bold
+time_total_frames    = yellow  default
+total_time           = yellow  default bold
+
+
+# =============================================================================
+# AUDIO PARAMETERS
+# =============================================================================
+
+# --- Audio Information (rate, bitrate, channels) ---
+sound_parameters     = cyan    default
+
+
+# =============================================================================
+# MENU & OPTIONS
+# =============================================================================
+
+# --- Menu Elements (options, legend) ---
+legend               = default default
+disabled             = red     default bold
+enabled              = green   default bold
+
+
+# =============================================================================
+# PROGRESS BARS
+# =============================================================================
+
+# --- Volume Mixer Bar (bottom right) ---
+empty_mixer_bar      = default default
+filled_mixer_bar     = cyan    black   reverse
+
+# --- Time Progress Bar (bottom left) ---
+empty_time_bar       = default default
+filled_time_bar      = default default reverse
+
+
+# =============================================================================
+# MESSAGES & INPUT
+# =============================================================================
+
+# --- Text Entry (input prompts) ---
+entry                = default default reverse
+entry_title          = default default
+
+# --- Messages (errors, notifications) ---
+error                = red     default bold
+message              = blue    default bold
+
+
+# EOF
