@@ -13,12 +13,23 @@ built, saved, and exported as m3u files.
 
 ### Key Features
 
+*   Client-server architecture for persistent playback.
+*   Gapless playback via song precaching.
 *   Native PulseAudio backend and modern FFmpeg (> 4.0) support.
+*   Support for OSS, ALSA, SNDIO, and JACK output drivers.
 *   Integrated song rating system.
 *   Inotify support for automatic directory refreshing.
 *   Reworked audio formats with support for 32-bit samples and float processing.
+*   Simple software mixer and a cache for file tags.
+*   Customizable color themes and user-defined keybindings.
 *   Stripped non-essential features for a minimal default build.
 *   Optimized defaults for software-rendered and terminal environments.
+
+## Supported Formats
+
+Supported formats include MP3, Ogg Vorbis, FLAC, Musepack, Speex, Opus, WAVE,
+and formats handled by FFmpeg/LibAV (e.g., WMA, AAC, MP4). Additional
+support includes AIFF, AU, SID, wavpack, MIDI, and modplug.
 
 ## Building and Installation
 
@@ -98,7 +109,8 @@ cmake -DCMAKE_INSTALL_PREFIX=/usr ..
 
 ## Usage
 
-Run the program with the `mocf` command.
+Run the program with the `mocf` command. The usage is simple and designed to
+be as intuitive as basic functions in Midnight Commander.
 
 ```bash
 mocf
@@ -107,8 +119,25 @@ mocf
 If you need help, press `h` inside the program or read the manpage
 (`man mocf`).
 
-Configuration is stored in `~/.mocf/config`. An example configuration file is
-installed to the documentation directory.
+### Configuration
+
+Using a configuration file is not required. If you choose to create one,
+it should be placed at `~/.mocf/config`. See the `config.example` file for a
+full list of options and documentation.
+
+### Themes
+
+Themes control the color scheme of the interface. An example theme is included
+in `assets/themes/`. Custom themes should be placed in `~/.mocf/themes/`.
+
+The active theme can be selected with the `Theme` option in your config file
+or by using the `-T` command-line option.
+
+### Keymaps
+
+You can redefine the default keybindings by creating a custom keymap file. See
+the instructions in the `keymap.example` file for details on the format and a
+full list of available commands.
 
 ## Bug Reporting
 
