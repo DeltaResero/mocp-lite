@@ -1,10 +1,11 @@
 [Desktop Entry]
-Name=Music on Console
-Comment=Console music player
 Type=Application
-Version=1.0
-GenericName=Music player
+Name=MOCF
+GenericName=Console Music Player
+Comment=A lightweight ncurses-based music player for the terminal
 Icon=mocf
-Exec=mocf
-Categories=Audio;Music;Player;AudioVideo;
-Terminal=True
+Exec=mocf %F
+Terminal=true
+Categories=Audio;AudioVideo;Player;ConsoleOnly;
+Keywords=audio;sound;music;mp3;ogg;flac;terminal;console;ncurses;
+MimeType=audio/mpeg;audio/x-mpeg;audio/x-mp3;audio/mp3;audio/ogg;audio/x-ogg;audio/x-vorbis+ogg;application/ogg;audio/flac;audio/x-flac;audio/wav;audio/x-wav;
