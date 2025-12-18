@@ -386,8 +386,7 @@ set_target_properties(mocf PROPERTIES ENABLE_EXPORTS ON)
 # Installation
 install(TARGETS mocf DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/assets/doc/config.example"
-        THANKS README 
-        assets/doc/README_equalizer assets/doc/keymap.example
+        README.md assets/doc/README_equalizer assets/doc/keymap.example
         DESTINATION ${CMAKE_INSTALL_DOCDIR})
 install(FILES assets/man/mocf.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
 install(FILES assets/desktop/mocf.desktop 

@@ -11,25 +11,14 @@ Native directory handling allows you to simply select a file to begin playback
 for the entire folder. While playlists are not required, complex queues can be
 built, saved, and exported as m3u files.
 
-**This is a fork of the original MOCF.** It is based heavily on the work
-found at [gitlab.com/tomaszg/mocp] and integrates several experimental
-features and fixes from the community.
+### Key Features
 
-### Key Features & Attributions
-
-*   **PulseAudio backend:** Native support for PulseAudio (pulled from
-    [github.com/xdch47/moc]).
-*   **FFmpeg > 4 support:** Modern FFmpeg support (pulled from
-    [github.com/xdch47/moc]).
-*   **Song Ratings:** Integrated rating system (pulled from
-    [github.com/hilgenberg/moc]).
-*   **Inotify support:** Automatically refresh directories on content change.
-*   **Reworked audio formats:** Support for 32-bit samples and float
-    processing.
-*   **Stripped Features:** Complex non-essential features have been removed
-    or disabled to reduce dependencies of the default build
-*   **Optimized Defaults:** Configuration is tuned out-of-the-box for
-    software-rendered environments.
+*   Native PulseAudio backend and modern FFmpeg (> 4.0) support.
+*   Integrated song rating system.
+*   Inotify support for automatic directory refreshing.
+*   Reworked audio formats with support for 32-bit samples and float processing.
+*   Stripped non-essential features for a minimal default build.
+*   Optimized defaults for software-rendered and terminal environments.
 
 ## Building and Installation
 
@@ -123,14 +112,20 @@ installed to the documentation directory.
 
 ## Bug Reporting
 
-This is a fork of the original MOCF project. **Please do not report bugs
-found in this version to the original MOCF developers.** This version deviates
-from the original codebase and follows a different development philosophy.
+This is a fork of the original MOC project. **Please do not report bugs for
+MOCF to the original MOC developers.** This version deviates from the
+original codebase and follows a different development philosophy.
+
+## Acknowledgments
+
+This software is a fork of the original Music on Console (MOC) project. For a
+detailed history, a full list of attributions, and information on the community
+forks this is based on, please see the [AUTHORS](AUTHORS) file.
 
 ## Disclaimer
 
 This project is not affiliated with, endorsed by, nor sponsored by the
-original authors of MOCF.
+original authors of MOC.
 
 This program is distributed under the terms of the GNU General Public
 License version 3 (or later). You can redistribute it and/or modify it
