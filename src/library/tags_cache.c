@@ -57,7 +57,7 @@ typedef unsigned long int u_long;
 #define TAGS_DB "tags.db"
 
 /* The name of the version tag file in the cache directory. */
-#define MOC_VERSION_TAG "moc_version_tag"
+#define MOC_VERSION_TAG "mocf_version_tag"
 
 /* The maximum length of the version tag (including trailing NULL). */
 #define VERSION_TAG_MAX 64

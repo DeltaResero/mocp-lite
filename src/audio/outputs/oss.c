@@ -480,7 +480,7 @@ static char *oss_get_mixer_channel_name ()
 		return xstrdup (options_get_symb ("OSSMixerChannel1"));
 	return xstrdup (options_get_symb ("OSSMixerChannel2"));
 #else
-	return xstrdup ("moc");
+	return xstrdup ("mocf");
 #endif
 }
 

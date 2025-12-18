@@ -62,7 +62,7 @@ void rcc_init ()
 
 	rccInit ();
 	rccInitDefaultContext (NULL, 0, 0, classes, 0);
-	rccLoad (NULL, "moc");
+	rccLoad (NULL, "mocf");
 	rccSetOption (NULL, RCC_OPTION_TRANSLATE,
 	                    RCC_OPTION_TRANSLATE_SKIP_PARRENT);
 	rccSetOption (NULL, RCC_OPTION_AUTODETECT_LANGUAGE, 1);

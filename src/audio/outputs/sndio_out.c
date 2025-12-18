@@ -163,7 +163,7 @@ static void sndio_toggle_mixer_channel ()
 
 static char *sndio_get_mixer_channel_name ()
 {
-	return xstrdup ("moc");
+	return xstrdup ("mocf");
 }
 
 void sndio_funcs (struct hw_funcs *funcs)

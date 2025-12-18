@@ -81,7 +81,7 @@ struct timespec;
 # define UNSUPPRESS_FORMAT_TRUNCATION_WARNING
 #endif
 
-#define CONFIG_DIR      ".moc"
+#define CONFIG_DIR      ".mocf"
 #define LOCK(mutex)     pthread_mutex_lock (&mutex)
 #define UNLOCK(mutex)   pthread_mutex_unlock (&mutex)
 #define ARRAY_SIZE(x)   (sizeof(x)/sizeof(x[0]))

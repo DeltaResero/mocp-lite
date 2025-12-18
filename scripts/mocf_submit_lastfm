@@ -8,8 +8,8 @@
 # last.fm.  This way, skipping through a list of tracks will not
 # result in lots of tracks submitted.
 
-#  To use, put this in your ~/.moc/config file:
-# OnSongChange = "/path/to/moc_submit_lastfm --artist %a --title %t --length %d --album %r"
+#  To use, put this in your ~/.mocf/config file:
+# OnSongChange = "/path/to/mocf_submit_lastfm --artist %a --title %t --length %d --album %r"
 
 # Author: Luke Plant  < http://lukeplant.me.uk/ >
 # License: public domain

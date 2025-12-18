@@ -3,7 +3,7 @@
 \section decoder_api_introduction Introduction
 
 This document is intended to make it easier to add support for new file
-formats to MOC.  It documents the requirements of decoder plugins and
+formats to MOCF.  It documents the requirements of decoder plugins and
 some useful functions.  It also says how to start.
 
 \section decoder_plugin_idea The idea
@@ -11,7 +11,7 @@ some useful functions.  It also says how to start.
 Each file format is supported by code in a plugin.  It's something similar to
 plugins in popular audio players like XMMS with exception that there is no
 separate library and dedicated header files to build such a plugin.  It means
-that to create a plugin you need to add it to MOC's source directory.  It
+that to create a plugin you need to add it to MOCF's source directory.  It
 will be built with the program and a file named like my_plugin.so will be
 created and placed in the plugin directory during installation.
 
@@ -190,7 +190,7 @@ be open at a time (for example, when precaching).
 
 When you operate on a file it is preferred (but not required) that you use
 io_*() functions from io.h instead of standard open(), read(), write()
-etc.  MOC's I/O functions provide sophisticated features: buffering in a
+etc.  MOCF's I/O functions provide sophisticated features: buffering in a
 separate thread and reading from Internet streams.  They were made to
 be used like standard UNIX input/output functions: they take similar
 parameters and return similar values.
@@ -218,9 +218,9 @@ succeeds, so you don't need to do that.
 \section decoder_plugin_useful_testing Testing and Debugging
 
 There is a script in the 'tools' subdirectory which will help you to test
-your decoder.  It checks that the samples which arrive at MOC's player
+your decoder.  It checks that the samples which arrive at MOCF's player
 code are the same as those produced by the library the decoder is using.
-It does this by having MOC compute the MD5 sum of the audio file as it is
+It does this by having MOCF compute the MD5 sum of the audio file as it is
 playing it and writing the result to the server's log file.  The log file
 is then read by the 'md5check.sh' tool and the MD5 sum checked against one
 computed from the audio file using the library's native decoding program.

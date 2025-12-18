@@ -13,16 +13,16 @@
 .  hy \\n(HY
 ..
 .
-.TH MOC 1 "16 November 2016" "Version 2.6-alpha3" "Music On Console"
+.TH MOCF 1 "16 November 2016" "Version 2.6-alpha3" "Music On Console"
 .ad l
 .SH NAME
-MOC \- Console audio player
+MOCF \- Console audio player
 .LP
 .SH SYNOPSIS
 \fBmocf\fR [\fIOPTIONS\fR] [\fIFILE\fR|\fIDIR\fR ...]
 .LP
 .SH DESCRIPTION
-MOC is a console audio player with simple ncurses interface.  It supports
+MOCF is a console audio player with simple ncurses interface.  It supports
 OGG, WAV, MP3 and other formats.  Just run \fBmocf\fP, go to some directory
 using the menu and press enter to start playing the file.  The program will
 automatically play the rest of the files in the directory.
@@ -30,7 +30,7 @@ automatically play the rest of the files in the directory.
 With no options and no file arguments the program begins in current
 directory, or in \fBMusicDir\fP if the \fBStartInMusicDir\fP option is set
 in the configuration file.  If you give a directory on the command line,
-MOC will try to go there.  If a playlist is given, then it is loaded.
+MOCF will try to go there.  If a playlist is given, then it is loaded.
 With multiple files, playlists or directories, everything will be added to
 the playlist recursively (including the contents of any playlist given).
 (Note that relative paths in playlists are resolved with respect to the
@@ -43,9 +43,9 @@ configuration file options exception).
 .LP
 .TP
 \fB\-D\fP, \fB\-\-debug\fP
-Run MOC in debug mode.  The client and server log a lot of information
+Run MOCF in debug mode.  The client and server log a lot of information
 to debug files.  Don't use this; the server log is large.  This is only
-available if MOC was compiled without \fB\-\-disable\-debug\fP.
+available if MOCF was compiled without \fB\-\-disable\-debug\fP.
 .LP
 .TP
 \fB\-S\fP, \fB\-\-server\fP
@@ -128,14 +128,14 @@ file currently being played.
 .TP
 \fB\-T\fP \fITHEME\fP, \fB\-\-theme\fP \fITHEME\fP
 Use a theme file.  If the path is not absolute, the file will be searched
-for in \fB/usr/share/moc/themes/\fP (depends on installation prefix),
-\fB~/.moc/themes/\fP and the current directory.
+for in \fB/usr/share/mocf/themes/\fP (depends on installation prefix),
+\fB~/.mocf/themes/\fP and the current directory.
 .LP
 .TP
 \fB\-C\fP \fIFILE\fP, \fB\-\-config\fP \fIFILE\fP
 Use the specified configuration file (which must be readable) instead of the
 default.  As this file can specify commands which invoke other applications
-MOC will refuse to start if it is not owned by either root or the current
+MOCF will refuse to start if it is not owned by either root or the current
 user, or if it is writable by anyone other than its owner.
 .LP
 .TP
@@ -162,12 +162,12 @@ Examples: \fB\-O AutoNext=no\fP
 .EE
 .RE
 .IP
-Note that MOC does not perform variable substitution as it does for values
+Note that MOCF does not perform variable substitution as it does for values
 read from the configuration file.
 .LP
 .TP
 \fB\-M\fP \fIDIR\fP, \fB\-\-moc\-dir\fP \fIDIR\fP
-Use the specified MOC directory instead of the default.  This also causes
+Use the specified MOCF directory instead of the default.  This also causes
 the configuration file from that directory to be used.  This can also be
 specified in the configuration file using the \fBMOCDir\fP option.
 .LP
@@ -247,7 +247,7 @@ Adjust the mixer volume.  You can set (\fB\-v 50\fP) or adjust
 \fB\-o\fP \fIOPTION\fP[\fB,\fP...], \fB\-\-on\fP \fIOPTION\fP[\fB,\fP...]
 .TQ
 \fB\-u\fP \fIOPTION\fP[\fB,\fP...], \fB\-\-off\fP \fIOPTION\fP[\fB,\fP...]
-Followed by a list of identifiers, these will control MOC's playlist
+Followed by a list of identifiers, these will control MOCF's playlist
 options.  Valid identifiers are \fBshuffle\fP, \fBrepeat\fP and \fBautonext\fP.
 They can be shortened to '\fBs\fP', '\fBr\fP' and '\fBn\fP' respectively.
 Both the identifiers and short forms are case insensitive.
@@ -272,8 +272,8 @@ Examples: \fB\-j 10s\fP, \fB\-j 50%\fP
 .RE
 .LP
 .SH USING POPT ALIASES
-MOC uses the POPT library to process its command line.  This allows
-users to assign MOC options and arguments to an alias of their choosing.
+MOCF uses the POPT library to process its command line.  This allows
+users to assign MOCF options and arguments to an alias of their choosing.
 The aliases are just lines in the \fB~/.popt\fP text file and have the
 general form:
 .IP
@@ -382,7 +382,7 @@ is the program to be executed:
 .EE
 .RE
 .LP
-This would override the usual MOC \fB\-\-help\fP output and use the
+This would override the usual MOCF \fB\-\-help\fP output and use the
 system's \fBman\fP program to present this man page instead.
 .LP
 Note that while \fB~/.popt\fP (or \fB/etc/popt\fP) is the default POPT
@@ -390,8 +390,8 @@ configuration file, you can nominate specific file(s) to be used instead
 via the \fBMOCF_POPTRC\fP environment variable.
 .LP
 .SH ENVIRONMENT VARIABLES
-The following environment variables are used directly by MOC.  Additional
-variables may be relevant to the libraries MOC uses.  Also, any environment
+The following environment variables are used directly by MOCF.  Additional
+variables may be relevant to the libraries MOCF uses.  Also, any environment
 environment variable may be substituted into a configuration file option
 value (see the 'config.example' file for details).
 .LP
@@ -400,13 +400,13 @@ value (see the 'config.example' file for details).
 An ncurses(3X) variable which specifies the delay (in milliseconds)
 after which it will treat an ESC as a standalone key and not part of
 an escaped character sequence (such as is generated by function keys).
-MOC sets this value to 25ms by default, which is sufficient for most
+MOCF sets this value to 25ms by default, which is sufficient for most
 systems.
 .LP
 .TP
 .B HOME
-Tells MOC where your home directory is located and is used for various
-purposes, including the default location of the MOC directory.
+Tells MOCF where your home directory is located and is used for various
+purposes, including the default location of the MOCF directory.
 .LP
 .TP
 .B MOCF_OPTS
@@ -416,34 +416,34 @@ before they are processed.
 .TP
 .B MOCF_POPTRC
 A colon-separated list of POPT configuration files which will be loaded in
-sequence by MOC during initialisation.  If the variable is unset then the
+sequence by MOCF during initialisation.  If the variable is unset then the
 default POPT configuration file will be used.  If the variable is set but
 empty then no POPT configuration file will be loaded.  If the variable is
 set then those files which exist will be loaded and those which don't will
 be skipped.
 .IP
-As these files can specify commands which invoke other applications, MOC
+As these files can specify commands which invoke other applications, MOCF
 will refuse to start if they are not owned by root or the current user,
 or they are writable by anyone other than their owner.
 .LP
 .TP
 .B TERM \fPand\fB WINDOW
-Used by MOC to distinguish between X-terminals, screen(1) and console
-terminals.  MOC uses the configuration file options \fBXTerms\fP and
+Used by MOCF to distinguish between X-terminals, screen(1) and console
+terminals.  MOCF uses the configuration file options \fBXTerms\fP and
 \fBScreenTerms\fP to help make this determination.
 .LP
 .SH FILES
 .TP
-.B ~/.moc
-MOC directory for the configuration file, socket, the pid file and other data.
+.B ~/.mocf
+MOCF directory for the configuration file, socket, the pid file and other data.
 .LP
 .TP
-.B ~/.moc/config
-Configuration file for MOC.  The format is very simple; to see how to use
+.B ~/.mocf/config
+Configuration file for MOCF.  The format is very simple; to see how to use
 it look at the example configuration file (\fBconfig.example\fP) distributed
 with the program.  The example file fully describes all the configuration
 options, and so is a useful reference when using the \fB\-O\fP option.  As
-this file can specify commands which invoke other applications MOC will
+this file can specify commands which invoke other applications MOCF will
 refuse to start if it is not owned by either root or the current user, or if
 it is writable by anyone other than its owner.
 .LP
@@ -452,19 +452,19 @@ it is writable by anyone other than its owner.
 .TQ
 .B /etc/popt
 The default files POPT reads to obtain aliased options.  As these files can
-specify commands which invoke other applications, MOC will refuse to start
+specify commands which invoke other applications, MOCF will refuse to start
 if it is not owned by root or the current user, or if it is writable by
 anyone other than its owner.  (Also see the \fBMOCF_POPTRC\fP environment
 variable above.)
 .LP
 .TP
-.B ~/.moc/themes
+.B ~/.mocf/themes
 .TQ
-.B /usr/share/moc/themes
+.B /usr/share/mocf/themes
 Default directories for the theme files.
 .LP
 .TP
-.B /usr/share/moc/decoder_plugins
+.B /usr/share/mocf/decoder_plugins
 Default directories for the audio decoder plugins.
 .LP
 .TP
@@ -485,4 +485,4 @@ http://moc.daper.net/
 .SH AUTHOR
 Damian Pietras     <daper@daper.net>
 .br
-MOC Maintainer(s)  <mocmaint@daper.net>
+MOCF Maintainer(s)  <mocmaint@daper.net>

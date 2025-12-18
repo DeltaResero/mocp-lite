@@ -150,7 +150,7 @@ static int pulse_init (struct output_driver_caps *caps)
 	pa_proplist_sets (proplist,
 			  PA_PROP_APPLICATION_VERSION, PACKAGE_VERSION);
 	pa_proplist_sets (proplist, PA_PROP_MEDIA_ROLE, "music");
-	pa_proplist_sets (proplist, PA_PROP_APPLICATION_ID, "net.daper.moc");
+	pa_proplist_sets (proplist, PA_PROP_APPLICATION_ID, "net.daper.mocf");
 
 	pa_threaded_mainloop_lock (mainloop);
 

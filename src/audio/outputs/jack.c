@@ -197,11 +197,11 @@ static int moc_jack_init (struct output_driver_caps *caps)
 	 * a value of NULL in JackOut* gives no connection
 	 * */
 	if(strcmp(options_get_str("JackOutLeft"),"NULL")){
-		if(jack_connect(client,"moc:output0", options_get_str("JackOutLeft")))
+		if(jack_connect(client,"mocf:output0", options_get_str("JackOutLeft")))
 			fprintf(stderr,"%s is not a valid Jack Client / Port", options_get_str("JackOutLeft"));
 	}
 	if(strcmp(options_get_str("JackOutRight"),"NULL")){
-		if(jack_connect(client,"moc:output1", options_get_str("JackOutRight")))
+		if(jack_connect(client,"mocf:output1", options_get_str("JackOutRight")))
 			fprintf(stderr,"%s is not a valid Jack Client / Port", options_get_str("JackOutRight"));
 	}
 

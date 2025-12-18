@@ -11,7 +11,7 @@ Native directory handling allows you to simply select a file to begin playback
 for the entire folder. While playlists are not required, complex queues can be
 built, saved, and exported as m3u files.
 
-**This is a fork of the original MOC.** It is based heavily on the work
+**This is a fork of the original MOCF.** It is based heavily on the work
 found at [gitlab.com/tomaszg/mocp] and integrates several experimental
 features and fixes from the community.
 
@@ -118,19 +118,19 @@ mocf
 If you need help, press `h` inside the program or read the manpage
 (`man mocf`).
 
-Configuration is stored in `~/.moc/config`. An example configuration file is
+Configuration is stored in `~/.mocf/config`. An example configuration file is
 installed to the documentation directory.
 
 ## Bug Reporting
 
-This is a fork of the original MOC project. **Please do not report bugs
-found in this version to the original MOC developers.** This version deviates
+This is a fork of the original MOCF project. **Please do not report bugs
+found in this version to the original MOCF developers.** This version deviates
 from the original codebase and follows a different development philosophy.
 
 ## Disclaimer
 
 This project is not affiliated with, endorsed by, nor sponsored by the
-original authors of MOC.
+original authors of MOCF.
 
 This program is distributed under the terms of the GNU General Public
 License version 3 (or later). You can redistribute it and/or modify it

@@ -2,17 +2,17 @@
 #
 # Example Theme
 # by Author <email@address>
-# Personal website: https://www.mocmusic.org (original MOC site)
-# You can use a theme by copying it to ~/.moc/themes directory and using
+# Personal website: https://www.mocfmusic.org (original MOCF site)
+# You can use a theme by copying it to ~/.mocf/themes directory and using
 # Theme config option or -T command line option.
 # Fill free to make your own themes and send me them. It will be included in
-# official MOC releases or on the MOC web site.
+# official MOCF releases or on the MOCF web site.
 # The format of this file is:
 # Lines beginning with # are comments.
 # Blank lines are ignored.
 # or
 # Where names are case insensitive.
-# ELEMENT is an element of MOC interface. This can be:
+# ELEMENT is an element of MOCF interface. This can be:
 # background         - default background for regions when nothing is displayed
 # frame              - frames for windows
 # window_title       - the title of the window (eg name of the current

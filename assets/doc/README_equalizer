@@ -2,7 +2,7 @@ Preamble
 ---
 This document is meant to give you an overview on the idea of having a
 parametric equalizer for sound enhancement and how you can create your
-own presets.  Also the interaction with the equalizer in MOC is described.
+own presets.  Also the interaction with the equalizer in MOCF is described.
 
 I would like to improve this document to make it more usable; so if you
 have any comments and/or ideas feel free to contact me.
@@ -87,7 +87,7 @@ This message will be overridden by the next action.
 3. Preset Format
 ---
 Presets for the equalizer are to be placed in a directory called 'eqsets'
-in MOC's home directory (e.g., $HOME/.moc/eqsets).  There is no convention
+in MOC's home directory (e.g., $HOME/.mocf/eqsets).  There is no convention
 for the filename, but it will serve as the name in the selection process.
 
 File format in pseudo EBNF:
@@ -144,7 +144,7 @@ will be reduced to -7dB.
 If unsure, stay in between 1.0 and 2.0.  Just keep in mind that if two
 bands overlap you might get an undesired amplification.
 
-When designing presets, just save the preset and select it in MOC.  After
+When designing presets, just save the preset and select it in MOCF.  After
 each change press the refresh key (default 'e').  This will re-create the
 equalizer reflecting your changes.
 

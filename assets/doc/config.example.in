@@ -1,6 +1,6 @@
-# This is a configuration file for the MOC player.  It should be named
-# 'config' and placed in the ~/.moc directory.  As this file can specify
-# commands which invoke other applications, MOC will refuse to start if it
+# This is a configuration file for the MOCF player.  It should be named
+# 'config' and placed in the ~/.mocf directory.  As this file can specify
+# commands which invoke other applications, MOCF will refuse to start if it
 # is not owned by either root or the current user, or if it is writable by
 # anyone other than its owner.
 
@@ -44,7 +44,7 @@
 # using "+=" in place of a plain "=" to assign the value.  For an example,
 # see the XTerms option.
 #
-# You can override any configuration option when you run MOC using the
+# You can override any configuration option when you run MOCF using the
 # '-O' command line option:
 #
 #     mocf -O AutoNext=no -O messagelingertime=1 -O XTerms+=xxt:xwt
@@ -82,7 +82,7 @@
 # The number of lines which are retained in an in-memory circular logging
 # buffer.  A value of zero indicates that lines will be written directly
 # to the log file, otherwise the latest CircularLogSize lines are retained
-# in memory and not written to the log file until the MOC client or server
+# in memory and not written to the log file until the MOCF client or server
 # are shutdown.  If the client or server terminates abnormally then the
 # log lines are lost.
 #
@@ -168,7 +168,7 @@
 #ALSAMixer2 = Master
 
 # Save software mixer state?
-# If enabled, a file 'softmixer' will be created in '~/.moc/' storing the
+# If enabled, a file 'softmixer' will be created in '~/.mocf/' storing the
 # mixersetting set when the server is shut down.
 # Note that there is a "hidden" 'Amplification' setting in that file.
 # Amplification (0-200) is used to scale the mixer setting (0-100).  This
@@ -176,7 +176,7 @@
 #Softmixer_SaveState = yes
 
 # Save equalizer state?
-# If enabled, a file 'equalizer' will be created in '~/.moc/' storing the
+# If enabled, a file 'equalizer' will be created in '~/.mocf/' storing the
 # equalizer settings when the server is shut down.
 # Note that there is a "hidden" 'Mixin' setting in that file.
 # Mixin (0.0-1.0) is used to determine how much of the original signal is
@@ -209,8 +209,8 @@
 #ScreenTerms = screen:screen-w:vt100
 
 # Values of the TERM environment variable which are deemed to be xterms.  If
-# you are using MOC within screen(1) under an xterm, then add screen(1)'s
-# TERM setting here as well to cause MOC to update the xterm's title.
+# you are using MOCF within screen(1) under an xterm, then add screen(1)'s
+# TERM setting here as well to cause MOCF to update the xterm's title.
 #XTerms = xterm
 #XTerms += xterm-colour:xterm-color
 #XTerms += xterm-256colour:xterm-256color
@@ -219,8 +219,8 @@
 #XTerms += eterm
 
 # Theme file to use.  This can be absolute path or relative to
-# /usr/share/moc/themes/ (depends on installation prefix) or
-# ~/.moc/themes/ .
+# /usr/share/mocf/themes/ (depends on installation prefix) or
+# ~/.mocf/themes/ .
 #
 # Example:    Theme = laras_theme
 #
@@ -232,14 +232,14 @@
 #
 #XTermTheme =
 
-# Should MOC try to autoload the default lyrics file for an audio?  (The
+# Should MOCF try to autoload the default lyrics file for an audio?  (The
 # default lyrics file is a text file with the same file name as the audio
 # file name with any trailing "extension" removed.)
 #AutoLoadLyrics = yes
 
-# MOC directory (where pid file, socket and state files are stored).
+# MOCF directory (where pid file, socket and state files are stored).
 # You can use ~ at the beginning.
-#MOCDir = ~/.moc
+#MOCDir = ~/.mocf
 
 # Use mmap() to read files.  mmap() is much slower on NFS.
 #UseMMap = no
@@ -249,7 +249,7 @@
 #UseMimeMagic = no
 
 # Assume this encoding for ID3 version 1/1.1 tags (MP3 files).  Unlike
-# ID3v2, UTF-8 is not used here and MOC can't guess how tags are encoded.
+# ID3v2, UTF-8 is not used here and MOCF can't guess how tags are encoded.
 # Another solution is using librcc (see the next option).  This option is
 # ignored if UseRCC is set to 'yes'.
 #ID3v1TagsEncoding = WINDOWS-1250
@@ -271,7 +271,7 @@
 # Enable the conversion of the xterm title from UTF-8 to the local encoding.
 #NonUTFXterm = no
 
-# Should MOC precache files to assist gapless playback?
+# Should MOCF precache files to assist gapless playback?
 #Precache = yes
 
 # Remember the playlist after exit?
@@ -281,11 +281,11 @@
 # the playlist?
 #SyncPlaylist = yes
 
-# Should MOC load and save tags in playlist files? Setting it to "no"
-# disables the use of Extended M3U tags. It will also speed up MOC shutdown.
+# Should MOCF load and save tags in playlist files? Setting it to "no"
+# disables the use of Extended M3U tags. It will also speed up MOCF shutdown.
 #SavePlaylistTags = no
 
-# Choose a keymap file (relative to '~/.moc/' or using an absolute path).
+# Choose a keymap file (relative to '~/.mocf/' or using an absolute path).
 # An annotated example keymap file is included ('keymap.example').
 #
 # Example:    Keymap = my_keymap
@@ -421,22 +421,22 @@
 # Enable resample. When set to 1 resampling is done when necessary. When set
 # to 2, resampling is forced on to MaxSamplerate. When set to 0 the device is
 # opened with the file's rate. Note that setting it to 1 acts as
-# "ALSAStutterDefeat" from mainline MOC.
+# "ALSAStutterDefeat" from mainline MOCF.
 #EnableResample = 1
 
-# Forbid MOC from using listed audio formats. Useful when your soundcard 
+# Forbid MOCF from using listed audio formats. Useful when your soundcard 
 # reports that it is able to process some format but it can't.
 # To disable float, 24bit and 32bit formats set
 #		MaskOutputFormats	= SFMT_FLOAT:SFMT_S32:SFMT_U32:SFMT_S24:SFMT_U24
 #MaskOutputFormats	= ""
 
 # Use realtime priority for output buffer thread.  This will prevent gaps
-# while playing even with heavy load.  The user who runs MOC must have
+# while playing even with heavy load.  The user who runs MOCF must have
 # permissions to set such a priority.  This could be dangerous, because it
-# is possible that a bug in MOC will freeze your computer.
+# is possible that a bug in MOCF will freeze your computer.
 #UseRealtimePriority = no
 
-# The number of audio files for which MOC will cache tags.  When this limit
+# The number of audio files for which MOCF will cache tags.  When this limit
 # is reached, file tags are discarded on a least recently used basis (with
 # one second resolution).  You can disable the cache by giving it a size of
 # zero.  Note that if you decrease the cache size below the number of items
@@ -556,7 +556,7 @@
 # Set the terminal title when running under xterm.
 #SetXtermTitle = yes
 
-# Set the terminal title when running under screen(1).  If MOC can detect
+# Set the terminal title when running under screen(1).  If MOCF can detect
 # that it is running under screen(1), then it will set an appropriate
 # title (see description of ScreenTerms above).  However, if multiple
 # levels of screen management are involved, detection might fail and this
@@ -589,7 +589,7 @@
 # and displayed after the current message's linger time expires.
 #MessageLingerTime = 3
 
-# Does MOC display a prefix on delayed messages indicating
+# Does MOCF display a prefix on delayed messages indicating
 # the number of queued messages still to be displayed?
 #PrefixQueuedMessages = yes
 
@@ -682,33 +682,33 @@
 #
 # You can use ~ at the beginning of command.
 #
-# Example:    OnSongChange = "~/.moc/myscript %a %r"
+# Example:    OnSongChange = "~/.mocf/myscript %a %r"
 #
 #OnSongChange =
 
-# If RepeatSongChange is 'yes' then MOC will execute the command every time
+# If RepeatSongChange is 'yes' then MOCF will execute the command every time
 # a song starts playing regardless of whether or not it is just repeating.
 # Otherwise the command will only be executed when a different song is
 # started.
 #RepeatSongChange = no
 
-# Run the OnStop command (full path, no arguments) when MOC changes state
+# Run the OnStop command (full path, no arguments) when MOCF changes state
 # to stopped (i.e., when user stopped playing or changes a song).
 #
-# Example:    OnStop = "~/.moc/myscript_on_stop"
+# Example:    OnStop = "~/.mocf/myscript_on_stop"
 #
 #OnStop =
 
 # Run the OnServerStart or OnServerStop commands (full path, no arguments)
-# when MOC server is started or terminated respectively.  The server will
+# when MOCF server is started or terminated respectively.  The server will
 # not wait for the commands to complete before continuing.
 #OnServerStart =
 #OnServerStop =
 
 # This option determines which song to play after finishing all the songs
-# in the queue.  Setting this to 'yes' causes MOC to play the song which
+# in the queue.  Setting this to 'yes' causes MOCF to play the song which
 # follows the song being played before queue playing started. If set to
-# 'no', MOC will play the song following the last song in the queue if it
+# 'no', MOCF will play the song following the last song in the queue if it
 # is in the playlist.  The default is 'yes' because this is the way other
 # players usually behave.  (Note that this option previously took the
 # values 1 and 0; these are now deprecated in favour of 'yes' and 'no'.)

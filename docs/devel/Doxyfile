@@ -1,4 +1,4 @@
-PROJECT_NAME           = MOC
+PROJECT_NAME           = MOCF
 PROJECT_NUMBER         = 2.6-alpha3
 OUTPUT_DIRECTORY       = technical_docs
 CREATE_SUBDIRS         = NO

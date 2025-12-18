@@ -1,20 +1,20 @@
 Helper scripts:
 
-[*] moc_lyrics.tg.pl - fetches lyrics and saves them to a file.
+[*] mocf_lyrics.tg.pl - fetches lyrics and saves them to a file.
 
 ExecCommand1 = "~/moc-lyrics.tg.pl -a %r -t %t -f %f"
 
-[*] moc_notify - displays notification and runs Last.fm submit script.
+[*] mocf_notify - displays notification and runs Last.fm submit script.
 
-OnSongChange = "~/moc_notify %a %t %r %d %f"
+OnSongChange = "~/mocf_notify %a %t %r %d %f"
 
-[*] moc_simple.sh, moc_submit_lastfm - Last.fm submit scripts. Need running lastfmsubmitd deamon:
+[*] mocf_simple.sh, mocf_submit_lastfm - Last.fm submit scripts. Need running lastfmsubmitd deamon:
 http://www.red-bean.com/decklin/lastfmsubmitd/
 
-OnSongChange = "~/moc_submit_lastfm --artist %a --title %t --length %d --album %r"
-OnSongChange = "~/moc_simple.sh %a %t %d %r"
+OnSongChange = "~/mocf_submit_lastfm --artist %a --title %t --length %d --album %r"
+OnSongChange = "~/mocf_simple.sh %a %t %d %r"
 
-[*] moc_play_rating.sh, ratings_find - plays all songs in a given directory with ratings in a specified range
+[*] mocf_play_rating.sh, ratings_find - plays all songs in a given directory with ratings in a specified range
 
 Usage: ratings_find min [max] dir
-ExecCommand5 = "~/.moc/moc_play_rating.sh 5 %d"
+ExecCommand5 = "~/.mocf/mocf_play_rating.sh 5 %d"

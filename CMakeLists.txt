@@ -64,9 +64,9 @@ include(CheckLibraryExists)
 include(GNUInstallDirs)
 
 # Set install directories
-set(PLUGIN_DIR "${CMAKE_INSTALL_LIBDIR}/moc")
+set(PLUGIN_DIR "${CMAKE_INSTALL_LIBDIR}/mocf")
 set(DECODER_PLUGIN_DIR "decoder_plugins")
-set(THEMES_DIR "${CMAKE_INSTALL_DATADIR}/moc/themes")
+set(THEMES_DIR "${CMAKE_INSTALL_DATADIR}/mocf/themes")
 
 # Platform checks
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
@@ -310,7 +310,7 @@ set(exec_prefix "${CMAKE_INSTALL_PREFIX}")
 set(sysconfdir "${CMAKE_INSTALL_FULL_SYSCONFDIR}")
 set(datarootdir "${CMAKE_INSTALL_FULL_DATADIR}")
 set(datadir "${CMAKE_INSTALL_FULL_DATADIR}")
-set(pkgdatadir "${CMAKE_INSTALL_FULL_DATADIR}/moc")
+set(pkgdatadir "${CMAKE_INSTALL_FULL_DATADIR}/mocf")
 set(libdir "${CMAKE_INSTALL_FULL_LIBDIR}")
 set(includedir "${CMAKE_INSTALL_FULL_INCLUDEDIR}")
 

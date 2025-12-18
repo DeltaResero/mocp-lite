@@ -6,4 +6,4 @@ notify-send -i /tmp/cover.jpg "$1" "$2\n$3"
 else
 notify-send -i audio-headphones "$1" "$2\n$3"
 fi
-/home/tomaszg/moc_submit_lastfm --artist "$1" --title "$2" --length "$4" --album "$3"
+/home/tomaszg/mocf_submit_lastfm --artist "$1" --title "$2" --length "$4" --album "$3"
