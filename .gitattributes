@@ -1,0 +1,105 @@
+###############################################################################
+# GIT ATTRIBUTES
+#
+# This file controls how git treats files. It is primarily used here to
+# enforce Unix-style (LF) line endings across the project, regardless of
+# the developer's operating system.
+###############################################################################
+
+
+# =============================================================================
+# DEFAULT BEHAVIOR
+# =============================================================================
+# Auto-detect text files and normalize to LF.
+*                           text=auto eol=lf
+
+# =============================================================================
+# SOURCE CODE
+# =============================================================================
+# C and C++ source files.
+*.c                         text eol=lf
+*.cc                        text eol=lf
+*.cpp                       text eol=lf
+*.cxx                       text eol=lf
+
+# C and C++ header files.
+*.h                         text eol=lf
+*.hh                        text eol=lf
+*.hpp                       text eol=lf
+
+# =============================================================================
+# SCRIPTS & EXECUTABLES
+# =============================================================================
+# Standard script extensions.
+*.sh                        text eol=lf
+*.pl                        text eol=lf
+*.py                        text eol=lf
+
+# Specific scripts without extensions (found in scripts/).
+scripts/mocf_notify         text eol=lf
+scripts/mocf_submit_lastfm  text eol=lf
+scripts/mocf_play_rating    text eol=lf
+scripts/mocf_simple         text eol=lf
+
+# =============================================================================
+# BUILD SYSTEM & CONFIGURATION
+# =============================================================================
+# CMake and Make configuration.
+CMakeLists.txt              text eol=lf
+*.cmake                     text eol=lf
+Makefile                    text eol=lf
+
+# Autoconf and template files.
+*.in                        text eol=lf
+*.example                   text eol=lf
+config.h                    text eol=lf
+
+# =============================================================================
+# DOCUMENTATION
+# =============================================================================
+# Markdown and Man pages.
+*.md                        text eol=lf
+*.1                         text eol=lf
+
+# Standard project documentation files.
+AUTHORS                     text eol=lf
+LICENSE                     text eol=lf
+TODO                        text eol=lf
+README                      text eol=lf
+README*                     text eol=lf
+
+# Doxygen configuration.
+Doxyfile                    text eol=lf
+*.doxy                      text eol=lf
+
+# =============================================================================
+# ASSETS & THEMES
+# =============================================================================
+# Desktop integration and Vector graphics (XML).
+*.desktop                   text eol=lf
+*.svg                       text eol=lf
+
+# Theme definitions.
+*_theme                     text eol=lf
+
+# =============================================================================
+# BINARY FILES
+# =============================================================================
+# Images and Icons.
+*.png                       binary
+*.jpg                       binary
+*.jpeg                      binary
+*.gif                       binary
+*.ico                       binary
+
+# Archives and Compressed files.
+*.gz                        binary
+*.zip                       binary
+*.tar                       binary
+
+# Fonts.
+*.ttf                       binary
+*.otf                       binary
+
+
+# EOF
