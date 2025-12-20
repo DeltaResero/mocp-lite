@@ -988,8 +988,6 @@ void options_init()
   add_bool("SidPlay2_StartAtStart", true);
   add_bool("SidPlay2_PlaySubTunes", true);
 
-  add_path("OnSongChange", NULL, CHECK_NONE);
-  add_bool("RepeatSongChange", false);
   add_path("OnServerStart", NULL, CHECK_NONE);
   add_path("OnServerStop", NULL, CHECK_NONE);
   add_path("OnStop", NULL, CHECK_NONE);

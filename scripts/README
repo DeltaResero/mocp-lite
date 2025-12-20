@@ -4,16 +4,6 @@ Helper scripts:
 
 ExecCommand1 = "~/moc-lyrics.tg.pl -a %r -t %t -f %f"
 
-[*] mocf_notify - displays notification and runs Last.fm submit script.
-
-OnSongChange = "~/mocf_notify %a %t %r %d %f"
-
-[*] mocf_simple.sh, mocf_submit_lastfm - Last.fm submit scripts. Need running lastfmsubmitd deamon:
-http://www.red-bean.com/decklin/lastfmsubmitd/
-
-OnSongChange = "~/mocf_submit_lastfm --artist %a --title %t --length %d --album %r"
-OnSongChange = "~/mocf_simple.sh %a %t %d %r"
-
 [*] mocf_play_rating.sh, ratings_find - plays all songs in a given directory with ratings in a specified range
 
 Usage: ratings_find min [max] dir

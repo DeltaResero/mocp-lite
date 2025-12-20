@@ -665,33 +665,6 @@
 # Play sub-tunes.
 #SidPlay2_PlaySubTunes = yes
 
-# Run the OnSongChange command when a new song starts playing.
-# Specify the full path (i.e. no leading '~') of an executable to run.
-# Arguments will be passed, and you can use the following escapes:
-#
-#     %a artist
-#     %r album
-#     %f filename
-#     %t title
-#     %n track
-#     %d file duration in XX:YY form
-#     %D file duration, number of seconds
-#
-# No pipes/redirects can be used directly, but writing a shell script
-# can do the job.
-#
-# You can use ~ at the beginning of command.
-#
-# Example:    OnSongChange = "~/.mocf/myscript %a %r"
-#
-#OnSongChange =
-
-# If RepeatSongChange is 'yes' then MOCF will execute the command every time
-# a song starts playing regardless of whether or not it is just repeating.
-# Otherwise the command will only be executed when a different song is
-# started.
-#RepeatSongChange = no
-
 # Run the OnStop command (full path, no arguments) when MOCF changes state
 # to stopped (i.e., when user stopped playing or changes a song).
 #
