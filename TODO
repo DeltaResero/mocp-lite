@@ -145,3 +145,16 @@ Maybe Never:
 * Report ignored server-specific options when the server is not being run.
 * Funny ASCII equalizer.
 * Mouse support.  [node/743]
+
+* Redesign player interface for 50 character minimum width:
+
+For ASCII:
+| > Artist - Song Name Here... [N] 44kHz 320kbps |
+| 00:13 [======----] [STEREO] [SHUFFLE] [REPEAT] |
+| [^]  |<< << [] > || >> >>| [-] [======---] [+] |
+
+For Unicode:
+| ▶ Artist - Song Name Here... [N] 44kHz 320kbps |
+| 00:13  ━━━━━●━━━━━  STEREO   SHUFFLE   REPEAT  |
+|  ▕◄  ◄◄  ◼  ▶  ❚❚  ►►  ►▏   ➖  ━━━●━━━━━   ➕  |
+
