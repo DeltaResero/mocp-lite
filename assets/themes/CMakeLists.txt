@@ -40,8 +40,6 @@ set(THEME_FILES
     variant_red_theme
     white_theme
     winter_theme
-    yellow_red_theme
-)
+    yellow_red_theme)
 
-install(FILES ${THEME_FILES}
-        DESTINATION ${THEMES_DIR})
+install(FILES ${THEME_FILES} DESTINATION ${THEMES_DIR})
