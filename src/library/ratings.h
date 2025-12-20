@@ -14,14 +14,15 @@
 #include "library/playlist.h"
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-/* store ratings for a file */
-bool ratings_write_file (const char *fn, int rating);
+  /* store ratings for a file */
+  bool ratings_write_file(const char *fn, int rating);
 
-/* read ratings for a file */
-void ratings_read_file (const char *fn, struct file_tags *tags);
+  /* read ratings for a file */
+  void ratings_read_file(const char *fn, struct file_tags *tags);
 
 #ifdef __cplusplus
 }

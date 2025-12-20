@@ -12,12 +12,13 @@
 #define RCC_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-char *rcc_reencode (char *);
-void rcc_init ();
-void rcc_cleanup ();
+  char *rcc_reencode(char *);
+  void rcc_init();
+  void rcc_cleanup();
 
 #ifdef __cplusplus
 }

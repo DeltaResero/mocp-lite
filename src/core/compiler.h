@@ -25,25 +25,25 @@
 
 /* _XOPEN_SOURCE is known to break compilation on OpenBSD. */
 #ifndef OPENBSD
-# if defined(_XOPEN_SOURCE) && _XOPEN_SOURCE < 600
-#  undef _XOPEN_SOURCE
-# endif
-# ifndef _XOPEN_SOURCE
-#  define _XOPEN_SOURCE 600
-# endif
+#if defined(_XOPEN_SOURCE) && _XOPEN_SOURCE < 600
+#undef _XOPEN_SOURCE
+#endif
+#ifndef _XOPEN_SOURCE
+#define _XOPEN_SOURCE 600
+#endif
 #endif
 
 /* _XOPEN_SOURCE_EXTENDED is known to break compilation on FreeBSD. */
 #ifndef FREEBSD
-# define _XOPEN_SOURCE_EXTENDED 1
+#define _XOPEN_SOURCE_EXTENDED 1
 #endif
 
 /* Require POSIX.1-2001 or better. */
 #if defined(_POSIX_C_SOURCE) && _POSIX_C_SOURCE < 200112L
-# undef _POSIX_C_SOURCE
+#undef _POSIX_C_SOURCE
 #endif
 #ifndef _POSIX_C_SOURCE
-# define _POSIX_C_SOURCE 200112L
+#define _POSIX_C_SOURCE 200112L
 #endif
 
 #endif

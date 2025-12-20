@@ -10,7 +10,7 @@
 // (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
-# include "config.h"
+#include "config.h"
 #endif
 
 /* Various functions which some systems lack. */
@@ -20,31 +20,33 @@
 #include <ctype.h>
 
 /* Case insensitive version of strstr(). */
-char *strcasestr (const char *haystack, const char *needle)
+char *strcasestr(const char *haystack, const char *needle)
 {
-	char *haystack_i, *needle_i;
-	char *c;
-	char *res;
+  char *haystack_i, *needle_i;
+  char *c;
+  char *res;
 
-	haystack_i = xstrdup (haystack);
-	needle_i = xstrdup (needle);
+  haystack_i = xstrdup(haystack);
+  needle_i = xstrdup(needle);
 
-	c = haystack_i;
-	while (*c) {
-		*c = tolower (*c);
-		c++;
-	}
+  c = haystack_i;
+  while (*c)
+  {
+    *c = tolower(*c);
+    c++;
+  }
 
-	c = needle_i;
-	while (*c) {
-		*c = tolower (*c);
-		c++;
-	}
+  c = needle_i;
+  while (*c)
+  {
+    *c = tolower(*c);
+    c++;
+  }
 
-	res = strstr (haystack_i, needle_i);
-	free (haystack_i);
-	free (needle_i);
-	return res ? res - haystack_i + (char *)haystack : NULL;
+  res = strstr(haystack_i, needle_i);
+  free(haystack_i);
+  free(needle_i);
+  return res ? res - haystack_i + (char *)haystack : NULL;
 }
 #endif
 

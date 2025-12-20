@@ -12,10 +12,11 @@
 #define PULSE_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-void pulse_funcs (struct hw_funcs *funcs);
+  void pulse_funcs(struct hw_funcs *funcs);
 
 #ifdef __cplusplus
 }

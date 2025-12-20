@@ -16,7 +16,8 @@
 #endif
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 #include "audio/decoder.h"
@@ -36,16 +37,16 @@ extern "C" {
 #include <sidplay/builders/resid.h>
 #include <sidplay/utils/SidDatabase.h>
 
-#define RESID_ID      "ReSID"
-#define OPT_DEFLEN    "SidPlay2_DefaultSongLength"
-#define OPT_MINLEN    "SidPlay2_MinimumSongLength"
-#define OPT_DATABASE  "SidPlay2_Database"
-#define OPT_FREQ      "SidPlay2_Frequency"
-#define OPT_PREC      "SidPlay2_Bits"
-#define OPT_PMODE     "SidPlay2_PlayMode"
-#define OPT_OPTI      "SidPlay2_Optimisation"
-#define OPT_START     "SidPlay2_StartAtStart"
-#define OPT_SUBTUNES  "SidPlay2_PlaySubTunes"
+#define RESID_ID "ReSID"
+#define OPT_DEFLEN "SidPlay2_DefaultSongLength"
+#define OPT_MINLEN "SidPlay2_MinimumSongLength"
+#define OPT_DATABASE "SidPlay2_Database"
+#define OPT_FREQ "SidPlay2_Frequency"
+#define OPT_PREC "SidPlay2_Bits"
+#define OPT_PMODE "SidPlay2_PlayMode"
+#define OPT_OPTI "SidPlay2_Optimisation"
+#define OPT_START "SidPlay2_StartAtStart"
+#define OPT_SUBTUNES "SidPlay2_PlaySubTunes"
 
 #define STITLE 0
 #define SAUTHOR 1
@@ -55,7 +56,7 @@ extern "C" {
 
 struct sidplay2_data
 {
-  SidTuneMod * tune;
+  SidTuneMod *tune;
   SID_EXTERN::sidplay2 *player;
   sid2_config_t cfg;
   ReSIDBuilder *builder;
@@ -73,24 +74,25 @@ struct sidplay2_data
 #endif
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-void *sidplay2_open (const char *file);
-void sidplay2_close (void *void_data);
-void sidplay2_get_error (void *prv_data, struct decoder_error *error);
-void sidplay2_info (const char *file_name, struct file_tags *info,
-		const int tags_sel);
-int sidplay2_seek (void *void_data, int sec);
-int sidplay2_decode (void *void_data, char *buf, int buf_len,
-		struct sound_params *sound_params);
-int sidplay2_get_bitrate (void *void_data);
-int sidplay2_get_duration (void *void_data);
-void sidplay2_get_name (const char *file, char buf[4]);
-int sidplay2_our_format_ext (const char *ext);
-void destroy ();
-void init ();
-decoder *plugin_init ();
+  void *sidplay2_open(const char *file);
+  void sidplay2_close(void *void_data);
+  void sidplay2_get_error(void *prv_data, struct decoder_error *error);
+  void sidplay2_info(const char *file_name, struct file_tags *info,
+                     const int tags_sel);
+  int sidplay2_seek(void *void_data, int sec);
+  int sidplay2_decode(void *void_data, char *buf, int buf_len,
+                      struct sound_params *sound_params);
+  int sidplay2_get_bitrate(void *void_data);
+  int sidplay2_get_duration(void *void_data);
+  void sidplay2_get_name(const char *file, char buf[4]);
+  int sidplay2_our_format_ext(const char *ext);
+  void destroy();
+  void init();
+  decoder *plugin_init();
 
 #ifdef __cplusplus
 }

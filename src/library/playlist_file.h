@@ -12,13 +12,15 @@
 #define PLAYLIST_FILE_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-int plist_load (struct plist *plist, const char *fname, const char *cwd,
-		const int load_serial);
-int plist_save (struct plist *plist, const char *file, const int save_serial, const bool save_tags);
-int is_plist_file (const char *name);
+  int plist_load(struct plist *plist, const char *fname, const char *cwd,
+                 const int load_serial);
+  int plist_save(struct plist *plist, const char *file, const int save_serial,
+                 const bool save_tags);
+  int is_plist_file(const char *name);
 
 #ifdef __cplusplus
 }

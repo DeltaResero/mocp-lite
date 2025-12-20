@@ -12,10 +12,11 @@
 #define NULL_OUT_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-void null_funcs (struct hw_funcs *funcs);
+  void null_funcs(struct hw_funcs *funcs);
 
 #ifdef __cplusplus
 }

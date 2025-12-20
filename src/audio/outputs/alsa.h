@@ -12,10 +12,11 @@
 #define ALSA_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-void alsa_funcs (struct hw_funcs *funcs);
+  void alsa_funcs(struct hw_funcs *funcs);
 
 #ifdef __cplusplus
 }

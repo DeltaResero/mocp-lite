@@ -12,7 +12,8 @@
 #define SOFTMIXER_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 #define SOFTMIXER_MIN 0
@@ -30,21 +31,22 @@ extern "C" {
 #define SOFTMIXER_SAVE_OPTION "Softmixer_SaveState"
 #define SOFTMIXER_SAVE_FILE "softmixer"
 
-char *softmixer_name();
+  char *softmixer_name();
 
-void softmixer_init();
-void softmixer_shutdown();
+  void softmixer_init();
+  void softmixer_shutdown();
 
-int softmixer_get_value();
-void softmixer_set_value(const int val);
+  int softmixer_get_value();
+  void softmixer_set_value(const int val);
 
-int softmixer_is_active();
-void softmixer_set_active(int act);
+  int softmixer_is_active();
+  void softmixer_set_active(int act);
 
-int softmixer_is_mono();
-void softmixer_set_mono(int mono);
+  int softmixer_is_mono();
+  void softmixer_set_mono(int mono);
 
-void softmixer_process_buffer(char *buf, const size_t size, const struct sound_params *sound_params);
+  void softmixer_process_buffer(char *buf, const size_t size,
+                                const struct sound_params *sound_params);
 
 #ifdef __cplusplus
 }

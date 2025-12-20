@@ -20,7 +20,7 @@
 // (at your option) any later version.
 
 #ifdef HAVE_CONFIG_H
-  #include "config.h"
+#include "config.h"
 #endif
 
 #include <stdio.h>
@@ -49,7 +49,7 @@
 
 #define NEWLINE 0x0A
 #define CRETURN 0x0D
-#define SPACE   0x20
+#define SPACE 0x20
 
 #define EQSET_HEADER "EQSET"
 
@@ -129,10 +129,12 @@ static void equalizer_read_config();
 static void equalizer_write_config();
 
 /* biquad application */
-static inline void apply_biquads(float *src, float *dst, int channels, int len, t_biquad *b, int blen);
+static inline void apply_biquads(float *src, float *dst, int channels, int len,
+                                 t_biquad *b, int blen);
 
 /* biquad filter creation */
-static t_biquad *mk_biquad(float dbgain, float cf, float srate, float bw, t_biquad *b);
+static t_biquad *mk_biquad(float dbgain, float cf, float srate, float bw,
+                           t_biquad *b);
 
 /* equalizer list processing */
 static t_eq_set_list *append_eq_set(t_eq_set *eqs, t_eq_set_list *l);
@@ -162,19 +164,13 @@ static char *eqsetdir;
 static char *config_preset_name;
 
 /* public functions */
-int equalizer_is_active()
-{
-  return equ_active?1:0;
-}
+int equalizer_is_active() { return equ_active ? 1 : 0; }
 
-int equalizer_set_active(int active)
-{
-  return equ_active = active?1:0;
-}
+int equalizer_set_active(int active) { return equ_active = active ? 1 : 0; }
 
 char *equalizer_current_eqname()
 {
-  if(equ_active && current_equ && current_equ->set)
+  if (equ_active && current_equ && current_equ->set)
   {
     return xstrdup(current_equ->set->name);
   }
@@ -184,9 +180,9 @@ char *equalizer_current_eqname()
 
 void equalizer_next()
 {
-  if(current_equ)
+  if (current_equ)
   {
-    if(current_equ->next)
+    if (current_equ->next)
     {
       current_equ = current_equ->next;
     }
@@ -195,8 +191,10 @@ void equalizer_next()
       current_equ = &equ_list;
     }
 
-    if(!current_equ->set && !(current_equ == &equ_list && !current_equ->next))
+    if (!current_equ->set && !(current_equ == &equ_list && !current_equ->next))
+    {
       equalizer_next();
+    }
   }
 
   equalizer_adjust_preamp();
@@ -204,20 +202,24 @@ void equalizer_next()
 
 void equalizer_prev()
 {
-  if(current_equ)
+  if (current_equ)
   {
-    if(current_equ->prev)
+    if (current_equ->prev)
     {
       current_equ = current_equ->prev;
     }
     else
     {
-      while(current_equ->next)
+      while (current_equ->next)
+      {
         current_equ = current_equ->next;
+      }
     }
 
-    if(!current_equ->set && !(current_equ == &equ_list && !current_equ->next))
+    if (!current_equ->set && !(current_equ == &equ_list && !current_equ->next))
+    {
       equalizer_prev();
+    }
   }
 
   equalizer_adjust_preamp();
@@ -228,10 +230,13 @@ void equalizer_prev()
 /* Create a Peaking EQ Filter.
  * See 'Audio EQ Cookbook' for more information
  */
-static t_biquad *mk_biquad(float dbgain, float cf, float srate, float bw, t_biquad *b)
+static t_biquad *mk_biquad(float dbgain, float cf, float srate, float bw,
+                           t_biquad *b)
 {
-  if(b==NULL)
+  if (b == NULL)
+  {
     b = (t_biquad *)xmalloc(sizeof(t_biquad));
+  }
 
   float A = powf(10.0f, dbgain / 40.0f);
   float omega = TWOPI * cf / srate;
@@ -276,12 +281,8 @@ static inline void biquad(float *src, float *dst, int len, t_biquad *b)
   while(len-->0)
   {
     float s = *src++;
-    float f = s * b->a0 + b->a1 * b->x1 + b->a2 * b->x2 - b->a3 * b->y1 - b->a4 * b->y2;
-    *dst++=f;
-    b->x2 = b->x1;
-    b->x1 = s;
-    b->y2 = b->y1;
-    b->y1 = f;
+    float f = s * b->a0 + b->a1 * b->x1 + b->a2 * b->x2 - b->a3 * b->y1 - b->a4
+* b->y2; *dst++=f; b->x2 = b->x1; b->x1 = s; b->y2 = b->y1; b->y1 = f;
   }
 }
 */
@@ -292,32 +293,29 @@ static inline void biquad(float *src, float *dst, int len, t_biquad *b)
  *
  * blen is the sample-count ignoring channels (samples per channel * channels)
  */
-static inline void apply_biquads(float *src, float *dst, int channels, int len, t_biquad *b, int blen)
+static inline void apply_biquads(float *src, float *dst, int channels, int len,
+                                 t_biquad *b, int blen)
 {
   int bi, ci, boffs, idx;
-  while(len>0)
+  while (len > 0)
   {
     boffs = 0;
-    for(ci=0; ci<channels; ci++)
+    for (ci = 0; ci < channels; ci++)
     {
       float s = *src++;
       float f = s;
-      for(bi=0; bi<blen; bi++)
+      for (bi = 0; bi < blen; bi++)
       {
         idx = boffs + bi;
-        f =
-          s * b[idx].a0 \
-          + b[idx].a1 * b[idx].x1 \
-          + b[idx].a2 * b[idx].x2 \
-          - b[idx].a3 * b[idx].y1 \
-          - b[idx].a4 * b[idx].y2;
+        f = s * b[idx].a0 + b[idx].a1 * b[idx].x1 + b[idx].a2 * b[idx].x2 -
+            b[idx].a3 * b[idx].y1 - b[idx].a4 * b[idx].y2;
         b[idx].x2 = b[idx].x1;
         b[idx].x1 = s;
         b[idx].y2 = b[idx].y1;
         b[idx].y1 = f;
         s = f;
       }
-      *dst++=f;
+      *dst++ = f;
       boffs += blen;
       len--;
     }
@@ -341,7 +339,7 @@ static inline void apply_biquads(float *src, float *dst, int channels, int len, 
 */
 static void equalizer_adjust_preamp()
 {
-  if(current_equ && current_equ->set)
+  if (current_equ && current_equ->set)
   {
     preamp = current_equ->set->preamp;
     preampf = powf(10.0f, current_equ->set->preamp / 20.0f);
@@ -357,13 +355,15 @@ static void equalizer_read_config()
 
   FILE *cf = fopen(sfile, "r");
 
-  free (sfile);
+  free(sfile);
 
-  if(cf==NULL)
+  if (cf == NULL)
   {
-    logit ("Unable to read equalizer configuration");
+    logit("Unable to read equalizer configuration");
     if (curloc)
-	    free (curloc);
+    {
+      free(curloc);
+    }
     return;
   }
 
@@ -374,74 +374,59 @@ static void equalizer_read_config()
   int tmp;
   float ftmp;
 
-  while((linebuffer=read_line(cf)))
+  while ((linebuffer = read_line(cf)))
   {
-    if(
-      strncasecmp
-      (
-          linebuffer
-        , EQUALIZER_CFG_ACTIVE
-        , strlen(EQUALIZER_CFG_ACTIVE)
-      ) == 0
-    )
+    if (strncasecmp(linebuffer, EQUALIZER_CFG_ACTIVE,
+                    strlen(EQUALIZER_CFG_ACTIVE)) == 0)
     {
-      if(sscanf(linebuffer, "%*s %i", &tmp)>0)
+      if (sscanf(linebuffer, "%*s %i", &tmp) > 0)
+      {
+        if (tmp > 0)
         {
-          if(tmp>0)
-          {
-            equ_active = 1;
-          }
-          else
-          {
-            equ_active = 0;
-          }
+          equ_active = 1;
         }
+        else
+        {
+          equ_active = 0;
+        }
+      }
     }
-    if(
-      strncasecmp
-      (
-          linebuffer
-        , EQUALIZER_CFG_MIXIN
-        , strlen(EQUALIZER_CFG_MIXIN)
-      ) == 0
-    )
+    if (strncasecmp(linebuffer, EQUALIZER_CFG_MIXIN,
+                    strlen(EQUALIZER_CFG_MIXIN)) == 0)
     {
-      if(sscanf(linebuffer, "%*s %f", &ftmp)>0)
+      if (sscanf(linebuffer, "%*s %f", &ftmp) > 0)
+      {
+        if (RANGE(0.0f, ftmp, 1.0f))
         {
-          if(RANGE(0.0f, ftmp, 1.0f))
-          {
-            mixin_rate = ftmp;
-          }
+          mixin_rate = ftmp;
         }
+      }
     }
-    if(
-      strncasecmp
-      (
-          linebuffer
-        , EQUALIZER_CFG_PRESET
-        , strlen(EQUALIZER_CFG_PRESET)
-      ) == 0
-    )
+    if (strncasecmp(linebuffer, EQUALIZER_CFG_PRESET,
+                    strlen(EQUALIZER_CFG_PRESET)) == 0)
     {
-      if(sscanf(linebuffer, "%*s %127s", presetbuf)>0)
+      if (sscanf(linebuffer, "%*s %127s", presetbuf) > 0)
+      {
+        /* ignore too large strings... */
+        if (strlen(presetbuf) < 127)
         {
-          /* ignore too large strings... */
-          if(strlen(presetbuf)<127)
+          if (config_preset_name)
           {
-            if(config_preset_name)
-              free(config_preset_name);
-            config_preset_name = xstrdup(presetbuf);
+            free(config_preset_name);
           }
+          config_preset_name = xstrdup(presetbuf);
         }
+      }
     }
     free(linebuffer);
   }
 
   fclose(cf);
 
-  if (curloc) {
-	  setlocale(LC_NUMERIC, curloc);
-	  free (curloc);
+  if (curloc)
+  {
+    setlocale(LC_NUMERIC, curloc);
+    free(curloc);
   }
 }
 
@@ -454,27 +439,32 @@ static void equalizer_write_config()
 
   FILE *cf = fopen(cfname, "w");
 
-  if(cf==NULL)
+  if (cf == NULL)
   {
-    logit ("Unable to write equalizer configuration");
+    logit("Unable to write equalizer configuration");
     if (curloc)
-	    free (curloc);
+    {
+      free(curloc);
+    }
     return;
   }
 
   fprintf(cf, "%s %i\n", EQUALIZER_CFG_ACTIVE, equ_active);
-  if(current_equ && current_equ->set)
+  if (current_equ && current_equ->set)
+  {
     fprintf(cf, "%s %s\n", EQUALIZER_CFG_PRESET, current_equ->set->name);
+  }
   fprintf(cf, "%s %f\n", EQUALIZER_CFG_MIXIN, mixin_rate);
 
   fclose(cf);
 
-  if (curloc) {
-	  setlocale(LC_NUMERIC, curloc);
-	  free (curloc);
+  if (curloc)
+  {
+    setlocale(LC_NUMERIC, curloc);
+    free(curloc);
   }
 
-  logit ("Equalizer configuration written");
+  logit("Equalizer configuration written");
 }
 
 void equalizer_init()
@@ -505,17 +495,19 @@ void equalizer_init()
 
   equalizer_refresh();
 
-  logit ("Equalizer initialized");
+  logit("Equalizer initialized");
 }
 
 void equalizer_shutdown()
 {
-  if(options_get_bool(EQUALIZER_SAVE_OPTION))
+  if (options_get_bool(EQUALIZER_SAVE_OPTION))
+  {
     equalizer_write_config();
+  }
 
   clear_eq_set(&equ_list);
 
-  logit ("Equalizer stopped");
+  logit("Equalizer stopped");
 }
 
 void equalizer_refresh()
@@ -525,14 +517,16 @@ void equalizer_refresh()
 
   char *current_set_name = NULL;
 
-  if(current_equ && current_equ->set)
+  if (current_equ && current_equ->set)
   {
     current_set_name = xstrdup(current_equ->set->name);
   }
   else
   {
-    if(config_preset_name)
+    if (config_preset_name)
+    {
       current_set_name = xstrdup(config_preset_name);
+    }
   }
 
   clear_eq_set(&equ_list);
@@ -541,7 +535,7 @@ void equalizer_refresh()
 
   DIR *d = opendir(eqsetdir);
 
-  if(!d)
+  if (!d)
   {
     return;
   }
@@ -553,7 +547,7 @@ void equalizer_refresh()
 
   last_elem = &equ_list;
 
-  while(de)
+  while (de)
   {
     sprintf(buf, "eqsets/%s", de->d_name);
 
@@ -561,11 +555,11 @@ void equalizer_refresh()
 
     stat(filename, &st);
 
-    if( S_ISREG(st.st_mode) )
+    if (S_ISREG(st.st_mode))
     {
       FILE *f = fopen(filename, "r");
 
-      if(f)
+      if (f)
       {
         char filebuffer[4096];
 
@@ -574,11 +568,11 @@ void equalizer_refresh()
         int maxread = 4095 - (fb - filebuffer);
 
         // read in whole file
-        while(!feof(f) && maxread>0)
+        while (!feof(f) && maxread > 0)
         {
           maxread = 4095 - (fb - filebuffer);
           int rb = fread(fb, sizeof(char), maxread, f);
-          fb+=rb;
+          fb += rb;
         }
 
         fclose(f);
@@ -586,24 +580,26 @@ void equalizer_refresh()
         *fb = 0;
         int r = read_setup(de->d_name, filebuffer, &eqs);
 
-        if(r==0)
+        if (r == 0)
         {
           int i, channel;
           t_eq_set *eqset = (t_eq_set *)xmalloc(sizeof(t_eq_set));
-          eqset->b = (t_biquad *)xmalloc(sizeof(t_biquad)*eqs->bcount*equ_channels);
+          eqset->b = (t_biquad *)xmalloc(sizeof(t_biquad) * eqs->bcount *
+                                         equ_channels);
 
           eqset->name = xstrdup(eqs->name);
           eqset->preamp = eqs->preamp;
           eqset->bcount = eqs->bcount;
           eqset->channels = equ_channels;
 
-          for(i=0; i<eqs->bcount; i++)
+          for (i = 0; i < eqs->bcount; i++)
           {
-            mk_biquad(eqs->dg[i], eqs->cf[i], sample_rate, eqs->bw[i], &eqset->b[i]);
+            mk_biquad(eqs->dg[i], eqs->cf[i], sample_rate, eqs->bw[i],
+                      &eqset->b[i]);
 
-            for(channel=1; channel<equ_channels; channel++)
+            for (channel = 1; channel < equ_channels; channel++)
             {
-              eqset->b[channel*eqset->bcount + i] = eqset->b[i];
+              eqset->b[channel * eqset->bcount + i] = eqset->b[i];
             }
           }
 
@@ -613,32 +609,35 @@ void equalizer_refresh()
           free(eqs->cf);
           free(eqs->bw);
           free(eqs->dg);
-
         }
         else
         {
-          switch(r)
+          switch (r)
           {
             case 0:
-              logit ("This should not happen: No error but no EQSET was parsed: %s", filename);
+              logit("This should not happen: No error but no EQSET was parsed: "
+                    "%s",
+                    filename);
               break;
             case -1:
-              logit ("Not an EQSET (empty file): %s", filename);
+              logit("Not an EQSET (empty file): %s", filename);
               break;
             case -2:
-              logit ("Not an EQSET (invalid header): %s", filename);
+              logit("Not an EQSET (invalid header): %s", filename);
               break;
             case -3:
-              logit ("Error while parsing settings from EQSET: %s", filename);
+              logit("Error while parsing settings from EQSET: %s", filename);
               break;
             default:
-              logit ("Unknown error while parsing EQSET: %s", filename);
+              logit("Unknown error while parsing EQSET: %s", filename);
               break;
           }
         }
 
-        if(eqs)
+        if (eqs)
+        {
           free(eqs);
+        }
 
         eqs = NULL;
       }
@@ -653,21 +652,23 @@ void equalizer_refresh()
 
   current_equ = &equ_list;
 
-  if(current_set_name)
+  if (current_set_name)
   {
     current_equ = &equ_list;
 
-    while(current_equ)
+    while (current_equ)
     {
-      if(current_equ->set)
+      if (current_equ->set)
       {
-        if(strcmp(current_set_name, current_equ->set->name)==0)
+        if (strcmp(current_set_name, current_equ->set->name) == 0)
+        {
           break;
+        }
       }
       current_equ = current_equ->next;
     }
 
-    if(current_equ)
+    if (current_equ)
     {
       // only free name when EQ was found to allow logging
       free(current_set_name);
@@ -676,29 +677,35 @@ void equalizer_refresh()
 
   if (!current_equ && current_set_name)
   {
-    logit ("EQ %s not found.", current_set_name);
+    logit("EQ %s not found.", current_set_name);
     /* equalizer not found, pick next equalizer */
     current_equ = &equ_list;
     // free name now
     free(current_set_name);
   }
-  if(current_equ && !current_equ->set)
+  if (current_equ && !current_equ->set)
+  {
     equalizer_next();
+  }
 
   equalizer_adjust_preamp();
 }
 
 /* sound processing code */
-void equalizer_process_buffer(char *buf, size_t size, const struct sound_params *sound_params)
+void equalizer_process_buffer(char *buf, size_t size,
+                              const struct sound_params *sound_params)
 {
-  debug ("EQ Processing %zu bytes...", size);
+  debug("EQ Processing %zu bytes...", size);
 
-  if(!equ_active || !current_equ || !current_equ->set)
-    return;
-
-  if(sound_params->rate != current_equ->set->b->israte || sound_params->channels != equ_channels)
+  if (!equ_active || !current_equ || !current_equ->set)
   {
-    logit ("Recreating filters due to sound parameter changes...");
+    return;
+  }
+
+  if (sound_params->rate != current_equ->set->b->israte ||
+      sound_params->channels != equ_channels)
+  {
+    logit("Recreating filters due to sound parameter changes...");
     sample_rate = sound_params->rate;
     equ_channels = sound_params->channels;
 
@@ -708,10 +715,9 @@ void equalizer_process_buffer(char *buf, size_t size, const struct sound_params 
   long sound_format = sound_params->fmt & SFMT_MASK_FORMAT;
   int samplewidth = sfmt_Bps(sound_format);
 
+  assert(size % (samplewidth * sound_params->channels) == 0);
 
-  assert (size % (samplewidth * sound_params->channels) == 0);
-
-  switch(sound_format)
+  switch (sound_format)
   {
     case SFMT_U8:
       equ_process_buffer_u8((uint8_t *)buf, size);
@@ -748,16 +754,19 @@ static void equ_process_buffer_u8(uint8_t *buf, size_t samples)
   size_t i;
   float *tmp;
 
-  debug ("equalizing");
+  debug("equalizing");
 
-  tmp = (float *)xmalloc (samples * sizeof (float));
+  tmp = (float *)xmalloc(samples * sizeof(float));
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
+  {
     tmp[i] = preampf * (float)buf[i];
+  }
 
-  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b, current_equ->set->bcount);
+  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b,
+                current_equ->set->bcount);
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
   {
     tmp[i] = r_mixin_rate * tmp[i] + mixin_rate * buf[i];
     tmp[i] = CLAMP(0, tmp[i], UINT8_MAX);
@@ -772,16 +781,19 @@ static void equ_process_buffer_s8(int8_t *buf, size_t samples)
   size_t i;
   float *tmp;
 
-  debug ("equalizing");
+  debug("equalizing");
 
-  tmp = (float *)xmalloc (samples * sizeof (float));
+  tmp = (float *)xmalloc(samples * sizeof(float));
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
+  {
     tmp[i] = preampf * (float)buf[i];
+  }
 
-  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b, current_equ->set->bcount);
+  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b,
+                current_equ->set->bcount);
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
   {
     tmp[i] = r_mixin_rate * tmp[i] + mixin_rate * buf[i];
     tmp[i] = CLAMP(INT8_MIN, tmp[i], INT8_MAX);
@@ -796,16 +808,19 @@ static void equ_process_buffer_u16(uint16_t *buf, size_t samples)
   size_t i;
   float *tmp;
 
-  debug ("equalizing");
+  debug("equalizing");
 
-  tmp = (float *)xmalloc (samples * sizeof (float));
+  tmp = (float *)xmalloc(samples * sizeof(float));
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
+  {
     tmp[i] = preampf * (float)buf[i];
+  }
 
-  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b, current_equ->set->bcount);
+  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b,
+                current_equ->set->bcount);
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
   {
     tmp[i] = r_mixin_rate * tmp[i] + mixin_rate * buf[i];
     tmp[i] = CLAMP(0, tmp[i], UINT16_MAX);
@@ -820,16 +835,19 @@ static void equ_process_buffer_s16(int16_t *buf, size_t samples)
   size_t i;
   float *tmp;
 
-  debug ("equalizing");
+  debug("equalizing");
 
-  tmp = (float *)xmalloc (samples * sizeof (float));
+  tmp = (float *)xmalloc(samples * sizeof(float));
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
+  {
     tmp[i] = preampf * (float)buf[i];
+  }
 
-  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b, current_equ->set->bcount);
+  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b,
+                current_equ->set->bcount);
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
   {
     tmp[i] = r_mixin_rate * tmp[i] + mixin_rate * buf[i];
     tmp[i] = CLAMP(INT16_MIN, tmp[i], INT16_MAX);
@@ -844,16 +862,19 @@ static void equ_process_buffer_u24(uint32_t *buf, size_t samples)
   size_t i;
   float *tmp;
 
-  debug ("equalizing");
+  debug("equalizing");
 
-  tmp = (float *)xmalloc (samples * sizeof (float));
+  tmp = (float *)xmalloc(samples * sizeof(float));
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
+  {
     tmp[i] = preampf * (float)buf[i];
+  }
 
-  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b, current_equ->set->bcount);
+  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b,
+                current_equ->set->bcount);
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
   {
     tmp[i] = r_mixin_rate * tmp[i] + mixin_rate * buf[i];
     tmp[i] = CLAMP(0, tmp[i], U24_MAX);
@@ -868,16 +889,19 @@ static void equ_process_buffer_s24(int32_t *buf, size_t samples)
   size_t i;
   float *tmp;
 
-  debug ("equalizing");
+  debug("equalizing");
 
-  tmp = (float *)xmalloc (samples * sizeof (float));
+  tmp = (float *)xmalloc(samples * sizeof(float));
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
+  {
     tmp[i] = preampf * (float)buf[i];
+  }
 
-  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b, current_equ->set->bcount);
+  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b,
+                current_equ->set->bcount);
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
   {
     tmp[i] = r_mixin_rate * tmp[i] + mixin_rate * buf[i];
     tmp[i] = CLAMP(S24_MIN, tmp[i], S24_MAX);
@@ -887,22 +911,24 @@ static void equ_process_buffer_s24(int32_t *buf, size_t samples)
   free(tmp);
 }
 
-
 static void equ_process_buffer_u32(uint32_t *buf, size_t samples)
 {
   size_t i;
   float *tmp;
 
-  debug ("equalizing");
+  debug("equalizing");
 
-  tmp = (float *)xmalloc (samples * sizeof (float));
+  tmp = (float *)xmalloc(samples * sizeof(float));
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
+  {
     tmp[i] = preampf * (float)buf[i];
+  }
 
-  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b, current_equ->set->bcount);
+  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b,
+                current_equ->set->bcount);
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
   {
     tmp[i] = r_mixin_rate * tmp[i] + mixin_rate * buf[i];
     tmp[i] = CLAMP(0, tmp[i], (float)UINT32_MAX);
@@ -917,16 +943,19 @@ static void equ_process_buffer_s32(int32_t *buf, size_t samples)
   size_t i;
   float *tmp;
 
-  debug ("equalizing");
+  debug("equalizing");
 
-  tmp = (float *)xmalloc (samples * sizeof (float));
+  tmp = (float *)xmalloc(samples * sizeof(float));
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
+  {
     tmp[i] = preampf * (float)buf[i];
+  }
 
-  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b, current_equ->set->bcount);
+  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b,
+                current_equ->set->bcount);
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
   {
     tmp[i] = r_mixin_rate * tmp[i] + mixin_rate * buf[i];
     tmp[i] = CLAMP((float)INT32_MIN, tmp[i], (float)INT32_MAX);
@@ -941,16 +970,19 @@ static void equ_process_buffer_float(float *buf, size_t samples)
   size_t i;
   float *tmp;
 
-  debug ("equalizing");
+  debug("equalizing");
 
-  tmp = (float *)xmalloc (samples * sizeof (float));
+  tmp = (float *)xmalloc(samples * sizeof(float));
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
+  {
     tmp[i] = preampf * (float)buf[i];
+  }
 
-  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b, current_equ->set->bcount);
+  apply_biquads(tmp, tmp, equ_channels, samples, current_equ->set->b,
+                current_equ->set->bcount);
 
-  for(i=0; i<samples; i++)
+  for (i = 0; i < samples; i++)
   {
     tmp[i] = r_mixin_rate * tmp[i] + mixin_rate * buf[i];
     tmp[i] = CLAMP(-1.0f, tmp[i], 1.0f);
@@ -963,13 +995,13 @@ static void equ_process_buffer_float(float *buf, size_t samples)
 /* equalizer list maintenance */
 static t_eq_set_list *append_eq_set(t_eq_set *eqs, t_eq_set_list *l)
 {
-  if(l->set == NULL)
+  if (l->set == NULL)
   {
     l->set = eqs;
   }
   else
   {
-    if(l->next)
+    if (l->next)
     {
       append_eq_set(eqs, l->next);
     }
@@ -988,14 +1020,14 @@ static t_eq_set_list *append_eq_set(t_eq_set *eqs, t_eq_set_list *l)
 
 static void clear_eq_set(t_eq_set_list *l)
 {
-  if(l->set)
+  if (l->set)
   {
     free(l->set->name);
     free(l->set->b);
     free(l->set);
     l->set = NULL;
   }
-  if(l->next)
+  if (l->next)
   {
     clear_eq_set(l->next);
     free(l->next);
@@ -1013,27 +1045,31 @@ static int read_setup(char *name, char *desc, t_eq_setup **sp)
 
   desc = skip_whitespace(desc);
 
-  if(!*desc)
+  if (!*desc)
   {
-		if (curloc)
-			free (curloc);
+    if (curloc)
+    {
+      free(curloc);
+    }
     return -1;
   }
 
-  if(strncasecmp(desc, EQSET_HEADER, sizeof(EQSET_HEADER)-1))
+  if (strncasecmp(desc, EQSET_HEADER, sizeof(EQSET_HEADER) - 1))
   {
-		if (curloc)
-			free (curloc);
+    if (curloc)
+    {
+      free(curloc);
+    }
     return -2;
   }
 
-  desc+=5;
+  desc += 5;
 
   desc = skip_whitespace(skip_line(desc));
 
-  if(s==NULL)
+  if (s == NULL)
   {
-    s=(t_eq_setup *)xmalloc(sizeof(t_eq_setup));
+    s = (t_eq_setup *)xmalloc(sizeof(t_eq_setup));
     *sp = s;
   }
 
@@ -1041,13 +1077,13 @@ static int read_setup(char *name, char *desc, t_eq_setup **sp)
   s->bcount = 0;
   s->preamp = 0.0f;
   int max_values = 16;
-  s->cf = (float *)xmalloc(max_values*sizeof(float));
-  s->bw = (float *)xmalloc(max_values*sizeof(float));
-  s->dg = (float *)xmalloc(max_values*sizeof(float));
+  s->cf = (float *)xmalloc(max_values * sizeof(float));
+  s->bw = (float *)xmalloc(max_values * sizeof(float));
+  s->dg = (float *)xmalloc(max_values * sizeof(float));
 
   int r;
 
-  while(*desc)
+  while (*desc)
   {
     char *endp;
 
@@ -1055,14 +1091,16 @@ static int read_setup(char *name, char *desc, t_eq_setup **sp)
 
     r = read_float(desc, &cf, &endp);
 
-    if(r!=0)
+    if (r != 0)
     {
       free(s->name);
       free(s->cf);
       free(s->bw);
       free(s->dg);
-			if (curloc)
-				free (curloc);
+      if (curloc)
+      {
+        free(curloc);
+      }
       return -3;
     }
 
@@ -1072,14 +1110,16 @@ static int read_setup(char *name, char *desc, t_eq_setup **sp)
 
     r = read_float(desc, &bw, &endp);
 
-    if(r!=0)
+    if (r != 0)
     {
       free(s->name);
       free(s->cf);
       free(s->bw);
       free(s->dg);
-			if (curloc)
-				free (curloc);
+      if (curloc)
+      {
+        free(curloc);
+      }
       return -3;
     }
 
@@ -1088,34 +1128,36 @@ static int read_setup(char *name, char *desc, t_eq_setup **sp)
     float dg = 0.0f;
 
     /* 0Hz means preamp, only one parameter then */
-    if(cf!=0.0f)
+    if (cf != 0.0f)
     {
       r = read_float(desc, &dg, &endp);
 
-      if(r!=0)
+      if (r != 0)
       {
         free(s->name);
         free(s->cf);
         free(s->bw);
         free(s->dg);
-				if (curloc)
-					free (curloc);
+        if (curloc)
+        {
+          free(curloc);
+        }
         return -3;
       }
 
       desc = skip_whitespace(endp);
 
-      if(s->bcount>=(max_values-1))
+      if (s->bcount >= (max_values - 1))
       {
-        max_values*=2;
-        s->cf=xrealloc(s->cf, max_values*sizeof(float));
-        s->bw=xrealloc(s->bw, max_values*sizeof(float));
-        s->dg=xrealloc(s->dg, max_values*sizeof(float));
+        max_values *= 2;
+        s->cf = xrealloc(s->cf, max_values * sizeof(float));
+        s->bw = xrealloc(s->bw, max_values * sizeof(float));
+        s->dg = xrealloc(s->dg, max_values * sizeof(float));
       }
 
-      s->cf[s->bcount]=cf;
-      s->bw[s->bcount]=bw;
-      s->dg[s->bcount]=dg;
+      s->cf[s->bcount] = cf;
+      s->bw[s->bcount] = bw;
+      s->dg[s->bcount] = dg;
 
       s->bcount++;
     }
@@ -1125,9 +1167,10 @@ static int read_setup(char *name, char *desc, t_eq_setup **sp)
     }
   }
 
-  if (curloc) {
-	  setlocale(LC_NUMERIC, curloc); // posix decimal point
-	  free (curloc);
+  if (curloc)
+  {
+    setlocale(LC_NUMERIC, curloc); // posix decimal point
+    free(curloc);
   }
 
   return 0;
@@ -1136,30 +1179,42 @@ static int read_setup(char *name, char *desc, t_eq_setup **sp)
 static char *skip_line(char *s)
 {
   int dos_line = 0;
-  while(*s && (*s!=CRETURN && *s!=NEWLINE) )
+  while (*s && (*s != CRETURN && *s != NEWLINE))
+  {
     s++;
+  }
 
-  if(*s==CRETURN)
+  if (*s == CRETURN)
+  {
     dos_line = 1;
+  }
 
-  if(*s)
+  if (*s)
+  {
     s++;
+  }
 
-  if(dos_line && *s==NEWLINE)
+  if (dos_line && *s == NEWLINE)
+  {
     s++;
+  }
 
   return s;
 }
 
 static char *skip_whitespace(char *s)
 {
-  while(*s && (*s<=SPACE))
+  while (*s && (*s <= SPACE))
+  {
     s++;
+  }
 
-  if(!*s)
+  if (!*s)
+  {
     return s;
+  }
 
-  if(*s=='#')
+  if (*s == '#')
   {
     s = skip_line(s);
 
@@ -1175,11 +1230,15 @@ static int read_float(char *s, float *f, char **endp)
 
   float t = strtof(s, endp);
 
-  if(errno==ERANGE)
+  if (errno == ERANGE)
+  {
     return -1;
+  }
 
-  if(*endp == s)
+  if (*endp == s)
+  {
     return -2;
+  }
 
   *f = t;
 
