@@ -900,7 +900,6 @@ static void update_curr_file()
     file_info_cleanup(&curr_file);
     file_info_reset(&curr_file);
     iface_set_played_file(NULL);
-    iface_load_lyrics(NULL);
     free(file);
   }
   else if (file[0] && (!curr_file.file || strcmp(file, curr_file.file)))
@@ -940,11 +939,6 @@ static void update_curr_file()
 
     iface_set_played_file(file);
     iface_set_played_file_title(curr_file.title);
-    /* Try to load the lyrics of the new file. */
-    if (options_get_bool("AutoloadLyrics"))
-    {
-      iface_load_lyrics(file);
-    }
     /* Silent seeking makes no sense if the playing file has changed. */
     silent_seek_pos = -1;
     iface_set_curr_time(curr_file.curr_time);
@@ -3782,10 +3776,6 @@ static void menu_key(const struct iface_key *k)
   {
     iface_handle_help_key(k);
   }
-  else if (iface_in_lyrics())
-  {
-    iface_handle_lyrics_key(k);
-  }
   else if (iface_in_entry())
   {
     entry_key(k);
@@ -3912,9 +3902,6 @@ static void menu_key(const struct iface_key *k)
 
       case KEY_CMD_HELP:
         iface_switch_to_help();
-        break;
-      case KEY_CMD_LYRICS:
-        iface_switch_to_lyrics();
         break;
       case KEY_CMD_HIDE_MESSAGE:
         iface_disable_message();

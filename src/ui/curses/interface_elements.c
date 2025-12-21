@@ -43,7 +43,6 @@
 #include "ui/curses/interface.h"
 #include "utils/utf8.h"
 #include "library/rcc.h"
-#include "ui/curses/lyrics.h"
 
 #ifndef PACKAGE_REVISION
 #define STARTUP_MESSAGE                                                        \
@@ -127,8 +126,6 @@ static struct main_win
   int in_help;           /* are we displaying help screen? */
   int too_small;         /* is the terminal window too small to display mocf? */
   int help_screen_top;   /* first visible line of the help screen. */
-  int in_lyrics;         /* are we displaying lyrics screen? */
-  int lyrics_screen_top; /* first visible line of the lyrics screen. */
 
   struct side_menu menus[3];
   lists_t_strs *layout_fmt;
@@ -1061,10 +1058,8 @@ static void main_win_init(struct main_win *w, lists_t_strs *layout_fmt)
 
   w->curr_file = NULL;
   w->in_help = 0;
-  w->in_lyrics = 0;
   w->too_small = 0;
   w->help_screen_top = 0;
-  w->lyrics_screen_top = 0;
   w->layout_fmt = layout_fmt;
 
   rc = parse_layout(&l, layout_fmt);
@@ -1937,46 +1932,6 @@ static void main_win_draw_help_screen(const struct main_win *w)
   }
 }
 
-static void main_win_draw_lyrics_screen(const struct main_win *w)
-{
-  int i;
-  int max_lines;
-  int height, width;
-  lists_t_strs *lyrics_array;
-
-  assert(w != NULL);
-  assert(w->in_lyrics);
-
-  max_lines = w->lyrics_screen_top + LINES - 6;
-
-  werase(w->win);
-  wbkgd(w->win, get_color(CLR_BACKGROUND));
-
-  wmove(w->win, 0, 0);
-  if (w->lyrics_screen_top != 0)
-  {
-    wattrset(w->win, get_color(CLR_MESSAGE));
-    xmvwaddstr(w->win, 0, COLS / 2 - (sizeof("...MORE...") - 1) / 2,
-               "...MORE...");
-  }
-  wmove(w->win, 1, 0);
-  wattrset(w->win, get_color(CLR_LEGEND));
-  getmaxyx(w->win, height, width);
-  lyrics_array = lyrics_format(height, width);
-  for (i = w->lyrics_screen_top;
-       i < max_lines && i < lists_strs_size(lyrics_array); i++)
-  {
-    xwaddstr(w->win, lists_strs_at(lyrics_array, i));
-  }
-  if (i != lists_strs_size(lyrics_array))
-  {
-    wattrset(w->win, get_color(CLR_MESSAGE));
-    xmvwaddstr(w->win, LINES - 5, COLS / 2 - (sizeof("...MORE...") - 1) / 2,
-               "...MORE...");
-  }
-  lists_strs_free(lyrics_array);
-}
-
 static void main_win_draw(struct main_win *w)
 {
   size_t ix;
@@ -1984,10 +1939,6 @@ static void main_win_draw(struct main_win *w)
   if (w->in_help)
   {
     main_win_draw_help_screen(w);
-  }
-  else if (w->in_lyrics)
-  {
-    main_win_draw_lyrics_screen(w);
   }
   else if (w->too_small)
   {
@@ -2116,14 +2067,6 @@ static void main_win_switch_to_help(struct main_win *w)
   main_win_draw(w);
 }
 
-static void main_win_switch_to_lyrics(struct main_win *w)
-{
-  assert(w != NULL);
-
-  w->in_lyrics = 1;
-  main_win_draw(w);
-}
-
 static void main_win_create_themes_menu(struct main_win *w)
 {
   struct window_params p;
@@ -2173,13 +2116,6 @@ static int main_win_in_help(const struct main_win *w)
   assert(w != NULL);
 
   return w->in_help;
-}
-
-static int main_win_in_lyrics(const struct main_win *w)
-{
-  assert(w != NULL);
-
-  return w->in_lyrics;
 }
 
 static int main_win_in_plist_menu(const struct main_win *w)
@@ -2391,46 +2327,6 @@ static void main_win_handle_help_key(struct main_win *w,
     else if (k->key.func != KEY_RESIZE)
     {
       w->in_help = 0;
-    }
-  }
-
-  main_win_draw(w);
-}
-
-static void main_win_handle_lyrics_key(struct main_win *w,
-                                       const struct iface_key *k)
-{
-  int height, width;
-  lists_t_strs *lyrics_array;
-
-  assert(w != NULL);
-  assert(w->in_lyrics);
-
-  if ((k->type == IFACE_KEY_FUNCTION &&
-       (k->key.func == KEY_DOWN || k->key.func == KEY_NPAGE)) ||
-      (k->key.ucs == '\n'))
-  {
-    getmaxyx(w->win, height, width);
-    lyrics_array = lyrics_format(height, width);
-    if (w->lyrics_screen_top + LINES - 5 <= lists_strs_size(lyrics_array))
-    {
-      w->lyrics_screen_top++;
-    }
-    lists_strs_free(lyrics_array);
-  }
-  else
-  {
-    if (k->type == IFACE_KEY_FUNCTION &&
-        (k->key.func == KEY_UP || k->key.func == KEY_PPAGE))
-    {
-      if (w->lyrics_screen_top > 0)
-      {
-        w->lyrics_screen_top--;
-      }
-    }
-    else if (k->key.func != KEY_RESIZE)
-    {
-      w->in_lyrics = 0;
     }
   }
 
@@ -4117,8 +4013,6 @@ void windows_end()
   }
 
   windows_reset();
-
-  lyrics_cleanup();
 }
 
 static void iface_refresh_screen()
@@ -4756,24 +4650,6 @@ void iface_handle_help_key(const struct iface_key *k)
   iface_refresh_screen();
 }
 
-int iface_in_lyrics() { return main_win_in_lyrics(&main_win); }
-
-void iface_switch_to_lyrics()
-{
-  if (!options_get_bool("AutoloadLyrics"))
-  {
-    iface_load_lyrics(main_win.curr_file);
-  }
-  main_win_switch_to_lyrics(&main_win);
-  iface_refresh_screen();
-}
-
-void iface_handle_lyrics_key(const struct iface_key *k)
-{
-  main_win_handle_lyrics_key(&main_win, k);
-  iface_refresh_screen();
-}
-
 void iface_toggle_layout()
 {
   static int curr_layout = 1;
@@ -4850,14 +4726,6 @@ void iface_restore()
   {
     curs_set(0);
   }
-}
-
-void iface_load_lyrics(const char *file)
-{
-  lyrics_cleanup();
-  lyrics_autoload(file);
-  main_win.lyrics_screen_top = 0;
-  main_win_draw(&main_win);
 }
 
 static void update_queue_position(struct plist *playlist,

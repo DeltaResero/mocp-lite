@@ -116,7 +116,6 @@ Future Wishlist (items marked with $ are bigger changes requiring more time):
 * Command to see all information about a file with all tags, also all
   information about an internet stream (from IceCast headers like icy-url,
   icy-pub).
-*$ Lyrics downloaded from the Internet.
 * lirc.
 * Don't use PATH_MAX.
 * Seek forward using the content of the output buffer.

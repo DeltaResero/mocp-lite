@@ -1,9 +1,5 @@
 Helper scripts:
 
-[*] mocf_lyrics.tg.pl - fetches lyrics and saves them to a file.
-
-ExecCommand1 = "~/moc-lyrics.tg.pl -a %r -t %t -f %f"
-
 [*] mocf_play_rating.sh, ratings_find - plays all songs in a given directory with ratings in a specified range
 
 Usage: ratings_find min [max] dir

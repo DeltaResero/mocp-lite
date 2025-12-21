@@ -352,7 +352,6 @@ set(MOCF_SOURCES
     src/utils/utf8.c
     src/library/rcc.c
     src/audio/processing/softmixer.c
-    src/ui/curses/lyrics.c
     src/utils/lists.c
     src/audio/processing/equalizer.c
     src/library/ratings.c
